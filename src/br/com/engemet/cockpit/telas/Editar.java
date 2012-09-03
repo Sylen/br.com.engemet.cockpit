@@ -87,7 +87,6 @@ public class Editar extends javax.swing.JFrame{
     @SuppressWarnings("unchecked")
     public void setCbxIndicadores(String combo){
         cbxIndicadores.addItem(combo);
-        //teste
     }
 
     public void setTexto(String texto){

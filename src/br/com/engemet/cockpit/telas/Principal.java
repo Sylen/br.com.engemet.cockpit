@@ -5,6 +5,8 @@ import br.com.engemet.cockpit.acao.AcaoCockpit;
 import br.com.engemet.cockpit.acao.CalculoStatus;
 import br.com.engemet.cockpit.acao.CockpitStrings;
 import br.com.engemet.cockpit.oracle.Conexao;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 
@@ -29,8 +31,18 @@ public class Principal extends javax.swing.JFrame{
         conexao.openBD();
 
         initComponents();
+        
+        setDefaultCloseOperation(Frame.DO_NOTHING_ON_CLOSE); 
+        
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent evt){
+                if(JOptionPane.showConfirmDialog(null, "Deseja sair?", "Sair", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION){
+                    conexao.closeBD();
+                    System.exit(0);
+                }
+            }
+        });
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -206,16 +218,21 @@ public class Principal extends javax.swing.JFrame{
 
     @SuppressWarnings("deprecation")
     private void jMenuItemNovoIndicadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovoIndicadorActionPerformed
-        indicador = new Indicadores();
-        indicador.setBounds(120, 40, 1000, 730);
-        Info.indicadores.setNewCod();
-        indicador.setVisible(true);
+        if(JOptionPane.showConfirmDialog(null, "Deseja criar um novo Indicador", "Indicadores", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION){
+            indicador = new Indicadores();
+            indicador.setBounds(120, 40, 1000, 730);
+            Info.indicadores.setNewCod();
+            indicador.setVisible(true);
+        }
+        
     }//GEN-LAST:event_jMenuItemNovoIndicadorActionPerformed
 
     private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
         // TODO add your handling code here:
-        conexao.closeBD();
-        System.exit(0);
+        if(JOptionPane.showConfirmDialog(null, "Deseja sair?", "Sair", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION){
+            conexao.closeBD();
+            System.exit(0);
+        }
     }//GEN-LAST:event_jMenuItemSairActionPerformed
 
     private void jMenuItemClientesActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_jMenuItemClientesActionPerformed

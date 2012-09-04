@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 public class Editar extends javax.swing.JFrame{
     private int cod;
-    
+    private Indicadores indicador;
     
     public Editar(){
         initComponents();
@@ -53,9 +53,7 @@ public class Editar extends javax.swing.JFrame{
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        // TODO add your handling code here:
-        Indicadores indicador = new Indicadores();
-        
+        // TODO add your handling code here
         cod = cbxIndicadores.getSelectedIndex();
         
         indicador = new Indicadores();

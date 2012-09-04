@@ -11,15 +11,15 @@ import java.util.Calendar;
 import javax.swing.JOptionPane;
 
 public class Principal extends javax.swing.JFrame{
-
+    
+    private static AcessoUsuario acesso = new AcessoUsuario();
     public static final Principal Frame = new Principal();
-    private Conexao conexao = new Conexao();
     private MapaEstrategico mapa = new MapaEstrategico();
     private Indicadores indicador;
     private AcaoCockpit acaoCockpit = new AcaoCockpit();
     private AcaoBotaoCockpit acaoBotaoCockpit = new AcaoBotaoCockpit();
     private CalculoStatus status = new CalculoStatus();
-    //private Forecast forecast;
+    private CriarUsuario usuario;
     private String descricao;
     private String campo;
     private String tabela;
@@ -28,7 +28,6 @@ public class Principal extends javax.swing.JFrame{
 
     public Principal(){
         Info.telaPrincipal = this;
-        conexao.openBD();
 
         initComponents();
         
@@ -37,7 +36,7 @@ public class Principal extends javax.swing.JFrame{
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent evt){
                 if(JOptionPane.showConfirmDialog(null, "Deseja sair?", "Sair", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION){
-                    conexao.closeBD();
+                    AcessoUsuario.conexao.closeBD();
                     System.exit(0);
                 }
             }
@@ -49,6 +48,9 @@ public class Principal extends javax.swing.JFrame{
 
         jMenuPrincipal = new javax.swing.JMenuBar();
         jMenuArquivo = new javax.swing.JMenu();
+        jMenuUsuario = new javax.swing.JMenu();
+        jMenuItemCriarUsuario = new javax.swing.JMenuItem();
+        jMenuItemRedefinirSenha = new javax.swing.JMenuItem();
         jMenuItemSair = new javax.swing.JMenuItem();
         jMenuMapaEstrategico = new javax.swing.JMenu();
         jMenuItemMapaEstrategico = new javax.swing.JMenuItem();
@@ -72,6 +74,26 @@ public class Principal extends javax.swing.JFrame{
         setName("frCockpit"); // NOI18N
 
         jMenuArquivo.setText("Arquivo");
+
+        jMenuUsuario.setText("Usuário");
+
+        jMenuItemCriarUsuario.setText("Criar Usuário");
+        jMenuItemCriarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCriarUsuarioActionPerformed(evt);
+            }
+        });
+        jMenuUsuario.add(jMenuItemCriarUsuario);
+
+        jMenuItemRedefinirSenha.setText("Redefinir Senha");
+        jMenuItemRedefinirSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemRedefinirSenhaActionPerformed(evt);
+            }
+        });
+        jMenuUsuario.add(jMenuItemRedefinirSenha);
+
+        jMenuArquivo.add(jMenuUsuario);
 
         jMenuItemSair.setText("Sair");
         jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
@@ -230,7 +252,7 @@ public class Principal extends javax.swing.JFrame{
     private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
         // TODO add your handling code here:
         if(JOptionPane.showConfirmDialog(null, "Deseja sair?", "Sair", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION){
-            conexao.closeBD();
+            AcessoUsuario.conexao.closeBD();
             System.exit(0);
         }
     }//GEN-LAST:event_jMenuItemSairActionPerformed
@@ -300,22 +322,22 @@ public class Principal extends javax.swing.JFrame{
 
         editar.setBounds(550, 400, 520, 160);
         editar.setVisible(true);
-        /*
-         descricao = String.valueOf(JOptionPane.showInputDialog(null, "Escolha o Indicador:", "Editar Indicadorores", JOptionPane.PLAIN_MESSAGE, null, combo, ""));
-         System.out.println("Resultado = "+ descricao);
-        
-         for(int i = 1; i < combo.length; i++){
-         if(descricao == combo[i]){
-         cod = i;
-         }
-         }
-
-         indicador = new Indicadores();
-         indicador.setBounds(120, 40, 1000, 730);
-         indicador.setCod(cod);
-         indicador.setVisible(true);
-         */
     }//GEN-LAST:event_jMenuItemEditarIndicadorActionPerformed
+
+    private void jMenuItemCriarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCriarUsuarioActionPerformed
+        // TODO add your handling code here:
+        usuario = new CriarUsuario();
+        usuario.setTitulo("Criar Usuário");
+        usuario.setVisible(true);
+    }//GEN-LAST:event_jMenuItemCriarUsuarioActionPerformed
+
+    private void jMenuItemRedefinirSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRedefinirSenhaActionPerformed
+        // TODO add your handling code here:
+        usuario = new CriarUsuario();
+        usuario.setTitulo("Redefir a Senha");
+        usuario.setRedefirSenha();
+        usuario.setVisible(true);
+    }//GEN-LAST:event_jMenuItemRedefinirSenhaActionPerformed
 
     public void setStatusMapa(){
         Info.data = Info.cal.get(Calendar.MONTH);
@@ -325,7 +347,6 @@ public class Principal extends javax.swing.JFrame{
         double realAcu;
         String calculo;
         cod = Info.getCod();
-
 
         for(int i = (Info.data-1); i < Info.data; i++){
             for(int j = 0; j < cod; j++){
@@ -1050,6 +1071,7 @@ public class Principal extends javax.swing.JFrame{
         }
     }
 
+    
     public static void main(String args[]){
 
         java.awt.EventQueue.invokeLater(new Runnable(){
@@ -1057,10 +1079,13 @@ public class Principal extends javax.swing.JFrame{
             public void run(){
                 Frame.setExtendedState(Principal.MAXIMIZED_BOTH);
                 Frame.setVisible(true);
+                Frame.setEnabled(false);
+                acesso.setVisible(true);
             }
 
         });
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenuArquivo;
     private javax.swing.JMenu jMenuCockpit;
@@ -1068,17 +1093,20 @@ public class Principal extends javax.swing.JFrame{
     private javax.swing.JMenu jMenuIndicadores;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemClientes;
+    private javax.swing.JMenuItem jMenuItemCriarUsuario;
     private javax.swing.JMenuItem jMenuItemEditarIndicador;
     private javax.swing.JMenuItem jMenuItemFinancas;
     private javax.swing.JMenuItem jMenuItemMapaEstrategico;
     private javax.swing.JMenuItem jMenuItemNovoIndicador;
     private javax.swing.JMenuItem jMenuItemPgt;
     private javax.swing.JMenuItem jMenuItemProcessos;
+    private javax.swing.JMenuItem jMenuItemRedefinirSenha;
     private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenuItem jMenuItemSgi;
     private javax.swing.JMenu jMenuMapaEstrategico;
     private javax.swing.JMenuBar jMenuPrincipal;
     private javax.swing.JMenu jMenuQualidadeOps;
     private javax.swing.JMenu jMenuScorecard;
+    private javax.swing.JMenu jMenuUsuario;
     // End of variables declaration//GEN-END:variables
 }

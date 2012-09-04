@@ -92,19 +92,19 @@ public class MapaEstrategico extends javax.swing.JPanel{
         panelMapa.add(lblStatusFinPos5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 60, 20, 20));
 
         lblStatusCliPos1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        panelMapa.add(lblStatusCliPos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 20, 20));
+        panelMapa.add(lblStatusCliPos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 195, 20, 20));
 
         lblStatusCliPos2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        panelMapa.add(lblStatusCliPos2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 190, 20, 20));
+        panelMapa.add(lblStatusCliPos2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 195, 20, 20));
 
         lblStatusCliPos3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        panelMapa.add(lblStatusCliPos3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 190, 20, 20));
+        panelMapa.add(lblStatusCliPos3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 195, 20, 20));
 
         lblStatusCliPos4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        panelMapa.add(lblStatusCliPos4, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 190, 20, 20));
+        panelMapa.add(lblStatusCliPos4, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 195, 20, 20));
 
         lblStatusCliPos5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        panelMapa.add(lblStatusCliPos5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 190, 20, 20));
+        panelMapa.add(lblStatusCliPos5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 195, 20, 20));
 
         lblStatusProPos1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         panelMapa.add(lblStatusProPos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 340, 20, 20));
@@ -422,35 +422,35 @@ public class MapaEstrategico extends javax.swing.JPanel{
     private void btnFinancas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinancas1ActionPerformed
         btnFinancas1.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[0], 1);
+        Info.telaPrincipal.setStatusCockpitFinancas(CockpitStrings.Perspectivas[0], 1);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnFinancas1ActionPerformed
 
     private void btnFinancas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinancas2ActionPerformed
         btnFinancas2.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[0], 4);
+        Info.telaPrincipal.setStatusCockpitFinancas(CockpitStrings.Perspectivas[0], 4);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnFinancas2ActionPerformed
 
     private void btnFinancas3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinancas3ActionPerformed
         btnFinancas3.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[0], 5);
+        Info.telaPrincipal.setStatusCockpitFinancas(CockpitStrings.Perspectivas[0], 5);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnFinancas3ActionPerformed
 
     private void btnFinancas4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinancas4ActionPerformed
         btnFinancas4.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[0], 2, 3);
+        Info.telaPrincipal.setStatusCockpitFinancas(CockpitStrings.Perspectivas[0], 2, 3);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnFinancas4ActionPerformed
 
     private void btnFinancas5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinancas5ActionPerformed
         btnFinancas5.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[0], 6);
+        Info.telaPrincipal.setStatusCockpitFinancas(CockpitStrings.Perspectivas[0], 6);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnFinancas5ActionPerformed
 
@@ -458,7 +458,7 @@ public class MapaEstrategico extends javax.swing.JPanel{
         // TODO add your handling code here:
         btnPGT8.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[3]);
+        Info.telaPrincipal.setStatusCockpitPGT(CockpitStrings.Perspectivas[3], 6);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnPGT8ActionPerformed
 
@@ -466,7 +466,7 @@ public class MapaEstrategico extends javax.swing.JPanel{
         // TODO add your handling code here:
         btnClientes1.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[1]);
+        Info.telaPrincipal.setStatusCockpitClientes(CockpitStrings.Perspectivas[1], 2);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnClientes1ActionPerformed
 
@@ -474,7 +474,7 @@ public class MapaEstrategico extends javax.swing.JPanel{
         // TODO add your handling code here:
         btnClientes2.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[1]);
+        Info.telaPrincipal.setStatusCockpitClientes(CockpitStrings.Perspectivas[1], 5);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnClientes2ActionPerformed
 
@@ -482,7 +482,7 @@ public class MapaEstrategico extends javax.swing.JPanel{
         // TODO add your handling code here:
         btnClientes3.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[1]);
+        Info.telaPrincipal.setStatusCockpitClientes(CockpitStrings.Perspectivas[1], 1);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnClientes3ActionPerformed
 
@@ -490,7 +490,7 @@ public class MapaEstrategico extends javax.swing.JPanel{
         // TODO add your handling code here:
         btnClientes4.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[1]);
+        Info.telaPrincipal.setStatusCockpitClientes(CockpitStrings.Perspectivas[1], 4);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnClientes4ActionPerformed
 
@@ -498,7 +498,7 @@ public class MapaEstrategico extends javax.swing.JPanel{
         // TODO add your handling code here:
         btnClientes5.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[1]);
+        Info.telaPrincipal.setStatusCockpitClientes(CockpitStrings.Perspectivas[1], 3, 6);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnClientes5ActionPerformed
 
@@ -506,7 +506,7 @@ public class MapaEstrategico extends javax.swing.JPanel{
         // TODO add your handling code here:
         btnProcessos1.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[2]);
+        Info.telaPrincipal.setStatusCockpitProcessos(CockpitStrings.Perspectivas[2], 1);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnProcessos1ActionPerformed
 
@@ -514,7 +514,7 @@ public class MapaEstrategico extends javax.swing.JPanel{
         // TODO add your handling code here:
         btnProcessos2.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[2]);
+        Info.telaPrincipal.setStatusCockpitProcessos(CockpitStrings.Perspectivas[2], 1);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnProcessos2ActionPerformed
 
@@ -522,7 +522,7 @@ public class MapaEstrategico extends javax.swing.JPanel{
         // TODO add your handling code here:
         btnProcessos3.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[2]);
+        Info.telaPrincipal.setStatusCockpitProcessos(CockpitStrings.Perspectivas[2], 5, 2);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnProcessos3ActionPerformed
 
@@ -530,7 +530,7 @@ public class MapaEstrategico extends javax.swing.JPanel{
         // TODO add your handling code here:
         btnProcessos4.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[2]);
+        Info.telaPrincipal.setStatusCockpitProcessos(CockpitStrings.Perspectivas[2], 4);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnProcessos4ActionPerformed
 
@@ -538,7 +538,7 @@ public class MapaEstrategico extends javax.swing.JPanel{
         // TODO add your handling code here:
         btnProcessos5.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[2]);
+        Info.telaPrincipal.setStatusCockpitProcessos(CockpitStrings.Perspectivas[2], 3);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnProcessos5ActionPerformed
 
@@ -546,7 +546,7 @@ public class MapaEstrategico extends javax.swing.JPanel{
         // TODO add your handling code here:
         btnProcessos6.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[2]);
+        Info.telaPrincipal.setStatusCockpitProcessos(CockpitStrings.Perspectivas[2], 6);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnProcessos6ActionPerformed
 
@@ -554,7 +554,7 @@ public class MapaEstrategico extends javax.swing.JPanel{
         // TODO add your handling code here:
         btnProcessos7.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[2]);
+        Info.telaPrincipal.setStatusCockpitProcessos(CockpitStrings.Perspectivas[2], 1);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnProcessos7ActionPerformed
 
@@ -562,7 +562,7 @@ public class MapaEstrategico extends javax.swing.JPanel{
         // TODO add your handling code here:
         btnPGT1.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[3]);
+        Info.telaPrincipal.setStatusCockpitPGT(CockpitStrings.Perspectivas[3], 2);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnPGT1ActionPerformed
 
@@ -570,7 +570,7 @@ public class MapaEstrategico extends javax.swing.JPanel{
         // TODO add your handling code here:
         btnPGT2.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[3]);
+        Info.telaPrincipal.setStatusCockpitPGT(CockpitStrings.Perspectivas[3], 2);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnPGT2ActionPerformed
 
@@ -578,7 +578,7 @@ public class MapaEstrategico extends javax.swing.JPanel{
         // TODO add your handling code here:
         btnPGT3.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[3]);
+        Info.telaPrincipal.setStatusCockpitPGT(CockpitStrings.Perspectivas[3], 5);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnPGT3ActionPerformed
 
@@ -586,7 +586,7 @@ public class MapaEstrategico extends javax.swing.JPanel{
         // TODO add your handling code here:
         btnPGT4.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[3]);
+        Info.telaPrincipal.setStatusCockpitPGT(CockpitStrings.Perspectivas[3], 4);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnPGT4ActionPerformed
 
@@ -594,7 +594,7 @@ public class MapaEstrategico extends javax.swing.JPanel{
         // TODO add your handling code here:
         btnPGT5.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[3]);
+        Info.telaPrincipal.setStatusCockpitPGT(CockpitStrings.Perspectivas[3], 1);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnPGT5ActionPerformed
 
@@ -602,7 +602,7 @@ public class MapaEstrategico extends javax.swing.JPanel{
         // TODO add your handling code here:
         btnPGT6.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[3]);
+        Info.telaPrincipal.setStatusCockpitPGT(CockpitStrings.Perspectivas[3], 3);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnPGT6ActionPerformed
 
@@ -610,7 +610,7 @@ public class MapaEstrategico extends javax.swing.JPanel{
         // TODO add your handling code here:
         btnPGT7.addActionListener(botao);
         Info.objetivos.setStatusNull();
-        Info.telaPrincipal.setStatusCockpit(CockpitStrings.Perspectivas[3]);
+        Info.telaPrincipal.setStatusCockpitPGT(CockpitStrings.Perspectivas[3], 6);
         botao.actionPerformed(evt);
     }//GEN-LAST:event_btnPGT7ActionPerformed
 

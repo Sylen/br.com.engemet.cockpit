@@ -198,7 +198,7 @@ public class Principal extends javax.swing.JFrame{
     private void jMenuItemFinancasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFinancasActionPerformed
         jMenuItemFinancas.addActionListener(acaoCockpit);
         Info.cockpit.setStatusNull();
-        setStatusCockpit(CockpitStrings.Perspectivas[0]);
+        setStatusCockpitFinancas(CockpitStrings.Perspectivas[0]);
         acaoCockpit.actionPerformed(evt);
     }//GEN-LAST:event_jMenuItemFinancasActionPerformed
 
@@ -239,7 +239,7 @@ public class Principal extends javax.swing.JFrame{
         // TODO add your handling code here:
         jMenuItemClientes.addActionListener(acaoCockpit);
         Info.cockpit.setStatusNull();
-        setStatusCockpit(CockpitStrings.Perspectivas[1]);
+        setStatusCockpitClientes(CockpitStrings.Perspectivas[1]);
         acaoCockpit.actionPerformed(evt);
     }//GEN-LAST:event_jMenuItemClientesActionPerformed
 
@@ -247,7 +247,7 @@ public class Principal extends javax.swing.JFrame{
         // TODO add your handling code here: 
         jMenuItemProcessos.addActionListener(acaoCockpit);
         Info.cockpit.setStatusNull();
-        setStatusCockpit(CockpitStrings.Perspectivas[2]);
+        setStatusCockpitProcessos(CockpitStrings.Perspectivas[2]);
         acaoCockpit.actionPerformed(evt);
     }//GEN-LAST:event_jMenuItemProcessosActionPerformed
 
@@ -255,7 +255,7 @@ public class Principal extends javax.swing.JFrame{
         // TODO add your handling code here:
         jMenuItemPgt.addActionListener(acaoCockpit);
         Info.cockpit.setStatusNull();
-        setStatusCockpit(CockpitStrings.Perspectivas[3]);
+        setStatusCockpitPGT(CockpitStrings.Perspectivas[3]);
         acaoCockpit.actionPerformed(evt);
     }//GEN-LAST:event_jMenuItemPgtActionPerformed
 
@@ -327,7 +327,7 @@ public class Principal extends javax.swing.JFrame{
         cod = Info.getCod();
 
 
-        for(int i = 0; i < Info.data; i++){
+        for(int i = (Info.data-1); i < Info.data; i++){
             for(int j = 0; j < cod; j++){
                 calculo = Info.getCalculo((j + 1));
                 if(calculo.equals("CHK_MAIMEL")){
@@ -350,52 +350,357 @@ public class Principal extends javax.swing.JFrame{
             }
         }
     }
-
-    public void setStatusCockpit(String per){
+    
+    public void setStatusCockpitFinancas(String per){
         Info.data = Info.cal.get(Calendar.MONTH);
-
+    
         int cod;
         double metaAcu;
         double realAcu;
         String calculo;
         cod = Info.getCod();
+        if(per.equals(CockpitStrings.Perspectivas[0])){
+            for(int i = (Info.data - 1); i < Info.data; i++){
+                for(int j = 0; j < cod; j++){
+                    calculo = Info.getCalculo((j + 1));
+                    if(calculo.equals("CHK_MAIMEL")){
+                        metaAcu = status.getMetaAcu((j + 1), i);
+                        realAcu = status.getRealAcu((j + 1), i);
+                        status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
 
-        for(int i = 0; i < Info.data; i++){
-            for(int j = 0; j < cod; j++){
-                calculo = Info.getCalculo((j + 1));
-                if(calculo.equals("CHK_MAIMEL")){
-                    metaAcu = status.getMetaAcu((j + 1), i);
-                    realAcu = status.getRealAcu((j + 1), i);
-                    status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
-
-                    if(i == (Info.data - 1)){
-                        status.setBolaCockpit((j + 1), i, per);
-
-                        if(per.equals(CockpitStrings.Perspectivas[0])){
+                        if(i == (Info.data - 1)){
+                            status.setBolaCockpit((j + 1), i, per);
                             status.setBolaFinancas((j + 1), i);
-                        }else if(per.equals(CockpitStrings.Perspectivas[1])){
-                            status.setBolaClientes((j + 1), i);
-                        }else if(per.equals(CockpitStrings.Perspectivas[2])){
-                            status.setBolaProcessos((j + 1), i);
-                        }else if(per.equals(CockpitStrings.Perspectivas[3])){
-                            status.setBolaPgt((j + 1), i);
+                        }
+
+                    }else if(calculo.equals("CHK_MENMEL")){
+                        metaAcu = status.getMetaAcu((j + 1), i);
+                        realAcu = status.getRealAcu((j + 1), i);
+                        status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
+
+                        if(i == (Info.data - 1)){
+                            status.setBolaCockpit((j + 1), i, per);
+                            status.setBolaFinancas((j + 1), i);
                         }
                     }
-                }else if(calculo.equals("CHK_MENMEL")){
-                    metaAcu = status.getMetaAcu((j + 1), i);
-                    realAcu = status.getRealAcu((j + 1), i);
-                    status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
+                }
+            }
+        }
+    }
+    
+    public void setStatusCockpitFinancas(String per, int pai){
+        Info.data = Info.cal.get(Calendar.MONTH);
+    
+        int cod;
+        double metaAcu;
+        double realAcu;
+        String calculo;
+        cod = Info.getCod();
+        if(per.equals(CockpitStrings.Perspectivas[0])){
+            for(int i = (Info.data - 1); i < Info.data; i++){
+                for(int j = 0; j < cod; j++){
+                    calculo = Info.getCalculo((j + 1));
+                    if(calculo.equals("CHK_MAIMEL")){
+                        metaAcu = status.getMetaAcu((j + 1), i);
+                        realAcu = status.getRealAcu((j + 1), i);
+                        status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                    if(i == (Info.data - 1)){
-                        status.setBolaCockpit((j + 1), i, per);
+                        if(i == (Info.data - 1)){
+                            status.setBolaFinancas((j + 1), i, pai);
+                        }
 
-                        if(per.equals(CockpitStrings.Perspectivas[0])){
-                            status.setBolaFinancas((j + 1), i);
-                        }else if(per.equals(CockpitStrings.Perspectivas[1])){
+                    }else if(calculo.equals("CHK_MENMEL")){
+                        metaAcu = status.getMetaAcu((j + 1), i);
+                        realAcu = status.getRealAcu((j + 1), i);
+                        status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
+
+                        if(i == (Info.data - 1)){
+                            status.setBolaFinancas((j + 1), i, pai);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    public void setStatusCockpitFinancas(String per, int pai1, int pai2){
+        Info.data = Info.cal.get(Calendar.MONTH);
+    
+        int cod;
+        double metaAcu;
+        double realAcu;
+        String calculo;
+        cod = Info.getCod();
+        if(per.equals(CockpitStrings.Perspectivas[0])){
+            for(int i = (Info.data - 1); i < Info.data; i++){
+                for(int j = 0; j < cod; j++){
+                    calculo = Info.getCalculo((j + 1));
+                    if(calculo.equals("CHK_MAIMEL")){
+                        metaAcu = status.getMetaAcu((j + 1), i);
+                        realAcu = status.getRealAcu((j + 1), i);
+                        status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
+
+                        if(i == (Info.data - 1)){
+                            status.setBolaFinancas((j + 1), i, pai1, pai2);
+                        }
+
+                    }else if(calculo.equals("CHK_MENMEL")){
+                        metaAcu = status.getMetaAcu((j + 1), i);
+                        realAcu = status.getRealAcu((j + 1), i);
+                        status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
+
+                        if(i == (Info.data - 1)){
+                            status.setBolaFinancas((j + 1), i, pai1, pai2);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    public void setStatusCockpitClientes(String per){
+        Info.data = Info.cal.get(Calendar.MONTH);
+    
+        int cod;
+        double metaAcu;
+        double realAcu;
+        String calculo;
+        cod = Info.getCod();
+        if(per.equals(CockpitStrings.Perspectivas[1])){
+            for(int i = (Info.data - 1); i < Info.data; i++){
+                for(int j = 0; j < cod; j++){
+                    calculo = Info.getCalculo((j + 1));
+                    if(calculo.equals("CHK_MAIMEL")){
+                        metaAcu = status.getMetaAcu((j + 1), i);
+                        realAcu = status.getRealAcu((j + 1), i);
+                        status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
+
+                        if(i == (Info.data - 1)){
+                            status.setBolaCockpit((j + 1), i, per);
                             status.setBolaClientes((j + 1), i);
-                        }else if(per.equals(CockpitStrings.Perspectivas[2])){
+                        }
+
+                    }else if(calculo.equals("CHK_MENMEL")){
+                        metaAcu = status.getMetaAcu((j + 1), i);
+                        realAcu = status.getRealAcu((j + 1), i);
+                        status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
+
+                        if(i == (Info.data - 1)){
+                            status.setBolaCockpit((j + 1), i, per);
+                            status.setBolaClientes((j + 1), i);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    public void setStatusCockpitClientes(String per, int pai){
+        Info.data = Info.cal.get(Calendar.MONTH);
+    
+        int cod;
+        double metaAcu;
+        double realAcu;
+        String calculo;
+        cod = Info.getCod();
+        if(per.equals(CockpitStrings.Perspectivas[1])){
+            for(int i = (Info.data - 1); i < Info.data; i++){
+                for(int j = 0; j < cod; j++){
+                    calculo = Info.getCalculo((j + 1));
+                    if(calculo.equals("CHK_MAIMEL")){
+                        metaAcu = status.getMetaAcu((j + 1), i);
+                        realAcu = status.getRealAcu((j + 1), i);
+                        status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
+
+                        if(i == (Info.data - 1)){
+                            status.setBolaClientes((j + 1), i, pai);
+                        }
+
+                    }else if(calculo.equals("CHK_MENMEL")){
+                        metaAcu = status.getMetaAcu((j + 1), i);
+                        realAcu = status.getRealAcu((j + 1), i);
+                        status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
+
+                        if(i == (Info.data - 1)){
+                            status.setBolaClientes((j + 1), i, pai);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    public void setStatusCockpitClientes(String per, int pai1, int pai2){
+        Info.data = Info.cal.get(Calendar.MONTH);
+    
+        int cod;
+        double metaAcu;
+        double realAcu;
+        String calculo;
+        cod = Info.getCod();
+        if(per.equals(CockpitStrings.Perspectivas[1])){
+            for(int i = (Info.data - 1); i < Info.data; i++){
+                for(int j = 0; j < cod; j++){
+                    calculo = Info.getCalculo((j + 1));
+                    if(calculo.equals("CHK_MAIMEL")){
+                        metaAcu = status.getMetaAcu((j + 1), i);
+                        realAcu = status.getRealAcu((j + 1), i);
+                        status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
+
+                        if(i == (Info.data - 1)){
+                            status.setBolaClientes((j + 1), i, pai1, pai2);
+                        }
+
+                    }else if(calculo.equals("CHK_MENMEL")){
+                        metaAcu = status.getMetaAcu((j + 1), i);
+                        realAcu = status.getRealAcu((j + 1), i);
+                        status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
+
+                        if(i == (Info.data - 1)){
+                            status.setBolaClientes((j + 1), i, pai1, pai2);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    public void setStatusCockpitProcessos(String per){
+        Info.data = Info.cal.get(Calendar.MONTH);
+    
+        int cod;
+        double metaAcu;
+        double realAcu;
+        String calculo;
+        cod = Info.getCod();
+        if(per.equals(CockpitStrings.Perspectivas[2])){
+            for(int i = (Info.data - 1); i < Info.data; i++){
+                for(int j = 0; j < cod; j++){
+                    calculo = Info.getCalculo((j + 1));
+                    if(calculo.equals("CHK_MAIMEL")){
+                        metaAcu = status.getMetaAcu((j + 1), i);
+                        realAcu = status.getRealAcu((j + 1), i);
+                        status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
+
+                        if(i == (Info.data - 1)){
+                            status.setBolaCockpit((j + 1), i, per);
                             status.setBolaProcessos((j + 1), i);
-                        }else if(per.equals(CockpitStrings.Perspectivas[3])){
+                        }
+
+                    }else if(calculo.equals("CHK_MENMEL")){
+                        metaAcu = status.getMetaAcu((j + 1), i);
+                        realAcu = status.getRealAcu((j + 1), i);
+                        status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
+
+                        if(i == (Info.data - 1)){
+                            status.setBolaCockpit((j + 1), i, per);
+                            status.setBolaProcessos((j + 1), i);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    public void setStatusCockpitProcessos(String per, int pai){
+        Info.data = Info.cal.get(Calendar.MONTH);
+    
+        int cod;
+        double metaAcu;
+        double realAcu;
+        String calculo;
+        cod = Info.getCod();
+        if(per.equals(CockpitStrings.Perspectivas[2])){
+            for(int i = (Info.data - 1); i < Info.data; i++){
+                for(int j = 0; j < cod; j++){
+                    calculo = Info.getCalculo((j + 1));
+                    if(calculo.equals("CHK_MAIMEL")){
+                        metaAcu = status.getMetaAcu((j + 1), i);
+                        realAcu = status.getRealAcu((j + 1), i);
+                        status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
+
+                        if(i == (Info.data - 1)){
+                            status.setBolaProcessos((j + 1), i, pai);
+                        }
+
+                    }else if(calculo.equals("CHK_MENMEL")){
+                        metaAcu = status.getMetaAcu((j + 1), i);
+                        realAcu = status.getRealAcu((j + 1), i);
+                        status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
+
+                        if(i == (Info.data - 1)){
+                            status.setBolaProcessos((j + 1), i, pai);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    public void setStatusCockpitProcessos(String per, int pai1, int pai2){
+        Info.data = Info.cal.get(Calendar.MONTH);
+    
+        int cod;
+        double metaAcu;
+        double realAcu;
+        String calculo;
+        cod = Info.getCod();
+        if(per.equals(CockpitStrings.Perspectivas[2])){
+            for(int i = (Info.data - 1); i < Info.data; i++){
+                for(int j = 0; j < cod; j++){
+                    calculo = Info.getCalculo((j + 1));
+                    if(calculo.equals("CHK_MAIMEL")){
+                        metaAcu = status.getMetaAcu((j + 1), i);
+                        realAcu = status.getRealAcu((j + 1), i);
+                        status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
+
+                        if(i == (Info.data - 1)){
+                            status.setBolaProcessos((j + 1), i, pai1, pai2);
+                        }
+
+                    }else if(calculo.equals("CHK_MENMEL")){
+                        metaAcu = status.getMetaAcu((j + 1), i);
+                        realAcu = status.getRealAcu((j + 1), i);
+                        status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
+
+                        if(i == (Info.data - 1)){
+                            status.setBolaProcessos((j + 1), i, pai1, pai2);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    public void setStatusCockpitPGT(String per){
+        Info.data = Info.cal.get(Calendar.MONTH);
+    
+        int cod;
+        double metaAcu;
+        double realAcu;
+        String calculo;
+        cod = Info.getCod();
+        if(per.equals(CockpitStrings.Perspectivas[3])){
+            for(int i = (Info.data - 1); i < Info.data; i++){
+                for(int j = 0; j < cod; j++){
+                    calculo = Info.getCalculo((j + 1));
+                    if(calculo.equals("CHK_MAIMEL")){
+                        metaAcu = status.getMetaAcu((j + 1), i);
+                        realAcu = status.getRealAcu((j + 1), i);
+                        status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
+
+                        if(i == (Info.data - 1)){
+                            status.setBolaCockpit((j + 1), i, per);
+                            status.setBolaPgt((j + 1), i);
+                        }
+
+                    }else if(calculo.equals("CHK_MENMEL")){
+                        metaAcu = status.getMetaAcu((j + 1), i);
+                        realAcu = status.getRealAcu((j + 1), i);
+                        status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
+
+                        if(i == (Info.data - 1)){
+                            status.setBolaCockpit((j + 1), i, per);
                             status.setBolaPgt((j + 1), i);
                         }
                     }
@@ -403,7 +708,77 @@ public class Principal extends javax.swing.JFrame{
             }
         }
     }
+    
+    public void setStatusCockpitPGT(String per, int pai){
+        Info.data = Info.cal.get(Calendar.MONTH);
+    
+        int cod;
+        double metaAcu;
+        double realAcu;
+        String calculo;
+        cod = Info.getCod();
+        if(per.equals(CockpitStrings.Perspectivas[3])){
+            for(int i = (Info.data - 1); i < Info.data; i++){
+                for(int j = 0; j < cod; j++){
+                    calculo = Info.getCalculo((j + 1));
+                    if(calculo.equals("CHK_MAIMEL")){
+                        metaAcu = status.getMetaAcu((j + 1), i);
+                        realAcu = status.getRealAcu((j + 1), i);
+                        status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
 
+                        if(i == (Info.data - 1)){
+                            status.setBolaPgt((j + 1), i, pai);
+                        }
+
+                    }else if(calculo.equals("CHK_MENMEL")){
+                        metaAcu = status.getMetaAcu((j + 1), i);
+                        realAcu = status.getRealAcu((j + 1), i);
+                        status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
+
+                        if(i == (Info.data - 1)){
+                            status.setBolaPgt((j + 1), i, pai);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    public void setStatusCockpitPGT(String per, int pai1, int pai2){
+        Info.data = Info.cal.get(Calendar.MONTH);
+    
+        int cod;
+        double metaAcu;
+        double realAcu;
+        String calculo;
+        cod = Info.getCod();
+        if(per.equals(CockpitStrings.Perspectivas[3])){
+            for(int i = (Info.data - 1); i < Info.data; i++){
+                for(int j = 0; j < cod; j++){
+                    calculo = Info.getCalculo((j + 1));
+                    if(calculo.equals("CHK_MAIMEL")){
+                        metaAcu = status.getMetaAcu((j + 1), i);
+                        realAcu = status.getRealAcu((j + 1), i);
+                        status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
+
+                        if(i == (Info.data - 1)){
+                            status.setBolaPgt((j + 1), i, pai1, pai2);
+                        }
+
+                    }else if(calculo.equals("CHK_MENMEL")){
+                        metaAcu = status.getMetaAcu((j + 1), i);
+                        realAcu = status.getRealAcu((j + 1), i);
+                        status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
+
+                        if(i == (Info.data - 1)){
+                            status.setBolaPgt((j + 1), i, pai1, pai2);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     public void setStatusCockpit(String per, int pai){
         Info.data = Info.cal.get(Calendar.MONTH);
 
@@ -413,7 +788,7 @@ public class Principal extends javax.swing.JFrame{
         String calculo;
         cod = Info.getCod();
 
-        for(int i = 0; i < Info.data; i++){
+        for(int i = (Info.data - 1); i < Info.data; i++){
             for(int j = 0; j < cod; j++){
                 calculo = Info.getCalculo((j + 1));
                 if(calculo.equals("CHK_MAIMEL")){
@@ -462,7 +837,7 @@ public class Principal extends javax.swing.JFrame{
         String calculo;
         cod = Info.getCod();
 
-        for(int i = 0; i < Info.data; i++){
+        for(int i = (Info.data - 1); i < Info.data; i++){
             for(int j = 0; j < cod; j++){
                 calculo = Info.getCalculo((j + 1));
                 if(calculo.equals("CHK_MAIMEL")){

@@ -95,6 +95,19 @@ public abstract class Info {
         return cod;
     }
     
+    public static int getCodGrafico(String perspectiva){
+        tabela = "CP_INF_GERAIS";
+        campo = "INF_INDCOD";
+        strPerspectiva = "INF_PER";
+        strPainel = "INF_PAI";
+        strPosicao = "INF_POS";
+
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strPerspectiva + " = '" + perspectiva;
+        cod = objConexao.getSelect(select, campo, cod);
+
+        return cod;
+    }
+    
     public static int getCod(){
         tabela = "CP_INF_GERAIS";
         campo = "INF_INDCOD";
@@ -103,8 +116,24 @@ public abstract class Info {
         cod = objConexao.getIndCod(select, campo, cod);
         
         cod -=1;
-
+     
         return cod;
+    }
+    
+    public static String getPers(int cod){
+        tabela = "CP_INF_GERAIS";
+        indCod = "INF_INDCOD";
+        campo = "INF_PER";
+        strPerspectiva = "INF_PER";
+        strPainel = "INF_PAI";
+        strPosicao = "INF_POS";
+        
+        String perspectiva;
+        
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + indCod + " = " + cod;
+        perspectiva = objConexao.getBD(select, campo);
+
+        return perspectiva;
     }
     
     public static String getCalculo(int calcCod){

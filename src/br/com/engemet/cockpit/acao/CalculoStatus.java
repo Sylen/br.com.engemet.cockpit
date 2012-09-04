@@ -12,6 +12,10 @@ public class CalculoStatus{
     private String tabela, campo, select, insert, indCod, codTab, strPainel, strPosicao, strPerspectiva;
     private String[] strCor = {"Vermelhao", "Vermelho", "Amarelo", "Verde", "Verdao"};
     private String[] strMes = {"Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"};
+    private int menorFin1 = 5, menorFin2= 5, menorFin3= 5, menorFin4= 5, menorFin5= 5, menorFin6= 5;
+    private int menorCli1 = 5, menorCli2= 5, menorCli3= 5, menorCli4= 5, menorCli5= 5, menorCli6= 5;
+    private int menorPro1 = 5, menorPro2= 5, menorPro3= 5, menorPro4= 5, menorPro5= 5, menorPro6= 5;
+    private int menorPgt1 = 5, menorPgt2= 5, menorPgt3= 5, menorPgt4= 5, menorPgt5= 5, menorPgt6= 5;
 
     public CalculoStatus(){
         Info.calculoStatus = this;
@@ -188,6 +192,7 @@ public class CalculoStatus{
     }
     
     public void setBolaMapa(int cod, int mes){
+        
         tabela = "CP_CORES";
         indCod = "COR_INDCOD";
         codTab = "COR_COD";
@@ -865,7 +870,7 @@ public class CalculoStatus{
         String[] corPainel6 = new String[6];
         
         int[] intCor = new int[6];
-        int menor1 = 5, menor2= 5, menor3= 5, menor4= 5, menor5= 5, menor6= 5;
+        
         
         //FINANCAS
         if(per.equals(CockpitStrings.Perspectivas[0])){
@@ -960,8 +965,9 @@ public class CalculoStatus{
                     if(corPainel1[i] != null){
                         if(corPainel1[i].equals(strCor[j])){
                             intCor[i] = j;
-                            if(menor1 > intCor[i]){
-                                menor1 = intCor[i];
+                            if(menorFin1 > intCor[i]){
+                                menorFin1 = intCor[i];
+                                
                             }                       
                         }
                     }
@@ -969,8 +975,8 @@ public class CalculoStatus{
                     if(corPainel2[i] != null){
                         if(corPainel2[i].equals(strCor[j])){
                             intCor[i] = j;
-                            if(menor2 > intCor[i]){
-                                menor2 = intCor[i];
+                            if(menorFin2 > intCor[i]){
+                                menorFin2 = intCor[i];
                             }
                         }
                     }
@@ -978,8 +984,8 @@ public class CalculoStatus{
                     if(corPainel3[i] != null){
                         if(corPainel3[i].equals(strCor[j])){
                             intCor[i] = j;
-                            if(menor2 > intCor[i]){
-                                menor2 = intCor[i];
+                            if(menorFin2 > intCor[i]){
+                                menorFin2 = intCor[i];
                             }
                         }
                     }
@@ -987,8 +993,8 @@ public class CalculoStatus{
                     if(corPainel4[i] != null){
                         if(corPainel4[i].equals(strCor[j])){
                             intCor[i] = j;
-                            if(menor4 > intCor[i]){
-                                menor4 = intCor[i];
+                            if(menorFin4 > intCor[i]){
+                                menorFin4 = intCor[i];
                             }
                         }
                     }
@@ -996,8 +1002,8 @@ public class CalculoStatus{
                     if(corPainel5[i] != null){
                         if(corPainel5[i].equals(strCor[j])){
                             intCor[i] = j;
-                            if(menor5 > intCor[i]){
-                                menor5 = intCor[i];
+                            if(menorFin5 > intCor[i]){
+                                menorFin5 = intCor[i];
                             }
                         }
                     }
@@ -1005,31 +1011,31 @@ public class CalculoStatus{
                     if(corPainel6[i] != null){
                         if(corPainel6[i].equals(strCor[j])){
                             intCor[i] = j;
-                            if(menor6 > intCor[i]){
-                                menor6 = intCor[i];
+                            if(menorFin6 > intCor[i]){
+                                menorFin6 = intCor[i];
                             }
                         }
                     }
                 }
             }
-            if(menor1 < 5){    
-                cor = strCor[menor1];
+            if(menorFin1 < 5){    
+                cor = strCor[menorFin1];
                 Info.mapaEstrategico.setLblStatusFinPos1(cor);
             }
-            if(menor2 < 5){
-                cor = strCor[menor2];
+            if(menorFin2 < 5){
+                cor = strCor[menorFin2];
                 Info.mapaEstrategico.setLblStatusFinPos4(cor);
             }
-            if(menor4 < 5){
-                cor = strCor[menor4];
+            if(menorFin4 < 5){
+                cor = strCor[menorFin4];
                 Info.mapaEstrategico.setLblStatusFinPos2(cor);
             }
-            if(menor5 < 5){
-                cor = strCor[menor5];
+            if(menorFin5 < 5){
+                cor = strCor[menorFin5];
                 Info.mapaEstrategico.setLblStatusFinPos3(cor);
             }
-            if(menor6 < 5){
-                cor = strCor[menor6];
+            if(menorFin6 < 5){
+                cor = strCor[menorFin6];
                 Info.mapaEstrategico.setLblStatusFinPos5(cor);
             }
             
@@ -1126,8 +1132,8 @@ public class CalculoStatus{
                     if(corPainel1[i] != null){
                         if(corPainel1[i].equals(strCor[j])){
                             intCor[i] = j;
-                            if(menor1 > intCor[i]){
-                                menor1 = intCor[i];
+                            if(menorCli1 > intCor[i]){
+                                menorCli1 = intCor[i];
                             }                       
                         }
                     }
@@ -1135,8 +1141,8 @@ public class CalculoStatus{
                     if(corPainel2[i] != null){
                         if(corPainel2[i].equals(strCor[j])){
                             intCor[i] = j;
-                            if(menor2 > intCor[i]){
-                                menor2 = intCor[i];
+                            if(menorCli2 > intCor[i]){
+                                menorCli2 = intCor[i];
                             }
                         }
                     }
@@ -1144,8 +1150,8 @@ public class CalculoStatus{
                     if(corPainel3[i] != null){
                         if(corPainel3[i].equals(strCor[j])){
                             intCor[i] = j;
-                            if(menor3 > intCor[i]){
-                                menor3 = intCor[i];
+                            if(menorCli3 > intCor[i]){
+                                menorCli3 = intCor[i];
                             }
                         }
                     }
@@ -1153,8 +1159,8 @@ public class CalculoStatus{
                     if(corPainel4[i] != null){
                         if(corPainel4[i].equals(strCor[j])){
                             intCor[i] = j;
-                            if(menor4 > intCor[i]){
-                                menor4 = intCor[i];
+                            if(menorCli4 > intCor[i]){
+                                menorCli4 = intCor[i];
                             }
                         }
                     }
@@ -1162,8 +1168,8 @@ public class CalculoStatus{
                     if(corPainel5[i] != null){
                         if(corPainel5[i].equals(strCor[j])){
                             intCor[i] = j;
-                            if(menor5 > intCor[i]){
-                                menor5 = intCor[i];
+                            if(menorCli5 > intCor[i]){
+                                menorCli5 = intCor[i];
                             }
                         }
                     }
@@ -1171,31 +1177,31 @@ public class CalculoStatus{
                     if(corPainel6[i] != null){
                         if(corPainel6[i].equals(strCor[j])){
                             intCor[i] = j;
-                            if(menor3 > intCor[i]){
-                                menor3 = intCor[i];
+                            if(menorCli3 > intCor[i]){
+                                menorCli3 = intCor[i];
                             }
                         }
                     }
                 }
             }
-            if(menor1 < 5){    
-                cor = strCor[menor1];
+            if(menorCli1 < 5){    
+                cor = strCor[menorCli1];
                 Info.mapaEstrategico.setLblStatusCliPos3(cor);
             }
-            if(menor2 < 5){
-                cor = strCor[menor2];
+            if(menorCli2 < 5){
+                cor = strCor[menorCli2];
                 Info.mapaEstrategico.setLblStatusCliPos1(cor);
             }
-            if(menor3 < 5){
-                cor = strCor[menor3];
+            if(menorCli3 < 5){
+                cor = strCor[menorCli3];
                 Info.mapaEstrategico.setLblStatusCliPos5(cor);
             }
-            if(menor4 < 5){
-                cor = strCor[menor4];
+            if(menorCli4 < 5){
+                cor = strCor[menorCli4];
                 Info.mapaEstrategico.setLblStatusCliPos4(cor);
             }
-            if(menor5 < 5){
-                cor = strCor[menor5];
+            if(menorCli5 < 5){
+                cor = strCor[menorCli5];
                 Info.mapaEstrategico.setLblStatusCliPos2(cor);
             }
             
@@ -1292,8 +1298,8 @@ public class CalculoStatus{
                     if(corPainel1[i] != null){
                         if(corPainel1[i].equals(strCor[j])){
                             intCor[i] = j;
-                            if(menor1 > intCor[i]){
-                                menor1 = intCor[i];
+                            if(menorPro1 > intCor[i]){
+                                menorPro1 = intCor[i];
                             }                       
                         }
                     }
@@ -1301,8 +1307,8 @@ public class CalculoStatus{
                     if(corPainel2[i] != null){
                         if(corPainel2[i].equals(strCor[j])){
                             intCor[i] = j;
-                            if(menor2 > intCor[i]){
-                                menor2 = intCor[i];
+                            if(menorPro2 > intCor[i]){
+                                menorPro2 = intCor[i];
                             }
                         }
                     }
@@ -1310,8 +1316,8 @@ public class CalculoStatus{
                     if(corPainel3[i] != null){
                         if(corPainel3[i].equals(strCor[j])){
                             intCor[i] = j;
-                            if(menor3 > intCor[i]){
-                                menor3 = intCor[i];
+                            if(menorPro3 > intCor[i]){
+                                menorPro3 = intCor[i];
                             }
                         }
                     }
@@ -1319,8 +1325,8 @@ public class CalculoStatus{
                     if(corPainel4[i] != null){
                         if(corPainel4[i].equals(strCor[j])){
                             intCor[i] = j;
-                            if(menor4 > intCor[i]){
-                                menor4 = intCor[i];
+                            if(menorPro4 > intCor[i]){
+                                menorPro4 = intCor[i];
                             }
                         }
                     }
@@ -1328,8 +1334,8 @@ public class CalculoStatus{
                     if(corPainel5[i] != null){
                         if(corPainel5[i].equals(strCor[j])){
                             intCor[i] = j;
-                            if(menor2 > intCor[i]){
-                                menor2 = intCor[i];
+                            if(menorPro2 > intCor[i]){
+                                menorPro2 = intCor[i];
                             }
                         }
                     }
@@ -1337,33 +1343,33 @@ public class CalculoStatus{
                     if(corPainel6[i] != null){
                         if(corPainel6[i].equals(strCor[j])){
                             intCor[i] = j;
-                            if(menor6 > intCor[i]){
-                                menor6 = intCor[i];
+                            if(menorPro6 > intCor[i]){
+                                menorPro6 = intCor[i];
                             }
                         }
                     }
                 }
             }
-            if(menor1 < 5){    
-                cor = strCor[menor1];
+            if(menorPro1 < 5){    
+                cor = strCor[menorPro1];
                 Info.mapaEstrategico.setLblStatusProPos1(cor);
                 Info.mapaEstrategico.setLblStatusProPos2(cor);
                 Info.mapaEstrategico.setLblStatusProPos7(cor);
             }
-            if(menor2 < 5){
-                cor = strCor[menor2];
+            if(menorPro2 < 5){
+                cor = strCor[menorPro2];
                 Info.mapaEstrategico.setLblStatusProPos3(cor);
             }
-            if(menor3 < 5){
-                cor = strCor[menor3];
+            if(menorPro3 < 5){
+                cor = strCor[menorPro3];
                 Info.mapaEstrategico.setLblStatusProPos5(cor);
             }
-            if(menor4 < 5){
-                cor = strCor[menor4];
+            if(menorPro4 < 5){
+                cor = strCor[menorPro4];
                 Info.mapaEstrategico.setLblStatusProPos4(cor);
             }
-            if(menor6 < 5){
-                cor = strCor[menor6];
+            if(menorPro6 < 5){
+                cor = strCor[menorPro6];
                 Info.mapaEstrategico.setLblStatusProPos6(cor);
             }
             
@@ -1460,8 +1466,8 @@ public class CalculoStatus{
                     if(corPainel1[i] != null){
                         if(corPainel1[i].equals(strCor[j])){
                             intCor[i] = j;
-                            if(menor1 > intCor[i]){
-                                menor1 = intCor[i];
+                            if(menorPgt1 > intCor[i]){
+                                menorPgt1 = intCor[i];
                             }                       
                         }
                     }
@@ -1469,8 +1475,8 @@ public class CalculoStatus{
                     if(corPainel2[i] != null){
                         if(corPainel2[i].equals(strCor[j])){
                             intCor[i] = j;
-                            if(menor2 > intCor[i]){
-                                menor2 = intCor[i];
+                            if(menorPgt2 > intCor[i]){
+                                menorPgt2 = intCor[i];
                             }
                         }
                     }
@@ -1478,8 +1484,8 @@ public class CalculoStatus{
                     if(corPainel3[i] != null){
                         if(corPainel3[i].equals(strCor[j])){
                             intCor[i] = j;
-                            if(menor3 > intCor[i]){
-                                menor3 = intCor[i];
+                            if(menorPgt3 > intCor[i]){
+                                menorPgt3 = intCor[i];
                             }
                         }
                     }
@@ -1487,8 +1493,8 @@ public class CalculoStatus{
                     if(corPainel4[i] != null){
                         if(corPainel4[i].equals(strCor[j])){
                             intCor[i] = j;
-                            if(menor4 > intCor[i]){
-                                menor4 = intCor[i];
+                            if(menorPgt4 > intCor[i]){
+                                menorPgt4 = intCor[i];
                             }
                         }
                     }
@@ -1496,8 +1502,8 @@ public class CalculoStatus{
                     if(corPainel5[i] != null){
                         if(corPainel5[i].equals(strCor[j])){
                             intCor[i] = j;
-                            if(menor5 > intCor[i]){
-                                menor5 = intCor[i];
+                            if(menorPgt5 > intCor[i]){
+                                menorPgt5 = intCor[i];
                             }
                         }
                     }
@@ -1505,36 +1511,36 @@ public class CalculoStatus{
                     if(corPainel6[i] != null){
                         if(corPainel6[i].equals(strCor[j])){
                             intCor[i] = j;
-                            if(menor6 > intCor[i]){
-                                menor6 = intCor[i];
+                            if(menorPgt6 > intCor[i]){
+                                menorPgt6 = intCor[i];
                             }
                         }
                     }
                 }
             }
-            if(menor1 < 5){    
-                cor = strCor[menor1];
+            if(menorPgt1 < 5){    
+                cor = strCor[menorPgt1];
                 Info.mapaEstrategico.setLblStatusPgtPos5(cor);
             }
-            if(menor2 < 5){
-                cor = strCor[menor2];
+            if(menorPgt2 < 5){
+                cor = strCor[menorPgt2];
                 Info.mapaEstrategico.setLblStatusPgtPos1(cor);
                 Info.mapaEstrategico.setLblStatusPgtPos2(cor);
             }
-            if(menor3 < 5){
-                cor = strCor[menor3];
+            if(menorPgt3 < 5){
+                cor = strCor[menorPgt3];
                 Info.mapaEstrategico.setLblStatusPgtPos6(cor);
             }
-            if(menor4 < 5){
-                cor = strCor[menor4];
+            if(menorPgt4 < 5){
+                cor = strCor[menorPgt4];
                 Info.mapaEstrategico.setLblStatusPgtPos4(cor);
             }
-            if(menor5 < 5){
-                cor = strCor[menor5];
+            if(menorPgt5 < 5){
+                cor = strCor[menorPgt5];
                 Info.mapaEstrategico.setLblStatusPgtPos3(cor);
             }
-            if(menor6 < 5){
-                cor = strCor[menor6];
+            if(menorPgt6 < 5){
+                cor = strCor[menorPgt6];
                 Info.mapaEstrategico.setLblStatusPgtPos7(cor);
                 Info.mapaEstrategico.setLblStatusPgtPos8(cor);
             }

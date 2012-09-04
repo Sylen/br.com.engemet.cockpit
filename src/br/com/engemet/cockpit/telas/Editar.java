@@ -59,7 +59,7 @@ public class Editar extends javax.swing.JFrame{
         cod = cbxIndicadores.getSelectedIndex();
         
         indicador = new Indicadores();
-        indicador.setBounds(120, 40, 1000, 730);
+        indicador.setBounds(120, 20, 1000, 730);
         indicador.setCod(cod);
         indicador.setVisible(true);
         

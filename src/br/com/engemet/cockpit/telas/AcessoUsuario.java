@@ -76,18 +76,20 @@ public class AcessoUsuario extends javax.swing.JFrame{
         usuario = "USU_USU";
         senhaUsuario = "USU_SEN";
         
-        String strUsuario, strSenha, compararUsuario, comparaSenha;
-        
+        String strUsuario;
+        String strSenha;
+        int compararUsuario = 0;
+        int comparaSenha = 0;
+                
         strUsuario = txtUsuario.getText();
-        strSenha = String.valueOf(txtSenha.getPassword());
+
+        select = "SELECT * FROM " + tabela + " WHERE " + usuario + " = '" + strUsuario + "'";
+        compararUsuario = Info.objConexao.getIndCod(select, usuario, compararUsuario);
+
+        select = "SELECT * FROM " + tabela + " WHERE " + usuario + " = '" + strUsuario + "'";
+        comparaSenha = Info.objConexao.getIndCod(select, usuario, comparaSenha);
         
-        select = "SELECT " + usuario + " FROM " + tabela + " WHERE " + usuario + " = '" + strUsuario + "'";
-        compararUsuario = Info.objConexao.getBD(select, usuario);
-        
-        select = "SELECT " + senhaUsuario + " FROM " + tabela + " WHERE " + senhaUsuario + " = '" + strSenha + "'";
-        comparaSenha = Info.objConexao.getBD(select, senhaUsuario);
-        
-        if(strUsuario.equals(compararUsuario) && strSenha.equals(comparaSenha)){
+        if(compararUsuario != 1 && comparaSenha != 1){
             Info.telaPrincipal.setEnabled(true);
             Info.telaPrincipal.setTextUsuario(strUsuario);
             setAcesso();

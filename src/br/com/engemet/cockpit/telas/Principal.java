@@ -1082,7 +1082,7 @@ public class Principal extends javax.swing.JFrame{
                 Frame.setExtendedState(Principal.MAXIMIZED_BOTH);
                 Frame.setVisible(true);
                 Frame.setEnabled(false);
-                acesso.setBounds(310, 250, 330, 150);
+                acesso.setBounds(310, 250, 350, 170);
                 acesso.setVisible(true);
             }
 

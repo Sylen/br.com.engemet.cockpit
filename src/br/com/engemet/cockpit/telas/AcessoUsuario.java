@@ -108,7 +108,6 @@ public class AcessoUsuario extends javax.swing.JFrame{
         
         select = "SELECT " + acessoUsuario + " FROM " + tabela + " WHERE " + usuario + " = '" + strUsuario + "'";
         acesso = Integer.parseInt(Info.objConexao.getBD(select, acessoUsuario));
-        JOptionPane.showMessageDialog(null, "Acesso = " + acesso);
         
         if(acesso == 2){
             Info.telaPrincipal.setCriarUsuario(false);

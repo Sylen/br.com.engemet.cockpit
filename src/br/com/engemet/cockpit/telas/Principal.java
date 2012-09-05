@@ -329,6 +329,7 @@ public class Principal extends javax.swing.JFrame{
         usuario = new CriarUsuario();
         usuario.setTitulo("Criar Usuário");
         usuario.setVisible(true);
+        Info.aux = 0;
     }//GEN-LAST:event_jMenuItemCriarUsuarioActionPerformed
 
     private void jMenuItemRedefinirSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRedefinirSenhaActionPerformed
@@ -337,6 +338,7 @@ public class Principal extends javax.swing.JFrame{
         usuario.setTitulo("Redefir a Senha");
         usuario.setRedefirSenha();
         usuario.setVisible(true);
+        Info.aux = 1;
     }//GEN-LAST:event_jMenuItemRedefinirSenhaActionPerformed
 
     public void setStatusMapa(){
@@ -1109,4 +1111,22 @@ public class Principal extends javax.swing.JFrame{
     private javax.swing.JMenu jMenuScorecard;
     private javax.swing.JMenu jMenuUsuario;
     // End of variables declaration//GEN-END:variables
+    
+    public String getTextUsuario(){
+        return jMenuUsuario.getText();
+    }
+    
+    public void setTextUsuario(String texto){
+        jMenuUsuario.setText(texto);
+    }
+    
+    public void setCriarUsuario(boolean bool){
+        jMenuItemCriarUsuario.setEnabled(bool);
+    }
+    
+    public void setIndicadores(boolean bool){
+        jMenuItemCriarUsuario.setEnabled(bool);
+        jMenuItemNovoIndicador.setEnabled(bool);
+        jMenuItemEditarIndicador.setEnabled(bool);
+    }
 }

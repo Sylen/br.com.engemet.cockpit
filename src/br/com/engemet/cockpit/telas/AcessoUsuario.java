@@ -7,6 +7,11 @@ public class AcessoUsuario extends javax.swing.JFrame{
     
     public static final Conexao conexao = new Conexao();
     
+    //Administrador = 1
+    //Acesso + Edição de Indicadores + Edição de Iniciativas = 2
+    //Acesso + Edição de Iniciativas = 3
+    //Acesso = 4
+    private String strAcesso[] = {"Administrador", "Acesso + Edição de Indicadores + Edição de Iniciativas", "Acesso + Edição de Iniciativas", "Acesso"};
     private String select, insert, tabela, usuario, codUsuario, acessoUsuario, senhaUsuario, campo;
     
     public AcessoUsuario(){
@@ -76,30 +81,41 @@ public class AcessoUsuario extends javax.swing.JFrame{
         strUsuario = txtUsuario.getText();
         strSenha = String.valueOf(txtSenha.getPassword());
         
-        select = "SELECT " + usuario + " FROM " + tabela;
+        select = "SELECT " + usuario + " FROM " + tabela + " WHERE " + usuario + " = '" + strUsuario + "'";
         compararUsuario = Info.objConexao.getBD(select, usuario);
         
-        select = "SELECT " + senhaUsuario + " FROM " + tabela;
+        select = "SELECT " + senhaUsuario + " FROM " + tabela + " WHERE " + senhaUsuario + " = '" + strSenha + "'";
         comparaSenha = Info.objConexao.getBD(select, senhaUsuario);
         
         if(strUsuario.equals(compararUsuario) && strSenha.equals(comparaSenha)){
-            Principal.Frame.setEnabled(true);
+            Info.telaPrincipal.setEnabled(true);
+            Info.telaPrincipal.setTextUsuario(strUsuario);
+            setAcesso();
             dispose();
         }else{
             JOptionPane.showMessageDialog(null, "Usuário ou senha não conferem! Entrar em contato com o Administrador");
         }
     }//GEN-LAST:event_btnOkActionPerformed
-/*
-    public static void main(String args[]){
-
-        java.awt.EventQueue.invokeLater(new Runnable(){
-            public void run(){
-                new AcessoUsuario().setVisible(true);
-            }
-
-        });
+    
+    public void setAcesso(){
+        tabela = "CP_USUARIOS";
+        usuario = "USU_USU";
+        acessoUsuario = "USU_ACE";
+        
+        int acesso;
+        String strUsuario;
+        strUsuario = Info.telaPrincipal.getTextUsuario();
+        
+        select = "SELECT " + acessoUsuario + " FROM " + tabela + " WHERE " + usuario + " = '" + strUsuario + "'";
+        acesso = Integer.parseInt(Info.objConexao.getBD(select, acessoUsuario));
+        JOptionPane.showMessageDialog(null, "Acesso = " + acesso);
+        
+        if(acesso == 2){
+            Info.telaPrincipal.setCriarUsuario(false);
+        }else if(acesso == 3){
+            Info.telaPrincipal.setIndicadores(false);
+        }
     }
-*/
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOk;
     private javax.swing.JButton btnSair;

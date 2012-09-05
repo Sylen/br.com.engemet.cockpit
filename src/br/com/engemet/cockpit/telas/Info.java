@@ -24,6 +24,7 @@ public abstract class Info {
 
     public static int codInd = 1;
     public static int codTb = 1;
+    public static int aux = 0;
     public static String metaAux;
 
     public static Locale locBrazil = new Locale("pt", "BR");

@@ -106,29 +106,38 @@ public class CriarUsuario extends javax.swing.JFrame{
         senhaUsuario = "USU_SEN";
         
         int aux = 0;
-        String charSenha, charReSenha;
+        String strUsuario, charSenha, charReSenha;
         
+        strUsuario = txtUsuario.getText();
         charSenha = String.valueOf(txtSenha.getPassword());
         charReSenha = String.valueOf(txtReSenha.getPassword());
 
         if(charSenha.equals(charReSenha)){
-            select = "SELECT * FROM " + tabela + " WHERE " + codUsuario + " = " + codUsu;
+            select = "SELECT * FROM " + tabela + " WHERE " + usuario + " = '" + strUsuario + "'";
             aux = Info.objConexao.getIndCod(select, campo, aux);
             if(aux == 1){
                 insert = "INSERT INTO " + tabela + " (" + codUsuario + ") values (" + codUsu  + ")";
                 Info.objConexao.setBD(insert);
+            }else if(aux == 2 && Info.aux == 0){
+                JOptionPane.showMessageDialog(null, "Usuário ja existe!");
+            }else if(aux == 2 && Info.aux == 1){
+                insert = "UPDATE " + tabela + " SET " + senhaUsuario + " = '" + charSenha + "' WHERE " + usuario + " = '" + strUsuario + "'";
+                Info.objConexao.setBD(insert);
+
+                dispose();
             }
-            
-            insert = "UPDATE " + tabela + " SET " + usuario + " = '" + txtUsuario.getText() + "' WHERE " + codUsuario + " = " + codUsu;
-            Info.objConexao.setBD(insert);
-            
-            insert = "UPDATE " + tabela + " SET " + senhaUsuario + " = '" + charSenha + "' WHERE " + codUsuario + " = " + codUsu;
-            Info.objConexao.setBD(insert);
-            
-            insert = "UPDATE " + tabela + " SET " + acessoUsuario + " = " + cbxAcesso.getSelectedIndex() + " WHERE " + codUsuario + " = " + codUsu;
-            Info.objConexao.setBD(insert);
-            
-            dispose();
+            if(aux == 1 && Info.aux == 0){
+                insert = "UPDATE " + tabela + " SET " + usuario + " = '" + strUsuario + "' WHERE " + codUsuario + " = " + codUsu;
+                Info.objConexao.setBD(insert);
+
+                insert = "UPDATE " + tabela + " SET " + senhaUsuario + " = '" + charSenha + "' WHERE " + codUsuario + " = " + codUsu;
+                Info.objConexao.setBD(insert);
+
+                insert = "UPDATE " + tabela + " SET " + acessoUsuario + " = " + cbxAcesso.getSelectedIndex() + " WHERE " + codUsuario + " = " + codUsu;
+                Info.objConexao.setBD(insert);
+
+                dispose();
+            }
         }else{
             JOptionPane.showMessageDialog(null, "Os campos de senha devem ser iguais!");
         }
@@ -166,8 +175,12 @@ public class CriarUsuario extends javax.swing.JFrame{
     }
     
     public void setRedefirSenha(){
+        txtUsuario.setText(Info.telaPrincipal.getTextUsuario());
         txtUsuario.setEditable(false);
-        cbxAcesso.setEditable(false);
+        cbxAcesso.setVisible(false);
+        lblAcesso.setVisible(false);
+        lblCod.setVisible(false);
+        txtCod.setVisible(false);
     }
 
 }

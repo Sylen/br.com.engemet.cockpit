@@ -77,7 +77,6 @@ public class AcessoUsuario extends javax.swing.JFrame{
         senhaUsuario = "USU_SEN";
         
         String strUsuario;
-        String strSenha;
         int compararUsuario = 0;
         int comparaSenha = 0;
                 

@@ -114,13 +114,14 @@ public class AcaoMapaEstrategico implements ActionListener{
             objetivo.setBtIndicador4(CockpitStrings.indicadoresPn2Financas[3]);
             objetivo.setBtIndicador5(CockpitStrings.indicadoresPn2Financas[4]);
             objetivo.setBtIndicador6(CockpitStrings.indicadoresPn2Financas[5]);
-            objetivo.setBtObjetivo1ActionCommand(CockpitStrings.objetivosFinancas[2]);
-            objetivo.setBtIndicador1ActionCommand(CockpitStrings.indicadoresPn3Financas[0]);
-            objetivo.setBtIndicador2ActionCommand(CockpitStrings.indicadoresPn3Financas[1]);
-            objetivo.setBtIndicador3ActionCommand(CockpitStrings.indicadoresPn3Financas[2]);
-            objetivo.setBtIndicador4ActionCommand(CockpitStrings.indicadoresPn3Financas[3]);
-            objetivo.setBtIndicador5ActionCommand(CockpitStrings.indicadoresPn3Financas[4]);
-            objetivo.setBtIndicador6ActionCommand(CockpitStrings.indicadoresPn3Financas[5]);;
+            
+            objetivo.setBtObjetivo2ActionCommand(CockpitStrings.objetivosFinancas[2]);
+            objetivo.setBtIndicador7ActionCommand(CockpitStrings.indicadoresPn3Financas[0]);
+            objetivo.setBtIndicador8ActionCommand(CockpitStrings.indicadoresPn3Financas[1]);
+            objetivo.setBtIndicador9ActionCommand(CockpitStrings.indicadoresPn3Financas[2]);
+            objetivo.setBtIndicador10ActionCommand(CockpitStrings.indicadoresPn3Financas[3]);
+            objetivo.setBtIndicador11ActionCommand(CockpitStrings.indicadoresPn3Financas[4]);
+            objetivo.setBtIndicador12ActionCommand(CockpitStrings.indicadoresPn3Financas[5]);;
             objetivo.setBtObjetivo2(CockpitStrings.objetivosFinancas[2]);
             objetivo.setBtIndicador7(CockpitStrings.indicadoresPn3Financas[0]);
             objetivo.setBtIndicador8(CockpitStrings.indicadoresPn3Financas[1]);
@@ -291,13 +292,14 @@ public class AcaoMapaEstrategico implements ActionListener{
             objetivo.setBtIndicador4(CockpitStrings.indicadoresPn3Clientes[3]);
             objetivo.setBtIndicador5(CockpitStrings.indicadoresPn3Clientes[4]);
             objetivo.setBtIndicador6(CockpitStrings.indicadoresPn3Clientes[5]);
-            objetivo.setBtObjetivo1ActionCommand(CockpitStrings.objetivosClientes[5]);
-            objetivo.setBtIndicador1ActionCommand(CockpitStrings.indicadoresPn6Clientes[0]);
-            objetivo.setBtIndicador2ActionCommand(CockpitStrings.indicadoresPn6Clientes[1]);
-            objetivo.setBtIndicador3ActionCommand(CockpitStrings.indicadoresPn6Clientes[2]);
-            objetivo.setBtIndicador4ActionCommand(CockpitStrings.indicadoresPn6Clientes[3]);
-            objetivo.setBtIndicador5ActionCommand(CockpitStrings.indicadoresPn6Clientes[4]);
-            objetivo.setBtIndicador6ActionCommand(CockpitStrings.indicadoresPn6Clientes[5]);;
+            
+            objetivo.setBtObjetivo2ActionCommand(CockpitStrings.objetivosClientes[5]);
+            objetivo.setBtIndicador7ActionCommand(CockpitStrings.indicadoresPn6Clientes[0]);
+            objetivo.setBtIndicador8ActionCommand(CockpitStrings.indicadoresPn6Clientes[1]);
+            objetivo.setBtIndicador9ActionCommand(CockpitStrings.indicadoresPn6Clientes[2]);
+            objetivo.setBtIndicador10ActionCommand(CockpitStrings.indicadoresPn6Clientes[3]);
+            objetivo.setBtIndicador11ActionCommand(CockpitStrings.indicadoresPn6Clientes[4]);
+            objetivo.setBtIndicador12ActionCommand(CockpitStrings.indicadoresPn6Clientes[5]);;
             objetivo.setBtObjetivo2(CockpitStrings.objetivosClientes[5]);
             objetivo.setBtIndicador7(CockpitStrings.indicadoresPn6Clientes[0]);
             objetivo.setBtIndicador8(CockpitStrings.indicadoresPn6Clientes[1]);
@@ -390,6 +392,7 @@ public class AcaoMapaEstrategico implements ActionListener{
             objetivo.setBtIndicador4(CockpitStrings.indicadoresPn2Processos[3]);
             objetivo.setBtIndicador5(CockpitStrings.indicadoresPn2Processos[4]);
             objetivo.setBtIndicador6(CockpitStrings.indicadoresPn2Processos[5]);
+            
             objetivo.setBtObjetivo2ActionCommand(CockpitStrings.objetivosProcessos[4]);
             objetivo.setBtIndicador7ActionCommand(CockpitStrings.indicadoresPn5Processos[0]);
             objetivo.setBtIndicador8ActionCommand(CockpitStrings.indicadoresPn5Processos[1]);

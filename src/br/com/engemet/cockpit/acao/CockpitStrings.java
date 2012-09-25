@@ -41,33 +41,33 @@ public abstract class CockpitStrings{
         ("Otimizar o Sistema ERP"),};
     /***************************************************Objetivos***************************************************/
     public static final String[] objetivosFinancas = {
-        /*1*/("<html><center> Otimizar de Forma Substancial os Custos Totais </center></html>"),
-        /*2*/ ("<html><center> Aumentar Receitas com Rentabilidade - Aço </center></html>"),
-        /*3*/ ("<html><center> Aumentar Receitas com Rentabilidade - Peças </center></html>"),
-        /*4*/ ("<html><center> Otimizar a Produtividade dos Ativos </center></html>"),
-        /*5*/ ("<html><center> Gerar Valor de Forma Sustentável a Longo Prazo </center></html>"),
-        /*6*/ ("<html><center> Gerar Receita Oriunda de Novos Mercados </center></html>")};
+        /*1*/("<html><center>Otimizar de Forma Substancial os Custos Totais</center></html>"),
+        /*2*/ ("<html><center>Aumentar Receitas com Rentabilidade - Aço</center></html>"),
+        /*3*/ ("<html><center>Aumentar Receitas com Rentabilidade - Peças</center></html>"),
+        /*4*/ ("<html><center>Otimizar a Produtividade dos Ativos</center></html>"),
+        /*5*/ ("<html><center>Gerar Valor de Forma Sustentável a Longo Prazo</center></html>"),
+        /*6*/ ("<html><center>Gerar Receita Oriunda de Novos Mercados</center></html>")};
     public static final String[] objetivosClientes = {
-        /*1*/("<html><center> Melhorar a Previsão de Vendas </center></html>"),
-        /*2*/ ("<html><center> Crescer nos Clientes Atuais </center></html>"),
-        /*3*/ ("<html><center> Conquistar Clientes Targets - Aço (Mercado e segmento Atual) </center></html>"),
-        /*4*/ ("<html><center> Vender com Foco na Utilização dos Ativos </center></html>"),
-        /*5*/ ("<html><center> Ser Recomnhecida como a Fornecedora mais Confiável </center></html>"),
-        /*6*/ ("<html><center> Conquistar Clientes Targets - Peças (Mercado e segmento Atual) </center></html>")};
+        /*1*/("<html><center>Melhorar a Previsão de Vendas</center></html>"),
+        /*2*/ ("<html><center>Crescer nos Clientes Atuais</center></html>"),
+        /*3*/ ("<html><center>Conquistar Clientes Targets - Aço (Mercado e segmento Atual)</center></html>"),
+        /*4*/ ("<html><center>Vender com Foco na Utilização dos Ativos</center></html>"),
+        /*5*/ ("<html><center>Ser Reconhecida como a Fornecedora mais Confiável</center></html>"),
+        /*6*/ ("<html><center>Conquistar Clientes Targets - Peças (Mercado e segmento Atual)</center></html>")};
     public static final String[] objetivosProcessos = {
-        /*1*/("<html><center> Otimizar Suprimentos / Inovação e desenvolvimento de Processos </center></html>"),
-        /*2*/ ("<html><center> Otimizar os Custos Diretos e Indiretos </center></html>"),
-        /*3*/ ("<html><center> Reduzir os Gastos Gerais de Fabricação </center></html>"),
-        /*4*/ ("<html><center> Otimizar a Eficácia Global </center></html>"),
-        /*5*/ ("<html><center> Otimizar o Custo Operacional </center></html>"),
-        /*6*/ ("<html><center> Reduzir o Custo da Não-Qualidade </center></html>")};
+        /*1*/("<html><center>Otimizar Suprimentos / Inovação e desenvolvimento de Processos</center></html>"),
+        /*2*/ ("<html><center>Otimizar os Custos Diretos e Indiretos</center></html>"),
+        /*3*/ ("<html><center>Reduzir os Gastos Gerais de Fabricação</center></html>"),
+        /*4*/ ("<html><center>Otimizar a Eficácia Global</center></html>"),
+        /*5*/ ("<html><center>Otimizar o Custo Operacional</center></html>"),
+        /*6*/ ("<html><center>Reduzir o Custo da Não-Qualidade</center></html>")};
     public static final String[] objetivosPGT = {
-        /*1*/("<html><center> Implementar a Gestão de Iniciativa Estratégicas </center></html>"),
-        /*2*/ ("<html><center> Desenv. a Gestão Estra. de RH / Desenv. a Lider. para as Compet. - Chave  </center></html>"),
-        /*3*/ ("<html><center> Otimizar a Gestão por Processos </center></html>"),
-        /*4*/ ("<html><center> Garantir a Efetividade do Sistema de Gestão Integrado </center></html>"),
-        /*5*/ ("<html><center> Ser reconhecida como uma Excelente Empresa para se Trabalhar </center></html>"),
-        /*6*/ ("<html><center> Garantir a Atualiz. e Modernizaçào da Operação / Otimizar o Sistema ERP </center></html>")};
+        /*1*/("<html><center>Implementar a Gestão de Iniciativa Estratégicas</center></html>"),
+        /*2*/ ("<html><center>Desenv. a Gestão Estra. de RH / Desenv. a Lider. para as Compet. - Chave</center></html>"),
+        /*3*/ ("<html><center>Otimizar a Gestão por Processos</center></html>"),
+        /*4*/ ("<html><center>Garantir a Efetividade do Sistema de Gestão Integrado</center></html>"),
+        /*5*/ ("<html><center>Ser reconhecida como uma Excelente Empresa para se Trabalhar</center></html>"),
+        /*6*/ ("<html><center>Garantir a Atualiz. e Modernizaçào da Operação / Otimizar o Sistema ERP</center></html>")};
     /***************************************************Indicadores***************************************************/
     /***************************************************Finanças***************************************************/
     public static final String[] indicadoresPn1Financas = {

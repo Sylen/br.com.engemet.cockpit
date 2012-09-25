@@ -146,19 +146,23 @@ public class CalculoStatus{
         valor[2] *= amarelo;
         valor[3] *= verde;
         valor[4] *= verdao;
-
-        if(real >= valor[0]){
-            cor = 0;
-        }else if(real >= valor[1]){
-            cor = 1;
-        }else if(real >= valor[2]){
-            cor = 2;
-        }else if(real >= valor[3]){
+        
+        if(meta == 0 && real == 0){
             cor = 3;
-        }else if(real <= valor[4]){
-            cor = 4;
+        }else{
+            if(real >= valor[0]){
+                cor = 0;
+            }else if(real >= valor[1]){
+                cor = 1;
+            }else if(real >= valor[2]){
+                cor = 2;
+            }else if(real >= valor[3]){
+                cor = 3;
+            }else if(real <= valor[4]){
+                cor = 4;
+            }
         }
-
+ 
         select = "SELECT * FROM " + tabela + " WHERE " + indCod + " = " + cod + " AND " + codTab + " = " + (mes + 1);
         aux = Info.objConexao.getIndCod(select, campo, aux);
 

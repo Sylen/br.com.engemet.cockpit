@@ -4,6 +4,8 @@ import br.com.engemet.cockpit.acao.CockpitCor;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.List;
+import javax.swing.JOptionPane;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -2389,10 +2391,42 @@ public class Graficos extends javax.swing.JPanel{
         
         final JFreeChart chartDevioPerc = ChartFactory.createBarChart(lblIndicador2.getText(), "Desvio Real x Meta - Mensal (%)", null, desvioPercentual, PlotOrientation.VERTICAL, true, true, true);
         final CategoryPlot plot = chartDevioPerc.getCategoryPlot();
+        
+        String select, tabela, campo;
+        boolean chkMeta;
+        String maiorMenor, menorMaior;
+        String aux;
+        
+        maiorMenor = "[Maior, Menor]";
+        menorMaior = "[Menor, Maior]";
+        
+        tabela = "CP_META_CHK";
+        campo = "CHK_MAIMEL";
+        
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE CHK_INDCOD = " + Info.cod;
+        chkMeta = Boolean.parseBoolean(Info.objConexao.getBD(select, campo));
 
         BarRenderer renderer = (BarRenderer) plot.getRenderer();
-        renderer.setSeriesPaint(0, CockpitCor.getGraficoVerde());
-        renderer.setSeriesPaint(1, CockpitCor.getGraficoVermelho());
+        aux = String.valueOf(desvioPercentual.getRowKeys());
+
+        if(chkMeta != false){
+            if(aux.endsWith(maiorMenor)){
+                renderer.setSeriesPaint(0, CockpitCor.getGraficoVerde());
+                renderer.setSeriesPaint(1, CockpitCor.getGraficoVermelho());
+            }else if(aux.endsWith(menorMaior)){
+                renderer.setSeriesPaint(1, CockpitCor.getGraficoVerde());
+                renderer.setSeriesPaint(0, CockpitCor.getGraficoVermelho());
+            }
+        }else{
+            if(aux.endsWith(maiorMenor)){
+                renderer.setSeriesPaint(1, CockpitCor.getGraficoVerde());
+                renderer.setSeriesPaint(0, CockpitCor.getGraficoVermelho());
+            }else if(aux.endsWith(menorMaior)){
+                renderer.setSeriesPaint(0, CockpitCor.getGraficoVerde());
+                renderer.setSeriesPaint(1, CockpitCor.getGraficoVermelho());
+            }
+        }
+
         renderer.setItemMargin(-0.4);
         renderer.setBaseItemLabelFont(new Font("Arial", Font.PLAIN, 10));
         
@@ -2423,12 +2457,44 @@ public class Graficos extends javax.swing.JPanel{
     public void setGraficoDesvAbs(){
         final CategoryDataset desvioAbsoluto = createDataSetDesvAbs();
         
-        final JFreeChart chartDevioAbs = ChartFactory.createBarChart(lblIndicador2.getText(), "Desvio Real x Meta - Mensal (%)", null, desvioAbsoluto, PlotOrientation.VERTICAL, true, true, true);
+        final JFreeChart chartDevioAbs = ChartFactory.createBarChart(lblIndicador2.getText(), "Desvio Real x Meta - Mensal (Absoluto)", null, desvioAbsoluto, PlotOrientation.VERTICAL, true, true, true);
         final CategoryPlot plot = chartDevioAbs.getCategoryPlot();
+        
+        String select, tabela, campo;
+        boolean chkMeta;
+        String maiorMenor, menorMaior;
+        String aux;
+
+        maiorMenor = "[Maior, Menor]";
+        menorMaior = "[Menor, Maior]";
+                
+        tabela = "CP_META_CHK";
+        campo = "CHK_MAIMEL";
+        
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE CHK_INDCOD = " + Info.cod;
+        chkMeta = Boolean.parseBoolean(Info.objConexao.getBD(select, campo));
 
         BarRenderer renderer = (BarRenderer) plot.getRenderer();
-        renderer.setSeriesPaint(0, CockpitCor.getGraficoVerde());
-        renderer.setSeriesPaint(1, CockpitCor.getGraficoVermelho());
+        aux = String.valueOf(desvioAbsoluto.getRowKeys());
+
+        if(chkMeta != false){
+            if(aux.endsWith(maiorMenor)){
+                renderer.setSeriesPaint(0, CockpitCor.getGraficoVerde());
+                renderer.setSeriesPaint(1, CockpitCor.getGraficoVermelho());
+            }else if(aux.endsWith(menorMaior)){
+                renderer.setSeriesPaint(1, CockpitCor.getGraficoVerde());
+                renderer.setSeriesPaint(0, CockpitCor.getGraficoVermelho());
+            }
+        }else{
+            if(aux.endsWith(maiorMenor)){
+                renderer.setSeriesPaint(1, CockpitCor.getGraficoVerde());
+                renderer.setSeriesPaint(0, CockpitCor.getGraficoVermelho());
+            }else if(aux.endsWith(menorMaior)){
+                renderer.setSeriesPaint(0, CockpitCor.getGraficoVerde());
+                renderer.setSeriesPaint(1, CockpitCor.getGraficoVermelho());
+            }
+        }
+
         renderer.setItemMargin(-0.4);
         renderer.setBaseItemLabelFont(new Font("Arial", Font.PLAIN, 10));
         
@@ -2437,10 +2503,10 @@ public class Graficos extends javax.swing.JPanel{
         }
         
         StandardCategoryItemLabelGenerator label = new StandardCategoryItemLabelGenerator();
-        String tabela = "CP_TIP_GRAFICO";
-        String campo = "GRA_NUMPER";
+        tabela = "CP_TIP_GRAFICO";
+        campo = "GRA_NUMPER";
         String indCod = "GRA_INDCOD";
-        String select = "SELECT " + campo + " FROM " + tabela + " WHERE " + indCod + " = " + Info.cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + indCod + " = " + Info.cod;
         boolean valPer = Boolean.parseBoolean(Info.objConexao.getBD(select, campo));
         if(valPer != true){
             renderer.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator(label.getLabelFormat(), Info.absoluto));
@@ -2530,18 +2596,38 @@ public class Graficos extends javax.swing.JPanel{
         
         final String maior = "Maior";
         final String menor = "Menor";
-
+        String select, tabela, campo;
+        boolean chkMeta;
+        
+        tabela = "CP_META_CHK";
+        campo = "CHK_MAIMEL";
+        
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE CHK_INDCOD = " + Info.cod;
+        chkMeta = Boolean.parseBoolean(Info.objConexao.getBD(select, campo));
+        
         double[] desAbs = new double[12];
         
-        for(int i = 0; i < 12 ; i++){
-            desAbs[i] = Double.parseDouble(Info.acaoBotaoCockpit.getDesvPer(i));
-            if(desAbs[i] < 0){
-                dataset.addValue(desAbs[i], menor, mes[i]);
-            }else{
-                dataset.addValue(desAbs[i], maior, mes[i]);
+        if(chkMeta != false){
+            for(int i = 0; i < 12 ; i++){
+                desAbs[i] = Double.parseDouble(Info.acaoBotaoCockpit.getDesvPer(i));
+                
+                if(desAbs[i] < 0){
+                    dataset.addValue(desAbs[i], menor, mes[i]);
+                }else{
+                    dataset.addValue(desAbs[i], maior, mes[i]);
+                }
+            }
+        }else{
+            for(int i = 0; i < 12 ; i++){
+                desAbs[i] = Double.parseDouble(Info.acaoBotaoCockpit.getDesvPer(i));
+                if(desAbs[i] < 0){
+                    dataset.addValue(desAbs[i], menor, mes[i]);
+                }else{
+                    dataset.addValue(desAbs[i], maior, mes[i]);
+                }
             }
         }
-
+        
         return dataset;
     }
     
@@ -2550,15 +2636,34 @@ public class Graficos extends javax.swing.JPanel{
         
         final String maior = "Maior";
         final String menor = "Menor";
-
+        String select, tabela, campo;
+        boolean chkMeta;
+        
+        tabela = "CP_META_CHK";
+        campo = "CHK_MAIMEL";
+        
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE CHK_INDCOD = " + Info.cod;
+        chkMeta = Boolean.parseBoolean(Info.objConexao.getBD(select, campo));
+        
         double[] desPerc = new double[12];
         
-        for(int i = 0; i < 12 ; i++){
-            desPerc[i] = Double.parseDouble(Info.acaoBotaoCockpit.getDesvAbs(i));
-            if(desPerc[i] < 0){
-                dataset.addValue(desPerc[i], menor, mes[i]);
-            }else{
-                dataset.addValue(desPerc[i], maior, mes[i]);
+        if(chkMeta != false){
+            for(int i = 0; i < 12 ; i++){
+                desPerc[i] = Double.parseDouble(Info.acaoBotaoCockpit.getDesvAbs(i));
+                if(desPerc[i] < 0){
+                    dataset.addValue(desPerc[i], menor, mes[i]);
+                }else{
+                    dataset.addValue(desPerc[i], maior, mes[i]);
+                }
+            }
+        }else{
+            for(int i = 0; i < 12 ; i++){
+                desPerc[i] = Double.parseDouble(Info.acaoBotaoCockpit.getDesvAbs(i));
+                if(desPerc[i] < 0){
+                    dataset.addValue(desPerc[i], menor, mes[i]);
+                }else{
+                    dataset.addValue(desPerc[i], maior, mes[i]);
+                }
             }
         }
 

@@ -257,8 +257,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
-            }
-            
+            }            
         }
     }
 
@@ -907,16 +906,11 @@ public class AcaoBotaoCockpit implements ActionListener{
         grafico.setTxtMenRealOut(convertValReal[9]);
         grafico.setTxtMenRealNov(convertValReal[10]);
         grafico.setTxtMenRealDez(convertValReal[11]);
-
-        String compara = acuReal[0];
-        int aux = 1;
-        for(int i = 1; i < 12; i++){
-            if(acuReal[i].equals(compara)){
-                acuReal[i] = "0";
-            }else{
-                compara = acuReal[aux];
-                aux++;
-            }
+        
+        
+        Info.data = Info.cal.get(Calendar.MONTH);
+        for(int i = 11; i >= Info.data; i--){
+            acuReal[i] = "0";
         }
 
         grafico.setTxtAcumRealJan(convertAcuReal[0]);

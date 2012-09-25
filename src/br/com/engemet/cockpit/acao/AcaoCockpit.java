@@ -368,12 +368,12 @@ public class AcaoCockpit implements ActionListener{
             cockpit.setActionBtnPn2Ind6(CockpitStrings.indicadoresPn2Processos[5]);
 
             cockpit.setActionBtnPn3Obj3(CockpitStrings.objetivosProcessos[2]);
-            cockpit.setActionBtnPn3Ind1(CockpitStrings.indicadoresPn2Processos[0]);
-            cockpit.setActionBtnPn3Ind2(CockpitStrings.indicadoresPn2Processos[1]);
-            cockpit.setActionBtnPn3Ind3(CockpitStrings.indicadoresPn2Processos[2]);
-            cockpit.setActionBtnPn3Ind4(CockpitStrings.indicadoresPn2Processos[3]);
-            cockpit.setActionBtnPn3Ind5(CockpitStrings.indicadoresPn2Processos[4]);
-            cockpit.setActionBtnPn3Ind6(CockpitStrings.indicadoresPn2Processos[5]);
+            cockpit.setActionBtnPn3Ind1(CockpitStrings.indicadoresPn3Processos[0]);
+            cockpit.setActionBtnPn3Ind2(CockpitStrings.indicadoresPn3Processos[1]);
+            cockpit.setActionBtnPn3Ind3(CockpitStrings.indicadoresPn3Processos[2]);
+            cockpit.setActionBtnPn3Ind4(CockpitStrings.indicadoresPn3Processos[3]);
+            cockpit.setActionBtnPn3Ind5(CockpitStrings.indicadoresPn3Processos[4]);
+            cockpit.setActionBtnPn3Ind6(CockpitStrings.indicadoresPn3Processos[5]);
 
             cockpit.setActionBtnPn4Obj4(CockpitStrings.objetivosProcessos[3]);
             cockpit.setActionBtnPn4Ind1(CockpitStrings.indicadoresPn4Processos[0]);

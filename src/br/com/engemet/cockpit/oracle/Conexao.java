@@ -9,6 +9,7 @@ import java.sql.Statement;
 
 import br.com.engemet.cockpit.telas.Info;
 import java.sql.CallableStatement;
+import javax.swing.JOptionPane;
 
 public class Conexao{
 
@@ -112,6 +113,24 @@ public class Conexao{
         return cod;
     }
     
+    public int getIndCodZero(String commandSelect, String campoTabela, int cod){
+        try{
+            cod = 0;
+            System.out.println(commandSelect);
+            rs = stmt.executeQuery(commandSelect);
+            while(rs.next()){
+                System.out.println(rs.getString(campoTabela));
+                cod++;
+                System.out.println("Código = " + cod);   
+            }
+
+            System.out.println("Dados recuperados com Sucesso!");
+        }catch(Exception erro){
+            System.out.println("Problemas com Conexao\n\n" + erro);
+        }
+        return cod;
+    }
+    
     public int getSelect(String commandSelect, String campoTabela, int aux){
         try{
             aux = 0;
@@ -120,7 +139,7 @@ public class Conexao{
             while(rs.next()){
                 System.out.println(rs.getString(campoTabela));
                 aux = rs.getInt(campoTabela);
-                System.out.println("Auxiliar = " + aux);   
+                System.out.println("Auxiliar = " + aux); 
             }
 
             System.out.println("Dados recuperados com Sucesso!");

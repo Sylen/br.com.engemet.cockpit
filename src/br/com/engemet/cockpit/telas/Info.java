@@ -21,11 +21,14 @@ public abstract class Info {
     public static Indicadores indicadores;
     public static AcaoBotaoCockpit acaoBotaoCockpit;
     public static CalculoStatus calculoStatus;
+    public static Iniciativas iniciativas;
+    public static CronogramaIniciativa cronogramaIniciativa;
 
     public static int codInd = 1;
     public static int codTb = 1;
     public static int aux = 0;
     public static String metaAux;
+    public static String nomeUsuario;
 
     public static Locale locBrazil = new Locale("pt", "BR");
     public static NumberFormat absoluto = NumberFormat.getInstance(locBrazil);

@@ -16,6 +16,7 @@ public class Principal extends javax.swing.JFrame{
     public static final Principal Frame = new Principal();
     private MapaEstrategico mapa = new MapaEstrategico();
     private Indicadores indicador;
+    private Iniciativas iniciativa;
     private AcaoCockpit acaoCockpit = new AcaoCockpit();
     private AcaoBotaoCockpit acaoBotaoCockpit = new AcaoBotaoCockpit();
     private CalculoStatus status = new CalculoStatus();
@@ -25,6 +26,7 @@ public class Principal extends javax.swing.JFrame{
     private String tabela;
     private String select;
     private String indCod;
+    private String strCod;
 
     public Principal(){
         Info.telaPrincipal = this;
@@ -66,7 +68,10 @@ public class Principal extends javax.swing.JFrame{
         jMenuItemNovoIndicador = new javax.swing.JMenuItem();
         jMenuItemEditarIndicador = new javax.swing.JMenuItem();
         jMenuScorecard = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuIniciativa = new javax.swing.JMenu();
+        jMenuItemNovaIniciativa = new javax.swing.JMenuItem();
+        jMenuItemConsultarIniciativa = new javax.swing.JMenuItem();
+        jMenuItemEditarIniciativa = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("COCKPIT");
@@ -195,11 +200,35 @@ public class Principal extends javax.swing.JFrame{
         jMenuPrincipal.add(jMenuIndicadores);
 
         jMenuScorecard.setText("Scorecard");
-
-        jMenuItem1.setText("jMenuItem1");
-        jMenuScorecard.add(jMenuItem1);
-
         jMenuPrincipal.add(jMenuScorecard);
+
+        jMenuIniciativa.setText("Iniciativas");
+
+        jMenuItemNovaIniciativa.setText("Nova Iniciativa");
+        jMenuItemNovaIniciativa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemNovaIniciativaActionPerformed(evt);
+            }
+        });
+        jMenuIniciativa.add(jMenuItemNovaIniciativa);
+
+        jMenuItemConsultarIniciativa.setText("Consultar Iniciativa");
+        jMenuItemConsultarIniciativa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemConsultarIniciativaActionPerformed(evt);
+            }
+        });
+        jMenuIniciativa.add(jMenuItemConsultarIniciativa);
+
+        jMenuItemEditarIniciativa.setText("Editar Iniciativa");
+        jMenuItemEditarIniciativa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemEditarIniciativaActionPerformed(evt);
+            }
+        });
+        jMenuIniciativa.add(jMenuItemEditarIniciativa);
+
+        jMenuPrincipal.add(jMenuIniciativa);
 
         setJMenuBar(jMenuPrincipal);
 
@@ -319,8 +348,10 @@ public class Principal extends javax.swing.JFrame{
                 cod = i;
             }
         }
+        
+        editar.setNomeEditar("Editar Indicadores");
 
-        editar.setBounds(550, 400, 520, 160);
+        editar.setBounds(550, 400, 630, 160);
         editar.setVisible(true);
     }//GEN-LAST:event_jMenuItemEditarIndicadorActionPerformed
 
@@ -340,6 +371,89 @@ public class Principal extends javax.swing.JFrame{
         usuario.setVisible(true);
         Info.aux = 1;
     }//GEN-LAST:event_jMenuItemRedefinirSenhaActionPerformed
+
+    private void jMenuItemNovaIniciativaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNovaIniciativaActionPerformed
+        // TODO add your handling code here:
+        iniciativa = new Iniciativas();
+        iniciativa.setIniciativaCod();
+        iniciativa.setCodUsuario();
+        iniciativa.setBounds(110, 25, 1050, 750);
+        iniciativa.setVisible(true);
+    }//GEN-LAST:event_jMenuItemNovaIniciativaActionPerformed
+
+    private void jMenuItemEditarIniciativaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEditarIniciativaActionPerformed
+        // TODO add your handling code here:
+        Editar editar = new Editar();
+
+        editar.setTitle("Editar Atividades");
+        editar.setTexto("Escolha a Atividade:");
+        
+        int cod = 0;
+        
+        String descricao;
+        
+        tabela = "IN_DEF_GERAIS";
+        strCod = "DEF_CODUSU";
+        String strUsuario = "DEF_NOMUSU";
+        select = "SELECT * FROM " + tabela + " WHERE " + strUsuario + " = '" + Info.nomeUsuario + "'";
+        cod = Info.objConexao.getIndCod(select, strCod, cod);
+ 
+        String[] combo = new String[cod];
+        
+        campo = "DEF_INI";
+        for(int i = 1; i < (cod); i++){
+            select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strUsuario + " = '" + Info.nomeUsuario + "'" + " AND " + strCod + " = " + i;
+            descricao = Info.objConexao.getBD(select, campo);
+
+            combo[i] = i + " = " + descricao;
+
+            editar.setCbxIndicadores(combo[i] = i + " = " + descricao);
+        }
+        
+        editar.setNomeEditar("Editar Iniciativa");
+        
+        editar.setBounds(550, 400, 630, 160);
+        editar.setVisible(true);
+    }//GEN-LAST:event_jMenuItemEditarIniciativaActionPerformed
+
+    private void jMenuItemConsultarIniciativaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConsultarIniciativaActionPerformed
+        // TODO add your handling code here:
+        Editar editar = new Editar();
+
+        editar.setTitle("Editar Atividades");
+        editar.setTexto("Escolha a Atividade:");
+        
+        int cod = 0;
+        
+        String descricao , painel;
+        
+        tabela = "IN_DEF_GERAIS";
+        indCod = "DEF_INICOD";
+        String strUsuario = "DEF_NOMUSU";
+        select = "SELECT * FROM " + tabela;
+        cod = Info.objConexao.getIndCod(select, indCod, cod);
+ 
+        String[] combo = new String[cod];
+        
+        campo = "DEF_INI";
+        String campo2 = "DEF_PAI";
+        for(int i = 1; i < (cod); i++){
+            select = "SELECT " + campo + " FROM " + tabela + " WHERE " + indCod + " = " + i;
+            descricao = Info.objConexao.getBD(select, campo);
+            
+            select = "SELECT " + campo2 + " FROM " + tabela + " WHERE " + indCod + " = " + i;
+            painel = Info.objConexao.getBD(select, campo2);
+
+            combo[i] = i + " = " + painel + " / " + descricao;
+
+            editar.setCbxIndicadores(combo[i] = i + " = " + painel + " / " + descricao);
+        }
+        
+        editar.setNomeEditar("Consultar Iniciativa");
+        
+        editar.setBounds(550, 400, 630, 160);
+        editar.setVisible(true);
+    }//GEN-LAST:event_jMenuItemConsultarIniciativaActionPerformed
 
     public void setStatusMapa(){
         Info.data = Info.cal.get(Calendar.MONTH);
@@ -1094,12 +1208,15 @@ public class Principal extends javax.swing.JFrame{
     private javax.swing.JMenu jMenuCockpit;
     private javax.swing.JMenu jMenuCokpitOps;
     private javax.swing.JMenu jMenuIndicadores;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenu jMenuIniciativa;
     private javax.swing.JMenuItem jMenuItemClientes;
+    private javax.swing.JMenuItem jMenuItemConsultarIniciativa;
     private javax.swing.JMenuItem jMenuItemCriarUsuario;
     private javax.swing.JMenuItem jMenuItemEditarIndicador;
+    private javax.swing.JMenuItem jMenuItemEditarIniciativa;
     private javax.swing.JMenuItem jMenuItemFinancas;
     private javax.swing.JMenuItem jMenuItemMapaEstrategico;
+    private javax.swing.JMenuItem jMenuItemNovaIniciativa;
     private javax.swing.JMenuItem jMenuItemNovoIndicador;
     private javax.swing.JMenuItem jMenuItemPgt;
     private javax.swing.JMenuItem jMenuItemProcessos;
@@ -1129,5 +1246,10 @@ public class Principal extends javax.swing.JFrame{
         jMenuItemCriarUsuario.setEnabled(bool);
         jMenuItemNovoIndicador.setEnabled(bool);
         jMenuItemEditarIndicador.setEnabled(bool);
+    }
+    
+    public void setIniciativas(boolean bool){
+        jMenuItemNovaIniciativa.setEnabled(bool);
+        jMenuItemEditarIniciativa.setEnabled(bool);
     }
 }

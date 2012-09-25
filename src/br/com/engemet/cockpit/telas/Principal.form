@@ -160,11 +160,35 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Scorecard"/>
           </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenuIniciativa">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Iniciativas"/>
+          </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemNovaIniciativa">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jMenuItem1"/>
+                <Property name="text" type="java.lang.String" value="Nova Iniciativa"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemNovaIniciativaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemConsultarIniciativa">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Consultar Iniciativa"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemConsultarIniciativaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemEditarIniciativa">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Editar Iniciativa"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemEditarIniciativaActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

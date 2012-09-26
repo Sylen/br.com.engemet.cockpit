@@ -266,6 +266,7 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
         JOptionPane.showMessageDialog(null, "Atividade Salva!");
     }//GEN-LAST:event_btnSalvarActionPerformed
 
+    @SuppressWarnings("unchecked")
     private void btnAddAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddAtividadeActionPerformed
         // TODO add your handling code here:
         tabela = "IN_CRONO_ATIVIDADES";
@@ -499,6 +500,7 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
         setEditarAtividates(cod); 
     }
     
+    @SuppressWarnings("unchecked")
     public void setCbxEditarAtividades(){
         String descricao;
         

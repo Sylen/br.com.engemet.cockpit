@@ -145,20 +145,20 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
         jLabel10.setOpaque(true);
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 40, 30));
 
-        cbxFimSem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cbxFimSem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         cbxFimSem.setToolTipText("Escoha uma Sexta-Feira");
         getContentPane().add(cbxFimSem, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, -1, 30));
 
-        cbxFimMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        cbxFimMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
         getContentPane().add(cbxFimMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, -1, 30));
 
-        cbxIniSem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cbxIniSem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         cbxIniSem.setToolTipText("Escoha uma Segunda-Feira");
         getContentPane().add(cbxIniSem, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, -1, 30));
 
         getContentPane().add(cbxFimAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 310, 100, 30));
 
-        cbxIniMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        cbxIniMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
         getContentPane().add(cbxIniMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, -1, 30));
 
         getContentPane().add(cbxIniAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 100, 30));
@@ -181,6 +181,7 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
         jLabel12.setOpaque(true);
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 310, 30));
 
+        txtRealizado.setText("0");
         txtRealizado.setToolTipText("Digite um valor de 0 a 100 sem virgulas ou ponto e sem o sinal de %");
         getContentPane().add(txtRealizado, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 90, -1));
         getContentPane().add(txtResponsavel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 310, -1));

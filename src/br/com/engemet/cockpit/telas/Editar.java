@@ -69,9 +69,7 @@ public class Editar extends javax.swing.JFrame{
             this.dispose();
         }else if(nomeEditar.equals("Editar Iniciativa")){
             cod = cbxIndicadores.getSelectedIndex();
-            
-            JOptionPane.showMessageDialog(null, cod);
-            
+
             iniciativa = new Iniciativas();
             iniciativa.setBounds(110, 25, 1050, 750);
             iniciativa.setEditarIniciativa(cod);

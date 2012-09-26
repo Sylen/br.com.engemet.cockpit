@@ -7,24 +7,24 @@ import java.util.Calendar;
 import javax.swing.*;
 
 public class Iniciativas extends javax.swing.JFrame{
-    
-    private CronogramaIniciativa cronogramaIniciativa = new CronogramaIniciativa();
 
+    private CronogramaIniciativa cronogramaIniciativa = new CronogramaIniciativa();
     public int iniCod = 0;
     private int cod = 0;
     private int codUsu = 0;
     private int aux;
+    private int verifica = 0;
     private String select, insert, tabela, campo, strCodIni, strCod, strCodUsu, strNom, strUsuario;
     private String atuIniAno, atuIniMes, atuIniDia, atuFimAno, atuFimMes, atuFimDia;
     private float semanasRestantes, numSemanas, semanasDecorridas;
-    
+
     public Iniciativas(){
         Info.iniciativas = this;
 
         initComponents();
 
         setComboBoxs();
-        setSituacaoStatus();
+        //setSituacaoStatus();
     }
 
     @SuppressWarnings("unchecked")
@@ -386,7 +386,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jPanel1.add(txtIndicadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, 810, 40));
 
-        cbxDataInicioSemana.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cbxDataInicioSemana.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         cbxDataInicioSemana.setToolTipText("Escoha uma Segunda-Feira");
         cbxDataInicioSemana.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -395,7 +395,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jPanel1.add(cbxDataInicioSemana, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 390, -1, 40));
 
-        cbxDataInicioMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        cbxDataInicioMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
         cbxDataInicioMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxDataInicioMesActionPerformed(evt);
@@ -411,7 +411,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jPanel1.add(cbxDataInicioAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 390, 90, 40));
 
-        cbxDataTerminoSemana.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cbxDataTerminoSemana.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         cbxDataTerminoSemana.setToolTipText("Escoha uma Sexta-Feira");
         cbxDataTerminoSemana.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -420,7 +420,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jPanel1.add(cbxDataTerminoSemana, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 390, -1, 40));
 
-        cbxDataTerminoMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        cbxDataTerminoMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
         cbxDataTerminoMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxDataTerminoMesActionPerformed(evt);
@@ -1576,14 +1576,14 @@ public class Iniciativas extends javax.swing.JFrame{
         tabela = "IN_CRONO_ATIVIDADES";
         strCodIni = "ATI_INICOD";
         campo = "ATI_COD";
-        
+
         select = "SELECT * FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod;
         Info.cronogramaIniciativa.cod = Info.objConexao.getIndCod(select, campo, Info.cronogramaIniciativa.cod);
-        
+
         cronogramaIniciativa.setComboBoxs();
         cronogramaIniciativa.setBounds(440, 200, 450, 450);
         cronogramaIniciativa.setVisible(true);
-         //setAtividades(numeroAtividade);
+        //setAtividades(numeroAtividade);
         //numeroAtividade ++;
     }//GEN-LAST:event_btnAdicionarAtividadeActionPerformed
 
@@ -1595,20 +1595,22 @@ public class Iniciativas extends javax.swing.JFrame{
         strNom = "DEF_NOMUSU";
         campo = "DEF_INI";
 
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu+ ") values (" + iniCod + ", " + codUsu + ")";
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu + ") values (" + iniCod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtIniciativa.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
+            Info.objConexao.setBD(insert);
+
+            campo = "DEF_NOM";
+            insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtIniciativa.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        
-        campo = "DEF_NOM";
-        insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtIniciativaFocusLost
 
     private void txtDescricaoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescricaoFocusLost
@@ -1619,16 +1621,18 @@ public class Iniciativas extends javax.swing.JFrame{
         strNom = "DEF_NOMUSU";
         campo = "DEF_DESOBJ";
 
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu + ") values (" + iniCod + ", " + codUsu + ")";
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu + ") values (" + iniCod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtDescricao.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtDescricao.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtDescricaoFocusLost
 
     private void txtPatrocinadorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPatrocinadorFocusLost
@@ -1639,16 +1643,18 @@ public class Iniciativas extends javax.swing.JFrame{
         strCodUsu = "DEF_CODUSU";
         strNom = "DEF_NOMUSU";
 
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu+ ") values (" + iniCod + ", " + codUsu + ")";
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu + ") values (" + iniCod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPatrocinador.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPatrocinador.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtPatrocinadorFocusLost
 
     private void txtLiderFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLiderFocusLost
@@ -1659,16 +1665,18 @@ public class Iniciativas extends javax.swing.JFrame{
         strCodUsu = "DEF_CODUSU";
         strNom = "DEF_NOMUSU";
 
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu+ ") values (" + iniCod + ", " + codUsu + ")";
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu + ") values (" + iniCod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtLider.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtLider.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtLiderFocusLost
 
     private void txtEquipeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEquipeFocusLost
@@ -1679,16 +1687,18 @@ public class Iniciativas extends javax.swing.JFrame{
         strCodUsu = "DEF_CODUSU";
         strNom = "DEF_NOMUSU";
 
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu+ ") values (" + iniCod + ", " + codUsu + ")";
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu + ") values (" + iniCod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtEquipe.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtEquipe.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtEquipeFocusLost
 
     private void txtEscopoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEscopoFocusLost
@@ -1699,16 +1709,18 @@ public class Iniciativas extends javax.swing.JFrame{
         strCodUsu = "DEF_CODUSU";
         strNom = "DEF_NOMUSU";
 
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu+ ") values (" + iniCod + ", " + codUsu + ")";
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu + ") values (" + iniCod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtEscopo.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtEscopo.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtEscopoFocusLost
 
     private void txtProdutosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProdutosFocusLost
@@ -1719,16 +1731,18 @@ public class Iniciativas extends javax.swing.JFrame{
         strCodUsu = "DEF_CODUSU";
         strNom = "DEF_NOMUSU";
 
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu+ ") values (" + iniCod + ", " + codUsu + ")";
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu + ") values (" + iniCod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtProdutos.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtProdutos.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtProdutosFocusLost
 
     private void txtIndicadoresFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIndicadoresFocusLost
@@ -1739,16 +1753,18 @@ public class Iniciativas extends javax.swing.JFrame{
         strCodUsu = "DEF_CODUSU";
         strNom = "DEF_NOMUSU";
 
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu+ ") values (" + iniCod + ", " + codUsu + ")";
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu + ") values (" + iniCod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtIndicadores.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtIndicadores.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtIndicadoresFocusLost
 
     private void cbxDataInicioSemanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxDataInicioSemanaActionPerformed
@@ -1759,18 +1775,20 @@ public class Iniciativas extends javax.swing.JFrame{
         strCodUsu = "DEF_CODUSU";
         strNom = "DEF_NOMUSU";
 
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu+ ") values (" + iniCod + ", " + codUsu + ")";
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu + ") values (" + iniCod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + cbxDataInicioSemana.getSelectedItem() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
+
+            atuIniDia = String.valueOf(cbxDataInicioSemana.getSelectedItem());
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + cbxDataInicioSemana.getSelectedItem() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        
-        atuIniDia = String.valueOf(cbxDataInicioSemana.getSelectedItem());
     }//GEN-LAST:event_cbxDataInicioSemanaActionPerformed
 
     private void cbxDataInicioMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxDataInicioMesActionPerformed
@@ -1781,18 +1799,20 @@ public class Iniciativas extends javax.swing.JFrame{
         strCodUsu = "DEF_CODUSU";
         strNom = "DEF_NOMUSU";
 
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu+ ") values (" + iniCod + ", " + codUsu + ")";
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu + ") values (" + iniCod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + cbxDataInicioMes.getSelectedItem() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
+
+            atuIniMes = String.valueOf(cbxDataInicioMes.getSelectedItem());
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + cbxDataInicioMes.getSelectedItem() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        
-        atuIniMes = String.valueOf(cbxDataInicioMes.getSelectedItem());
     }//GEN-LAST:event_cbxDataInicioMesActionPerformed
 
     private void cbxDataInicioAnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxDataInicioAnoActionPerformed
@@ -1803,18 +1823,20 @@ public class Iniciativas extends javax.swing.JFrame{
         strCodUsu = "DEF_CODUSU";
         strNom = "DEF_NOMUSU";
 
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu+ ") values (" + iniCod + ", " + codUsu + ")";
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu + ") values (" + iniCod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + cbxDataInicioAno.getSelectedItem() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
+
+            atuIniAno = String.valueOf(cbxDataInicioAno.getSelectedItem());
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + cbxDataInicioAno.getSelectedItem() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        
-        atuIniAno = String.valueOf(cbxDataInicioAno.getSelectedItem());
     }//GEN-LAST:event_cbxDataInicioAnoActionPerformed
 
     private void cbxDataTerminoSemanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxDataTerminoSemanaActionPerformed
@@ -1825,17 +1847,20 @@ public class Iniciativas extends javax.swing.JFrame{
         strCodUsu = "DEF_CODUSU";
         strNom = "DEF_NOMUSU";
 
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu+ ") values (" + iniCod + ", " + codUsu + ")";
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu + ") values (" + iniCod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + cbxDataTerminoSemana.getSelectedItem() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
+
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + cbxDataTerminoSemana.getSelectedItem() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        
+
         atuFimDia = String.valueOf(cbxDataTerminoSemana.getSelectedItem());
     }//GEN-LAST:event_cbxDataTerminoSemanaActionPerformed
 
@@ -1847,17 +1872,20 @@ public class Iniciativas extends javax.swing.JFrame{
         strCodUsu = "DEF_CODUSU";
         strNom = "DEF_NOMUSU";
 
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu+ ") values (" + iniCod + ", " + codUsu + ")";
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu + ") values (" + iniCod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + cbxDataTerminoMes.getSelectedItem() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
+
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + cbxDataTerminoMes.getSelectedItem() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        
+
         atuFimMes = String.valueOf(cbxDataTerminoMes.getSelectedItem());
     }//GEN-LAST:event_cbxDataTerminoMesActionPerformed
 
@@ -1869,17 +1897,20 @@ public class Iniciativas extends javax.swing.JFrame{
         strCodUsu = "DEF_CODUSU";
         strNom = "DEF_NOMUSU";
 
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu+ ") values (" + iniCod + ", " + codUsu + ")";
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu + ") values (" + iniCod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + cbxDataTerminoAno.getSelectedItem() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
+
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + cbxDataTerminoAno.getSelectedItem() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        
+
         atuFimAno = String.valueOf(cbxDataTerminoAno.getSelectedItem());
     }//GEN-LAST:event_cbxDataTerminoAnoActionPerformed
 
@@ -1892,16 +1923,18 @@ public class Iniciativas extends javax.swing.JFrame{
         strCodUsu = "DEF_CODUSU";
         strNom = "DEF_NOMUSU";
 
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu+ ") values (" + iniCod + ", " + codUsu + ")";
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu + ") values (" + iniCod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + cbxPainel.getSelectedItem() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + cbxPainel.getSelectedItem() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
 
         if(cbxPainel.getSelectedItem().equals("Finanças")){
             cbxObjetivos.removeAllItems();
@@ -1928,6 +1961,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 cbxObjetivos.addItem(CockpitStrings.objetivosPGT[i]);
             }
         }
+
     }//GEN-LAST:event_cbxPainelActionPerformed
 
     private void txtDataAtualizacaoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDataAtualizacaoFocusLost
@@ -1938,22 +1972,23 @@ public class Iniciativas extends javax.swing.JFrame{
         strCodUsu = "GER_CODUSU";
         strNom = "GER_NOMUSU";
 
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu+ ") values (" + iniCod + ", " + codUsu + ")";
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu + ") values (" + iniCod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtDataAtualizacao.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
+
+            insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
+            Info.objConexao.setBD(insert);
+
+            setDataAtualizacao();
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtDataAtualizacao.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        
-        insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        
-        setDataAtualizacao();
-        
     }//GEN-LAST:event_txtDataAtualizacaoFocusLost
 
     private void chkVerdeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkVerdeActionPerformed
@@ -1964,26 +1999,28 @@ public class Iniciativas extends javax.swing.JFrame{
         strCodUsu = "GER_CODUSU";
         strNom = "GER_NOMUSU";
 
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu+ ") values (" + iniCod + ", " + codUsu + ")";
-            Info.objConexao.setBD(insert);
-        }
-        
-        if(chkVerde.isSelected() != false){
-            chkVermelho.setSelected(false);
-            lblSituacaoRecursos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola1G.png")));
-            
-            insert = "UPDATE " + tabela + " SET " + campo + " = '" + "Verde" + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        }else{
-            chkVermelho.setSelected(true);
-            lblSituacaoRecursos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola5G.png")));
-            
-            insert = "UPDATE " + tabela + " SET " + campo + " = '" + "Vermelho" + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu + ") values (" + iniCod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            if(chkVerde.isSelected() != false){
+                chkVermelho.setSelected(false);
+                lblSituacaoRecursos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola1G.png")));
+
+                insert = "UPDATE " + tabela + " SET " + campo + " = '" + "Verde" + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
+                Info.objConexao.setBD(insert);
+            }else{
+                chkVermelho.setSelected(true);
+                lblSituacaoRecursos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola5G.png")));
+
+                insert = "UPDATE " + tabela + " SET " + campo + " = '" + "Vermelho" + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
+                Info.objConexao.setBD(insert);
+            }
         }
     }//GEN-LAST:event_chkVerdeActionPerformed
 
@@ -1995,26 +2032,28 @@ public class Iniciativas extends javax.swing.JFrame{
         strCodUsu = "GER_CODUSU";
         strNom = "GER_NOMUSU";
 
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu+ ") values (" + iniCod + ", " + codUsu + ")";
-            Info.objConexao.setBD(insert);
-        }
-        
-        if(chkVermelho.isSelected() != false){
-            chkVerde.setSelected(false);
-            lblSituacaoRecursos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola5G.png")));
-            
-            insert = "UPDATE " + tabela + " SET " + campo + " = '" + "Vermelho" + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-            Info.objConexao.setBD(insert);
-        }else{
-            chkVerde.setSelected(true);
-            lblSituacaoRecursos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola1G.png")));
-            
-            insert = "UPDATE " + tabela + " SET " + campo + " = '" + "Verde" + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-            Info.objConexao.setBD(insert);
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu + ") values (" + iniCod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            if(chkVermelho.isSelected() != false){
+                chkVerde.setSelected(false);
+                lblSituacaoRecursos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola5G.png")));
+
+                insert = "UPDATE " + tabela + " SET " + campo + " = '" + "Vermelho" + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
+                Info.objConexao.setBD(insert);
+            }else{
+                chkVerde.setSelected(true);
+                lblSituacaoRecursos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola1G.png")));
+
+                insert = "UPDATE " + tabela + " SET " + campo + " = '" + "Verde" + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
+                Info.objConexao.setBD(insert);
+            }
         }
     }//GEN-LAST:event_chkVermelhoActionPerformed
 
@@ -2026,22 +2065,23 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_PONATE";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 1;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 1;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPontoAtencao.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
+            Info.objConexao.setBD(insert);
+
+            insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPontoAtencao.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        
-        insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtPontoAtencaoFocusLost
 
     private void txtPontoAtencao1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPontoAtencao1FocusLost
@@ -2052,19 +2092,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_PONATE";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 2;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 2;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPontoAtencao1.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPontoAtencao1.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtPontoAtencao1FocusLost
 
     private void txtPontoAtencao2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPontoAtencao2FocusLost
@@ -2075,19 +2116,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_PONATE";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 3;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 3;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPontoAtencao2.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPontoAtencao2.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtPontoAtencao2FocusLost
 
     private void txtPontoAtencao3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPontoAtencao3FocusLost
@@ -2097,19 +2139,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_PONATE";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 4;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 4;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPontoAtencao3.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPontoAtencao3.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtPontoAtencao3FocusLost
 
     private void txtPontoAtencao4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPontoAtencao4FocusLost
@@ -2120,19 +2163,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_PONATE";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 5;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 5;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPontoAtencao4.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPontoAtencao4.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtPontoAtencao4FocusLost
 
     private void txtAcoesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAcoesFocusLost
@@ -2143,22 +2187,23 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_ACOCOR";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 1;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 1;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtAcoes.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
+            Info.objConexao.setBD(insert);
+
+            insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtAcoes.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        
-        insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtAcoesFocusLost
 
     private void txtAcoes1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAcoes1FocusLost
@@ -2169,19 +2214,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_ACOCOR";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 2;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 2;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtAcoes1.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
-        
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtAcoes1.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtAcoes1FocusLost
 
     private void txtAcoes2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAcoes2FocusLost
@@ -2192,19 +2238,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_ACOCOR";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 3;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 3;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtAcoes2.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtAcoes2.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtAcoes2FocusLost
 
     private void txtAcoes3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAcoes3FocusLost
@@ -2215,19 +2262,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_ACOCOR";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 4;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 4;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtAcoes3.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtAcoes3.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtAcoes3FocusLost
 
     private void txtAcoes4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAcoes4FocusLost
@@ -2238,19 +2286,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_ACOCOR";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 5;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 5;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtAcoes4.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtAcoes4.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtAcoes4FocusLost
 
     private void txtResponsavelFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtResponsavelFocusLost
@@ -2261,22 +2310,23 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_RES";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 1;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 1;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtResponsavel.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
+            Info.objConexao.setBD(insert);
+
+            insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtResponsavel.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        
-        insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtResponsavelFocusLost
 
     private void txtResponsavel1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtResponsavel1FocusLost
@@ -2287,19 +2337,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_RES";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 2;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 2;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtResponsavel1.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtResponsavel1.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtResponsavel1FocusLost
 
     private void txtResponsavel2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtResponsavel2FocusLost
@@ -2310,19 +2361,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_RES";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 3;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 3;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtResponsavel2.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtResponsavel2.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtResponsavel2FocusLost
 
     private void txtResponsavel3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtResponsavel3FocusLost
@@ -2333,19 +2385,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_RES";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 4;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 4;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtResponsavel3.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtResponsavel3.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtResponsavel3FocusLost
 
     private void txtResponsavel4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtResponsavel4FocusLost
@@ -2356,19 +2409,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_RES";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 5;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 5;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtResponsavel4.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtResponsavel4.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtResponsavel4FocusLost
 
     private void txtPrazoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPrazoFocusLost
@@ -2379,22 +2433,23 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_PRA";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 1;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 1;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPrazo.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
+            Info.objConexao.setBD(insert);
+
+            insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPrazo.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        
-        insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtPrazoFocusLost
 
     private void txtPrazo1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPrazo1FocusLost
@@ -2405,19 +2460,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_PRA";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 2;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 2;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPrazo1.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPrazo1.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtPrazo1FocusLost
 
     private void txtPrazo2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPrazo2FocusLost
@@ -2428,19 +2484,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_PRA";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 3;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 3;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPrazo2.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPrazo2.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtPrazo2FocusLost
 
     private void txtPrazo3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPrazo3FocusLost
@@ -2451,19 +2508,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_PRA";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 4;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 4;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPrazo3.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPrazo3.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtPrazo3FocusLost
 
     private void txtPrazo4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPrazo4FocusLost
@@ -2474,19 +2532,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_PRA";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 5;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 5;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPrazo4.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPrazo4.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtPrazo4FocusLost
 
     private void chkOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkOkActionPerformed
@@ -2497,22 +2556,23 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_OK";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 1;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 1;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkOk.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
+            Info.objConexao.setBD(insert);
+
+            insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkOk.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        
-        insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkOkActionPerformed
 
     private void chkOk1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkOk1ActionPerformed
@@ -2523,19 +2583,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_OK";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 2;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 2;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkOk1.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkOk1.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkOk1ActionPerformed
 
     private void chkOk2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkOk2ActionPerformed
@@ -2546,19 +2607,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_OK";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 3;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 3;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkOk2.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkOk2.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkOk2ActionPerformed
 
     private void chkOk3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkOk3ActionPerformed
@@ -2569,19 +2631,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_OK";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 4;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 4;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkOk3.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkOk3.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkOk3ActionPerformed
 
     private void chkOk4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkOk4ActionPerformed
@@ -2592,19 +2655,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_OK";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 5;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 5;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkOk4.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkOk4.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkOk4ActionPerformed
 
     private void txtRecursosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRecursosFocusLost
@@ -2615,22 +2679,23 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_REC";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 1;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 1;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtRecursos.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
+            Info.objConexao.setBD(insert);
+
+            insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtRecursos.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        
-        insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtRecursosFocusLost
 
     private void txtRecursos1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRecursos1FocusLost
@@ -2641,19 +2706,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_REC";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 2;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 2;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtRecursos1.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtRecursos1.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtRecursos1FocusLost
 
     private void txtRecursos2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRecursos2FocusLost
@@ -2664,19 +2730,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_REC";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 3;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 3;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtRecursos2.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtRecursos2.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtRecursos2FocusLost
 
     private void txtRecursos3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRecursos3FocusLost
@@ -2687,19 +2754,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_REC";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 4;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 4;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtRecursos3.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtRecursos3.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtRecursos3FocusLost
 
     private void txtRecursos4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRecursos4FocusLost
@@ -2710,19 +2778,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_REC";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 5;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 5;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtRecursos4.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtRecursos4.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtRecursos4FocusLost
 
     private void txtEspecificacaoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEspecificacaoFocusLost
@@ -2733,22 +2802,23 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_ESP";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 1;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 1;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtEspecificacao.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
+            Info.objConexao.setBD(insert);
+
+            insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtEspecificacao.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        
-        insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtEspecificacaoFocusLost
 
     private void txtEspecificacao1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEspecificacao1FocusLost
@@ -2759,19 +2829,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_ESP";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 2;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 2;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtEspecificacao1.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtEspecificacao1.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtEspecificacao1FocusLost
 
     private void txtEspecificacao2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEspecificacao2FocusLost
@@ -2782,19 +2853,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_ESP";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 3;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 3;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtEspecificacao2.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtEspecificacao2.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtEspecificacao2FocusLost
 
     private void txtEspecificacao3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEspecificacao3FocusLost
@@ -2805,19 +2877,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_ESP";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 4;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 4;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtEspecificacao3.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtEspecificacao3.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtEspecificacao3FocusLost
 
     private void txtEspecificacao4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEspecificacao4FocusLost
@@ -2828,19 +2901,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_ESP";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 5;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 5;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtEspecificacao4.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtEspecificacao4.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtEspecificacao4FocusLost
 
     private void chkPlanejamentoPendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPlanejamentoPendenteActionPerformed
@@ -2851,22 +2925,23 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_SITPEN";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 1;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 1;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkPlanejamentoPendente.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
+            Info.objConexao.setBD(insert);
+
+            insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkPlanejamentoPendente.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        
-        insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkPlanejamentoPendenteActionPerformed
 
     private void chkPlanejamentoPendente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPlanejamentoPendente1ActionPerformed
@@ -2877,19 +2952,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_SITPEN";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 2;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 2;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkPlanejamentoPendente1.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkPlanejamentoPendente1.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkPlanejamentoPendente1ActionPerformed
 
     private void chkPlanejamentoPendente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPlanejamentoPendente2ActionPerformed
@@ -2900,19 +2976,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_SITPEN";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 3;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 3;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkPlanejamentoPendente2.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkPlanejamentoPendente2.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkPlanejamentoPendente2ActionPerformed
 
     private void chkPlanejamentoPendente3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPlanejamentoPendente3ActionPerformed
@@ -2923,19 +3000,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_SITPEN";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 4;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 4;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkPlanejamentoPendente3.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkPlanejamentoPendente3.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkPlanejamentoPendente3ActionPerformed
 
     private void chkPlanejamentoPendente4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPlanejamentoPendente4ActionPerformed
@@ -2946,19 +3024,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_SITPEN";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 5;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 5;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkPlanejamentoPendente4.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkPlanejamentoPendente4.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkPlanejamentoPendente4ActionPerformed
 
     private void chkPlanejamentoOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPlanejamentoOkActionPerformed
@@ -2969,22 +3048,23 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_SITOK";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 1;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 1;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkPlanejamentoOk.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
+            Info.objConexao.setBD(insert);
+
+            insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkPlanejamentoOk.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        
-        insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkPlanejamentoOkActionPerformed
 
     private void chkPlanejamentoOk1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPlanejamentoOk1ActionPerformed
@@ -2995,19 +3075,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_SITOK";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 2;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 2;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkPlanejamentoOk1.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkPlanejamentoOk1.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkPlanejamentoOk1ActionPerformed
 
     private void chkPlanejamentoOk2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPlanejamentoOk2ActionPerformed
@@ -3018,19 +3099,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_SITOK";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 3;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 3;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkPlanejamentoOk2.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkPlanejamentoOk2.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkPlanejamentoOk2ActionPerformed
 
     private void chkPlanejamentoOk3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPlanejamentoOk3ActionPerformed
@@ -3041,19 +3123,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_SITOK";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 4;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 4;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkPlanejamentoOk3.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkPlanejamentoOk3.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkPlanejamentoOk3ActionPerformed
 
     private void chkPlanejamentoOk4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPlanejamentoOk4ActionPerformed
@@ -3064,19 +3147,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_SITOK";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 5;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 5;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkPlanejamentoOk4.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkPlanejamentoOk4.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkPlanejamentoOk4ActionPerformed
 
     private void txtDeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDeFocusLost
@@ -3087,22 +3171,23 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_DE";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 1;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 1;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtDe.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
+            Info.objConexao.setBD(insert);
+
+            insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtDe.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        
-        insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtDeFocusLost
 
     private void txtDe1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDe1FocusLost
@@ -3113,19 +3198,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_DE";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 2;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 2;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtDe1.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtDe1.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtDe1FocusLost
 
     private void txtDe2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDe2FocusLost
@@ -3136,19 +3222,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_DE";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 3;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 3;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtDe2.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtDe2.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtDe2FocusLost
 
     private void txtDe3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDe3FocusLost
@@ -3159,19 +3246,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_DE";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 4;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 4;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtDe3.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtDe3.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtDe3FocusLost
 
     private void txtDe4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDe4FocusLost
@@ -3182,19 +3270,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_DE";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 5;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 5;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtDe4.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtDe4.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtDe4FocusLost
 
     private void txtParaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtParaFocusLost
@@ -3205,22 +3294,23 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_PARA";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 1;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 1;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPara.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
+            Info.objConexao.setBD(insert);
+
+            insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPara.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        
-        insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtParaFocusLost
 
     private void txtPara1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPara1FocusLost
@@ -3231,19 +3321,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_PARA";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 2;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 2;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPara1.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPara1.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtPara1FocusLost
 
     private void txtPara2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPara2FocusLost
@@ -3254,19 +3345,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_PARA";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 3;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 3;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPara2.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPara2.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtPara2FocusLost
 
     private void txtPara3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPara3FocusLost
@@ -3277,19 +3369,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_PARA";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 4;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 4;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPara3.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPara3.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtPara3FocusLost
 
     private void txtPara4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPara4FocusLost
@@ -3300,19 +3393,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_PARA";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 5;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 5;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPara4.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtPara4.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_txtPara4FocusLost
 
     private void chkControlePendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkControlePendenteActionPerformed
@@ -3323,22 +3417,23 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_APRPEN";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 1;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 1;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkControlePendente.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
+            Info.objConexao.setBD(insert);
+
+            insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkControlePendente.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        
-        insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkControlePendenteActionPerformed
 
     private void chkControlePendente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkControlePendente1ActionPerformed
@@ -3349,19 +3444,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_APRPEN";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 2;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 2;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkControlePendente1.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkControlePendente1.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkControlePendente1ActionPerformed
 
     private void chkControlePendente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkControlePendente2ActionPerformed
@@ -3372,19 +3468,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_APRPEN";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 3;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 3;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkControlePendente2.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkControlePendente2.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkControlePendente2ActionPerformed
 
     private void chkControlePendente3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkControlePendente3ActionPerformed
@@ -3395,19 +3492,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_APRPEN";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 4;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 4;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkControlePendente3.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkControlePendente3.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkControlePendente3ActionPerformed
 
     private void chkControlePendente4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkControlePendente4ActionPerformed
@@ -3418,19 +3516,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_APRPEN";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 5;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 5;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkControlePendente4.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkControlePendente4.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkControlePendente4ActionPerformed
 
     private void chkControleOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkControleOkActionPerformed
@@ -3441,22 +3540,23 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_APROK";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 1;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 1;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkControleOk.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
+            Info.objConexao.setBD(insert);
+
+            insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkControleOk.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        
-        insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkControleOkActionPerformed
 
     private void chkControleOk1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkControleOk1ActionPerformed
@@ -3467,19 +3567,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_APROK";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 2;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 2;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkControleOk1.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkControleOk1.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkControleOk1ActionPerformed
 
     private void chkControleOk2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkControleOk2ActionPerformed
@@ -3490,19 +3591,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_APROK";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 3;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 3;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkControleOk2.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkControleOk2.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkControleOk2ActionPerformed
 
     private void chkControleOk3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkControleOk3ActionPerformed
@@ -3513,19 +3615,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_APROK";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 4;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 4;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkControleOk3.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkControleOk3.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkControleOk3ActionPerformed
 
     private void chkControleOk4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkControleOk4ActionPerformed
@@ -3536,19 +3639,20 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "ACO_APROK";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
-        cod = 5;
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            cod = 5;
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ", " + strCodUsu + ") values (" + iniCod + ", " + cod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkControleOk4.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + chkControleOk4.isSelected() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
     }//GEN-LAST:event_chkControleOk4ActionPerformed
 
     private void txtInicioRealFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtInicioRealFocusLost
@@ -3558,21 +3662,21 @@ public class Iniciativas extends javax.swing.JFrame{
         campo = "CRO_INIREA";
         strCodUsu = "CRO_CODUSU";
         strNom = "CRO_NOMUSU";
-        
-        select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
-        aux = Info.objConexao.getIndCod(select, strCodIni, aux);
+        if(verifica == 0){
+            select = "SELECT * FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
 
-        if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu+ ") values (" + iniCod + ", " + codUsu + ")";
+            if(aux == 1){
+                insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu + ") values (" + iniCod + ", " + codUsu + ")";
+                Info.objConexao.setBD(insert);
+            }
+
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtInicioReal.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
+            Info.objConexao.setBD(insert);
+
+            insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
             Info.objConexao.setBD(insert);
         }
- 
-        insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtInicioReal.getText() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        
-        insert = "UPDATE " + tabela + " SET " + strNom + " = '" + Info.nomeUsuario + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
-        Info.objConexao.setBD(insert);
-        
         setDataAtualizacao();
     }//GEN-LAST:event_txtInicioRealFocusLost
 
@@ -3582,19 +3686,19 @@ public class Iniciativas extends javax.swing.JFrame{
 
         editar.setTitle("Editar Atividades");
         editar.setTexto("Escolha a Atividade:");
-        
+
         cod = 0;
-        
+
         String descricao;
-        
+
         tabela = "IN_CRONO_ATIVIDADES";
         strCodIni = "ATI_INICOD";
         strCod = "ATI_COD";
         select = "SELECT * FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod;
         cod = Info.objConexao.getIndCod(select, strCodIni, cod);
-        
+
         String[] combo = new String[cod];
-        
+
         campo = "ATI_NOM";
         for(int i = 1; i < (cod); i++){
             select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + i;
@@ -3605,9 +3709,9 @@ public class Iniciativas extends javax.swing.JFrame{
             editar.setCbxIndicadores(combo[i] = i + " = " + descricao);
 
         }
-        
+
         editar.setNomeEditar("Editar Atividades");
-        
+
         editar.setBounds(550, 400, 630, 160);
         editar.setVisible(true);
     }//GEN-LAST:event_btnEditarAtividadeActionPerformed
@@ -3624,42 +3728,42 @@ public class Iniciativas extends javax.swing.JFrame{
         aux = Info.objConexao.getIndCod(select, strCodIni, aux);
 
         if(aux == 1){
-            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu+ ") values (" + iniCod + ", " + codUsu + ")";
+            insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCodUsu + ") values (" + iniCod + ", " + codUsu + ")";
             Info.objConexao.setBD(insert);
         }
- 
+
         insert = "UPDATE " + tabela + " SET " + campo + " = '" + cbxObjetivos.getSelectedItem() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
         Info.objConexao.setBD(insert);
     }//GEN-LAST:event_cbxObjetivosFocusLost
-    
+
     @SuppressWarnings("unchecked")
     private void setComboBoxs(){
         Info.data = Info.cal.get(Calendar.YEAR);
         int data = Info.data + 10;
         String strData;
-        
+
         for(int i = Info.data; i <= data; i++){
             strData = String.valueOf(i);
             cbxDataInicioAno.addItem(strData);
             cbxDataTerminoAno.addItem(strData);
         }
     }
-    
+
     private void setSituacaoStatus(){
         tabela = "IN_GEREN_INICIATIVAS";
         strCodIni = "GER_INICOD";
         campo = "GER_SITREC";
-        
+
         select = "SELECT * FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod;
         aux = Info.objConexao.getIndCod(select, strCodIni, aux);
-        
+
         String verificar;
 
         if(aux == 1){
             insert = "INSERT INTO " + tabela + " (" + strCodIni + ") values (" + iniCod + ")";
             Info.objConexao.setBD(insert);
         }
-        
+
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod;
         verificar = Info.objConexao.getBD(select, campo);
 
@@ -3667,39 +3771,39 @@ public class Iniciativas extends javax.swing.JFrame{
             chkVerde.setSelected(true);
             chkVermelho.setSelected(false);
             lblSituacaoRecursos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola1G.png")));
-            
+
             insert = "UPDATE " + tabela + " SET " + campo + " = '" + "Verde" + "' WHERE " + strCodIni + " = " + iniCod;
             Info.objConexao.setBD(insert);
         }else{
             chkVermelho.setSelected(true);
             lblSituacaoRecursos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola5G.png")));
-            
+
             insert = "UPDATE " + tabela + " SET " + campo + " = '" + "Vermelho" + "' WHERE " + strCodIni + " = " + iniCod;
             Info.objConexao.setBD(insert);
         }
     }
-    
+
     public void setIniciativaCod(){
         tabela = "IN_DEF_GERAIS";
         campo = "DEF_INICOD";
-        
+
         select = "SELECT * FROM " + tabela;
         iniCod = Info.objConexao.getIndCod(select, campo, iniCod);
-        
+
     }
-    
+
     public void setCodUsuario(){
         tabela = "IN_DEF_GERAIS";
         campo = "DEF_CODUSU";
-        
+
         select = "SELECT * FROM " + tabela + " WHERE DEF_NOMUSU = '" + Info.nomeUsuario + "'";
         codUsu = Info.objConexao.getIndCod(select, campo, codUsu);
     }
-    
-    public void setJPanel4(Component campoGrafico, int x, int y, int width, int  height){
+
+    public void setJPanel4(Component campoGrafico, int x, int y, int width, int height){
         jPanel4.add(campoGrafico, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, y, width, height));
     }
-    
+
     public void removeJPanel4(){
         jPanel4.removeAll();
     }
@@ -3709,95 +3813,95 @@ public class Iniciativas extends javax.swing.JFrame{
         strCodIni = "DEF_INICOD";
         strCodUsu = "DEF_CODUSU";
         strNom = "DEF_NOMUSU";
-        
+
         codUsu = codIniciativa;
-        
+
         select = "SELECT " + strCodIni + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
         iniCod = Info.objConexao.getSelect(select, strCodIni, iniCod);
 
         campo = "DEF_INI";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
         txtIniciativa.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_DESOBJ";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
         txtDescricao.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_PATINI";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
         txtPatrocinador.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_LIDINI";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
         txtLider.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_EQPINI";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
         txtEquipe.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_ESC";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
         txtEscopo.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_PROGER";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
         txtProdutos.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_INDMET";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
         txtIndicadores.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_INISEM";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
         cbxDataInicioSemana.setSelectedItem(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_INIMES";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
         cbxDataInicioMes.setSelectedItem(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_INIANO";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
         cbxDataInicioAno.setSelectedItem(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_FIMSEM";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
         cbxDataTerminoSemana.setSelectedItem(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_FIMMES";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
         cbxDataTerminoMes.setSelectedItem(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_FIMANO";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
         cbxDataTerminoAno.setSelectedItem(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_PAI";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
         cbxPainel.setSelectedItem(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_OBJ";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
         cbxObjetivos.setSelectedItem(Info.objConexao.getBD(select, campo));
-        
-        
+
+
         //////////////////////////////////////////GERENCIAMENTO DAS INICIATIVAS
         tabela = "IN_GEREN_INICIATIVAS";
         strCodIni = "GER_INICOD";
         strCodUsu = "GER_CODUSU";
         strNom = "GER_NOMUSU";
-        
+
         campo = "GER_DATATU";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
         txtDataAtualizacao.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "GER_SITCRO";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
         String sitCro = Info.objConexao.getBD(select, campo);
 
         campo = "GER_SITREC";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
         String sitRec = Info.objConexao.getBD(select, campo);
-        
+
         if(sitRec == null || sitRec.equals("Verde")){
             chkVerde.setSelected(true);
             lblSituacaoRecursos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola1G.png")));
@@ -3806,294 +3910,294 @@ public class Iniciativas extends javax.swing.JFrame{
             chkVermelho.setSelected(true);
             lblSituacaoRecursos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola5G.png")));
         }
-        
+
         //////////////////////////////////////////GERENCIAMENTO DAS INICIATIVAS / ACOES
         tabela = "IN_ACOES_GER_INICIATIVAS";
         strCodIni = "ACO_INICOD";
         strCod = "ACO_COD";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
+
         cod = 1;
-        
+
         campo = "ACO_PONATE";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPontoAtencao.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_ACOCOR";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtAcoes.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_RES";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtResponsavel.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_PRA";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPrazo.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_OK";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkOk.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_REC";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtRecursos.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_ESP";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtEspecificacao.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_SITPEN";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkPlanejamentoPendente.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_SITOK";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkPlanejamentoOk.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_DE";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtDe.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_PARA";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPara.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_APRPEN";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkControlePendente.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_APROK";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkControleOk.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         cod = 2;
-        
+
         campo = "ACO_PONATE";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPontoAtencao1.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_ACOCOR";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtAcoes1.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_RES";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtResponsavel1.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_PRA";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPrazo1.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_OK";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkOk1.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_REC";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtRecursos1.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_ESP";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtEspecificacao1.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_SITPEN";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkPlanejamentoPendente1.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_SITOK";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkPlanejamentoOk1.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_DE";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtDe1.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_PARA";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPara1.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_APRPEN";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkControlePendente1.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_APROK";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkControleOk1.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         cod = 3;
-        
+
         campo = "ACO_PONATE";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPontoAtencao2.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_ACOCOR";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtAcoes2.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_RES";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtResponsavel2.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_PRA";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPrazo2.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_OK";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkOk2.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_REC";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtRecursos2.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_ESP";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtEspecificacao2.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_SITPEN";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkPlanejamentoPendente2.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_SITOK";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkPlanejamentoOk2.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_DE";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtDe2.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_PARA";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPara2.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_APRPEN";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkControlePendente2.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_APROK";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkControleOk2.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         cod = 4;
-        
+
         campo = "ACO_PONATE";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPontoAtencao3.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_ACOCOR";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtAcoes3.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_RES";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtResponsavel3.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_PRA";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPrazo3.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_OK";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkOk3.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_REC";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtRecursos3.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_ESP";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtEspecificacao3.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_SITPEN";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkPlanejamentoPendente3.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_SITOK";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkPlanejamentoOk3.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_DE";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtDe3.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_PARA";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPara3.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_APRPEN";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkControlePendente3.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_APROK";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkControleOk3.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         cod = 5;
-        
+
         campo = "ACO_PONATE";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPontoAtencao4.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_ACOCOR";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtAcoes4.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_RES";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtResponsavel4.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_PRA";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPrazo4.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_OK";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkOk4.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_REC";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtRecursos4.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_ESP";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtEspecificacao4.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_SITPEN";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkPlanejamentoPendente4.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_SITOK";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkPlanejamentoOk4.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_DE";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtDe4.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_PARA";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPara4.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_APRPEN";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkControlePendente4.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_APROK";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkControleOk4.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         //////////////////////////////////////////CRONOGRAMA da INICIATICA
         tabela = "IN_CRONOGRAMA";
         strCodIni = "CRO_INICOD";
         strCodUsu = "CRO_CODUSU";
         strNom = "CRO_NOMUSU";
-        
+
         campo = "CRO_INIREA";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
         txtInicioReal.setText(Info.objConexao.getBD(select, campo));
-        
+
         //////////////////////////////////////////CRONOGRAMA da INICIATICA / ATIVIDADES
         tabela = "IN_CRONO_ATIVIDADES";
         strCodIni = "ATI_INICOD";
@@ -4103,9 +4207,9 @@ public class Iniciativas extends javax.swing.JFrame{
 
         select = "SELECT * FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod;
         cod = Info.objConexao.getIndCod(select, strCod, cod);
-        
-        
-        for(int i = 1 ; i < cod; i++){
+
+
+        for(int i = 1; i < cod; i++){
             campo = "ATI_NOM";
             select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + i;
             String strNomAti = Info.objConexao.getBD(select, campo);
@@ -4113,7 +4217,7 @@ public class Iniciativas extends javax.swing.JFrame{
             campo = "ATI_REA";
             select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + i;
             String strRea = Info.objConexao.getBD(select, campo);
-            
+
             campo = "ATI_INISEM";
             select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + i;
             String strIniSem = Info.objConexao.getBD(select, campo);
@@ -4139,101 +4243,103 @@ public class Iniciativas extends javax.swing.JFrame{
             Info.cronogramaIniciativa.setCamposAtvidade(i, String.valueOf(i), strNomAti, strRea, strIniPeriodo, strFimPeriodo);
         }
     }
-    
+
     public void setConsultarIniciativa(int codIniciativa){
+        verifica = 1;
+
         tabela = "IN_DEF_GERAIS";
         strCodIni = "DEF_INICOD";
         strCodUsu = "DEF_CODUSU";
         strNom = "DEF_NOMUSU";
-        
-        select = "SELECT " + strCodIni + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
-        iniCod = Info.objConexao.getSelect(select, strCodIni, iniCod);
-        
-        codUsu = codIniciativa;
-        
+
+        select = "SELECT " + strCodUsu + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        codUsu = Info.objConexao.getSelect(select, strCodUsu, codUsu);
+
+        iniCod = codIniciativa;
+
         campo = "DEF_INI";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
         txtIniciativa.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_DESOBJ";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
         txtDescricao.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_PATINI";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
         txtPatrocinador.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_LIDINI";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
         txtLider.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_EQPINI";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
         txtEquipe.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_ESC";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
         txtEscopo.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_PROGER";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
         txtProdutos.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_INDMET";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
         txtIndicadores.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_INISEM";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
         cbxDataInicioSemana.setSelectedItem(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_INIMES";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
         cbxDataInicioMes.setSelectedItem(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_INIANO";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
         cbxDataInicioAno.setSelectedItem(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_FIMSEM";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
         cbxDataTerminoSemana.setSelectedItem(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_FIMMES";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
         cbxDataTerminoMes.setSelectedItem(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_FIMANO";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
         cbxDataTerminoAno.setSelectedItem(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_PAI";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
         cbxPainel.setSelectedItem(Info.objConexao.getBD(select, campo));
-        
+
         campo = "DEF_OBJ";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
         cbxObjetivos.setSelectedItem(Info.objConexao.getBD(select, campo));
-        
-        
+
+
         //////////////////////////////////////////GERENCIAMENTO DAS INICIATIVAS
         tabela = "IN_GEREN_INICIATIVAS";
         strCodIni = "GER_INICOD";
         strCodUsu = "GER_CODUSU";
         strNom = "GER_NOMUSU";
-        
+
         campo = "GER_DATATU";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
         txtDataAtualizacao.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "GER_SITCRO";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
         String sitCro = Info.objConexao.getBD(select, campo);
 
         campo = "GER_SITREC";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
         String sitRec = Info.objConexao.getBD(select, campo);
-        
+
         if(sitRec == null || sitRec.equals("Verde")){
             chkVerde.setSelected(true);
             lblSituacaoRecursos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola1G.png")));
@@ -4242,294 +4348,294 @@ public class Iniciativas extends javax.swing.JFrame{
             chkVermelho.setSelected(true);
             lblSituacaoRecursos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola5G.png")));
         }
-        
+
         //////////////////////////////////////////GERENCIAMENTO DAS INICIATIVAS / ACOES
         tabela = "IN_ACOES_GER_INICIATIVAS";
         strCodIni = "ACO_INICOD";
         strCod = "ACO_COD";
         strCodUsu = "ACO_CODUSU";
         strNom = "ACO_NOMUSU";
-        
+
         cod = 1;
-        
+
         campo = "ACO_PONATE";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtPontoAtencao.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_ACOCOR";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtAcoes.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_RES";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtResponsavel.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_PRA";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtPrazo.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_OK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkOk.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_REC";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtRecursos.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_ESP";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtEspecificacao.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_SITPEN";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkPlanejamentoPendente.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_SITOK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkPlanejamentoOk.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_DE";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtDe.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_PARA";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtPara.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_APRPEN";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkControlePendente.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_APROK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkControleOk.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         cod = 2;
-        
+
         campo = "ACO_PONATE";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtPontoAtencao1.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_ACOCOR";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtAcoes1.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_RES";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtResponsavel1.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_PRA";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtPrazo1.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_OK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkOk1.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_REC";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtRecursos1.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_ESP";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtEspecificacao1.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_SITPEN";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkPlanejamentoPendente1.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_SITOK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkPlanejamentoOk1.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_DE";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtDe1.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_PARA";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtPara1.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_APRPEN";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkControlePendente1.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_APROK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkControleOk1.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         cod = 3;
-        
+
         campo = "ACO_PONATE";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtPontoAtencao2.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_ACOCOR";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtAcoes2.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_RES";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtResponsavel2.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_PRA";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtPrazo2.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_OK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkOk2.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_REC";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtRecursos2.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_ESP";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtEspecificacao2.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_SITPEN";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkPlanejamentoPendente2.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_SITOK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkPlanejamentoOk2.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_DE";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtDe2.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_PARA";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtPara2.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_APRPEN";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkControlePendente2.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_APROK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkControleOk2.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         cod = 4;
-        
+
         campo = "ACO_PONATE";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtPontoAtencao3.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_ACOCOR";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtAcoes3.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_RES";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtResponsavel3.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_PRA";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtPrazo3.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_OK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkOk3.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_REC";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtRecursos3.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_ESP";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtEspecificacao3.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_SITPEN";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkPlanejamentoPendente3.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_SITOK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkPlanejamentoOk3.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_DE";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtDe3.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_PARA";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtPara3.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_APRPEN";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkControlePendente3.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_APROK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkControleOk3.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         cod = 5;
-        
+
         campo = "ACO_PONATE";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtPontoAtencao4.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_ACOCOR";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtAcoes4.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_RES";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtResponsavel4.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_PRA";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtPrazo4.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_OK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkOk4.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_REC";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtRecursos4.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_ESP";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtEspecificacao4.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_SITPEN";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkPlanejamentoPendente4.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_SITOK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkPlanejamentoOk4.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_DE";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtDe4.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_PARA";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         txtPara4.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ACO_APRPEN";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkControlePendente4.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         campo = "ACO_APROK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + cod;
         chkControleOk4.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
-        
+
         //////////////////////////////////////////CRONOGRAMA da INICIATICA
         tabela = "IN_CRONOGRAMA";
         strCodIni = "CRO_INICOD";
         strCodUsu = "CRO_CODUSU";
         strNom = "CRO_NOMUSU";
-        
+
         campo = "CRO_INIREA";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
         txtInicioReal.setText(Info.objConexao.getBD(select, campo));
-        
+
         //////////////////////////////////////////CRONOGRAMA da INICIATICA / ATIVIDADES
         tabela = "IN_CRONO_ATIVIDADES";
         strCodIni = "ATI_INICOD";
@@ -4537,19 +4643,19 @@ public class Iniciativas extends javax.swing.JFrame{
         strCodUsu = "ATI_CODUSU";
         strNom = "ATI_NOMUSU";
 
-        select = "SELECT * FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod;
+        select = "" + " WHERE " + strCodIni + " = " + iniCod;
         cod = Info.objConexao.getIndCod(select, strCod, cod);
-        
-        
-        for(int i = 1 ; i < cod; i++){
+
+
+        for(int i = 1; i < cod; i++){
             campo = "ATI_NOM";
             select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + i;
-            String strNomAti = Info.objConexao.getBD(select, campo);
+            String strNomAti = "<html><center>" + Info.objConexao.getBD(select, campo) + "</center></html>";
 
             campo = "ATI_REA";
             select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + i;
             String strRea = Info.objConexao.getBD(select, campo);
-            
+
             campo = "ATI_INISEM";
             select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod + " AND " + strCod + " = " + i;
             String strIniSem = Info.objConexao.getBD(select, campo);
@@ -4575,7 +4681,7 @@ public class Iniciativas extends javax.swing.JFrame{
             Info.cronogramaIniciativa.setCamposAtvidade(i, String.valueOf(i), strNomAti, strRea, strIniPeriodo, strFimPeriodo);
         }
     }
-    
+
     public void consultarIniciativa(){
         txtIniciativa.setEnabled(false);
         txtDescricao.setEnabled(false);
@@ -4593,11 +4699,11 @@ public class Iniciativas extends javax.swing.JFrame{
         cbxDataTerminoAno.setEnabled(false);
         cbxPainel.setEnabled(false);
         cbxObjetivos.setEnabled(false);
-        
+
         txtDataAtualizacao.setEnabled(false);
         chkVerde.setEnabled(false);
         chkVermelho.setEnabled(false);
-        
+
         txtPontoAtencao.setEnabled(false);
         txtPontoAtencao1.setEnabled(false);
         txtPontoAtencao2.setEnabled(false);
@@ -4663,15 +4769,15 @@ public class Iniciativas extends javax.swing.JFrame{
         chkControleOk2.setEnabled(false);
         chkControleOk3.setEnabled(false);
         chkControleOk4.setEnabled(false);
-        
+
         txtInicioReal.setEnabled(false);
         btnAdicionarAtividade.setEnabled(false);
         btnEditarAtividade.setEnabled(false);
     }
-    
+
     public void setDataAtualizacao(){
         if(!txtDataAtualizacao.getText().equals("")){
-            
+
             String strDiaAtual = txtDataAtualizacao.getText().substring(0, 2);
             String strMesAtual = txtDataAtualizacao.getText().substring(3, 5);
             String strAnoAtual = txtDataAtualizacao.getText().substring(6, 10);
@@ -4681,19 +4787,24 @@ public class Iniciativas extends javax.swing.JFrame{
             int anoAtual = Integer.parseInt(strAnoAtual);
 
             int diaReal = 0, mesReal = 0, anoReal = 0;
-            
+
             if(!txtInicioReal.getText().equals("")){
                 String strDiaReal = txtInicioReal.getText().substring(0, 2);
                 String strMesReal = txtInicioReal.getText().substring(3, 5);
                 String strAnoReal = txtInicioReal.getText().substring(6, 10);
-                
+
                 diaReal = Integer.parseInt(strDiaReal);
                 mesReal = Integer.parseInt(strMesReal);
                 anoReal = Integer.parseInt(strAnoReal);
             }
 
             int fimAno = 0, fimMes = 0, fimDia = 0;
-            
+            String strFimDia, strFimMes, strFimAno;
+
+            //strFimDia = String.valueOf(cbxDataTerminoSemana.getSelectedItem());
+            //strFimMes = String.valueOf(cbxDataTerminoMes.getSelectedItem());
+            //strFimAno = String.valueOf(cbxDataTerminoAno.getSelectedItem());
+
             fimDia = Integer.parseInt(atuFimDia);
             fimMes = Integer.parseInt(atuFimMes);
             fimAno = Integer.parseInt(atuFimAno);
@@ -4701,7 +4812,7 @@ public class Iniciativas extends javax.swing.JFrame{
             int diaDeco = diaAtual - diaReal;
             int mesDeco = (mesAtual - mesReal) * 30;
             int anoDeco = (anoAtual - anoReal) * 365;
-            
+
             int diaTotal = fimDia - diaReal;
             int mesTotal = (fimMes - mesReal) * 30;
             int anoTotal = (fimAno - anoReal) * 365;
@@ -4709,9 +4820,9 @@ public class Iniciativas extends javax.swing.JFrame{
             numSemanas = (diaTotal + mesTotal + anoTotal) / 7;
 
             semanasDecorridas = (diaDeco + mesDeco + anoDeco) / 7;
-            
+
             semanasRestantes = numSemanas - semanasDecorridas;
-            
+
             String strSemanasRestantes = String.valueOf(semanasRestantes);
 
             lblContagemDias.setText("Faltam " + strSemanasRestantes.replace(".0", "") + " semanas para o término da Iniciativa");
@@ -4725,9 +4836,9 @@ public class Iniciativas extends javax.swing.JFrame{
             lblNSemanasDecorridas1.setText(String.valueOf(semanasDecorridas).replace(".0", ""));
 
             lblNSemanasRestantes1.setText(String.valueOf(semanasRestantes).replace(".0", ""));
-            
+
             float totalDecorrido, progressoIniciativa[] = null, totalProgresso = 0;
-            
+
             Info.percentual.setMaximumFractionDigits(2);
 
             totalDecorrido = semanasDecorridas / numSemanas;
@@ -4740,25 +4851,25 @@ public class Iniciativas extends javax.swing.JFrame{
 
             select = "SELECT * FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod;
             aux = Info.objConexao.getIndCod(select, strCodIni, aux);
-            
-            
+
+
             int diaIniAti[], mesIniAti[], anoIniAti[], diaFimAti[], mesFimAti[], anoFimAti[], semanas[], totalSemanas = 0;
             diaIniAti = new int[aux];
             mesIniAti = new int[aux];
-            anoIniAti = new int[aux];       
+            anoIniAti = new int[aux];
             diaFimAti = new int[aux];
-            mesFimAti = new int[aux];        
+            mesFimAti = new int[aux];
             anoFimAti = new int[aux];
             semanas = new int[aux];
             progressoIniciativa = new float[aux];
-            
+
             campo = "ATI_INISEM";
             String campo2 = "ATI_INIMES";
             String campo3 = "ATI_INIANO";
             String campo4 = "ATI_FIMSEM";
             String campo5 = "ATI_FIMMES";
             String campo6 = "ATI_FIMANO";
-            
+
             for(int i = 1; i < aux; i++){
                 select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + i;
                 diaIniAti[i] = Integer.parseInt(Info.objConexao.getBD(select, campo));
@@ -4772,26 +4883,26 @@ public class Iniciativas extends javax.swing.JFrame{
                 mesFimAti[i] = Integer.parseInt(Info.objConexao.getBD(select, campo5));
                 select = "SELECT " + campo6 + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + i;
                 anoFimAti[i] = Integer.parseInt(Info.objConexao.getBD(select, campo6));
-                
-                semanas[i] = ((diaFimAti[i] - diaIniAti[i]) + ((mesFimAti[i] - mesIniAti[i]) * 30) + ((anoFimAti[i] - anoIniAti[i]) * 365)) / 7; 
-                
+
+                semanas[i] = ((diaFimAti[i] - diaIniAti[i]) + ((mesFimAti[i] - mesIniAti[i]) * 30) + ((anoFimAti[i] - anoIniAti[i]) * 365)) / 7;
+
                 totalSemanas += semanas[i];
             }
-            
-            
-                    
+
+
+
             campo = "ATI_REA";
             for(int i = 1; i < aux; i++){
                 select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + i;
                 progressoIniciativa[i] = Float.parseFloat(Info.objConexao.getBD(select, campo));
 
-                totalProgresso += ((progressoIniciativa[i] * semanas[i]) / totalSemanas) / 100; 
+                totalProgresso += ((progressoIniciativa[i] * semanas[i]) / totalSemanas) / 100;
             }
 
             String strProgressoIniciativa = String.valueOf(totalProgresso);
-            
+
             lblProgressoFisico1.setText(Info.percentual.format(Float.parseFloat(strProgressoIniciativa)));
-            
+
             if(totalProgresso < totalDecorrido){
                 setLblStatusCronograma("Vermelho");
             }else{
@@ -4799,27 +4910,27 @@ public class Iniciativas extends javax.swing.JFrame{
             }
         }
     }
-    
+
     public void setLblStatusCronograma(String cor){
         if(cor.equals("Verde")){
             lblStatusCronograma1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola1G.png")));
-            lblSituacao1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola1G.png")));
+            lblSituacaoCronograma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola1G.png")));
         }else if(cor.equals("Vermelho")){
             lblStatusCronograma1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola5G.png")));
-            lblSituacao1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola5G.png")));
+            lblSituacaoCronograma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola5G.png")));
         }
     }
     /*
-    public static void main(String args[]){
+     public static void main(String args[]){
 
-        java.awt.EventQueue.invokeLater(new Runnable(){
-            public void run(){
-                new Iniciativas().setVisible(true);
-            }
+     java.awt.EventQueue.invokeLater(new Runnable(){
+     public void run(){
+     new Iniciativas().setVisible(true);
+     }
 
-        });
-    }
-    */
+     });
+     }
+     */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionarAtividade;
     private javax.swing.JButton btnEditarAtividade;

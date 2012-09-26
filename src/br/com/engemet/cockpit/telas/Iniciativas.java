@@ -15,7 +15,7 @@ public class Iniciativas extends javax.swing.JFrame{
     private int codUsu = 0;
     private int aux;
     private String select, insert, tabela, campo, strCodIni, strCod, strCodUsu, strNom, strUsuario;
-    private String atuIniAno, atuIniMes, atuIniSem, atuFimAno, atuFimMes, atuFimSem;
+    private String atuIniAno, atuIniMes, atuIniDia, atuFimAno, atuFimMes, atuFimDia;
     private float semanasRestantes, numSemanas, semanasDecorridas;
     
     public Iniciativas(){
@@ -315,7 +315,7 @@ public class Iniciativas extends javax.swing.JFrame{
         lblDataTermino.setText("<html><center>\"Data de Término Inicialmente Planejada\"</center></html>");
         lblDataTermino.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblDataTermino.setOpaque(true);
-        jPanel1.add(lblDataTermino, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, 150, 40));
+        jPanel1.add(lblDataTermino, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, 150, 40));
 
         txtIniciativa.setFont(new java.awt.Font("Lucida Grande", 1, 12)); // NOI18N
         txtIniciativa.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -386,7 +386,8 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jPanel1.add(txtIndicadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, 810, 40));
 
-        cbxDataInicioSemana.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1º semana", "2º semana", "3º semana", "4º semana" }));
+        cbxDataInicioSemana.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cbxDataInicioSemana.setToolTipText("Escoha uma Segunda-Feira");
         cbxDataInicioSemana.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxDataInicioSemanaActionPerformed(evt);
@@ -394,13 +395,13 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jPanel1.add(cbxDataInicioSemana, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 390, -1, 40));
 
-        cbxDataInicioMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" }));
+        cbxDataInicioMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         cbxDataInicioMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxDataInicioMesActionPerformed(evt);
             }
         });
-        jPanel1.add(cbxDataInicioMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, -1, 40));
+        jPanel1.add(cbxDataInicioMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, -1, 40));
 
         cbxDataInicioAno.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
         cbxDataInicioAno.addActionListener(new java.awt.event.ActionListener() {
@@ -408,23 +409,24 @@ public class Iniciativas extends javax.swing.JFrame{
                 cbxDataInicioAnoActionPerformed(evt);
             }
         });
-        jPanel1.add(cbxDataInicioAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 390, -1, 40));
+        jPanel1.add(cbxDataInicioAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 390, 90, 40));
 
-        cbxDataTerminoSemana.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1º semana", "2º semana", "3º semana", "4º semana" }));
+        cbxDataTerminoSemana.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cbxDataTerminoSemana.setToolTipText("Escoha uma Sexta-Feira");
         cbxDataTerminoSemana.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxDataTerminoSemanaActionPerformed(evt);
             }
         });
-        jPanel1.add(cbxDataTerminoSemana, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 390, -1, 40));
+        jPanel1.add(cbxDataTerminoSemana, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 390, -1, 40));
 
-        cbxDataTerminoMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" }));
+        cbxDataTerminoMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         cbxDataTerminoMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxDataTerminoMesActionPerformed(evt);
             }
         });
-        jPanel1.add(cbxDataTerminoMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 390, -1, 40));
+        jPanel1.add(cbxDataTerminoMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 390, -1, 40));
 
         cbxDataTerminoAno.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
         cbxDataTerminoAno.addActionListener(new java.awt.event.ActionListener() {
@@ -432,7 +434,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 cbxDataTerminoAnoActionPerformed(evt);
             }
         });
-        jPanel1.add(cbxDataTerminoAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 390, -1, 40));
+        jPanel1.add(cbxDataTerminoAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 390, 90, 40));
 
         lblPainel.setBackground(new java.awt.Color(54, 96, 146));
         lblPainel.setFont(new java.awt.Font("Lucida Grande", 1, 12)); // NOI18N
@@ -1306,7 +1308,7 @@ public class Iniciativas extends javax.swing.JFrame{
         lblStatusCronograma.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblStatusCronograma.setText("<html><center>Status do Cronograma</center></html>");
         lblStatusCronograma.setOpaque(true);
-        jPanel3.add(lblStatusCronograma, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, 150, 50));
+        jPanel3.add(lblStatusCronograma, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 150, 50));
 
         lblCronogramaDataTermino.setBackground(new java.awt.Color(54, 96, 146));
         lblCronogramaDataTermino.setFont(new java.awt.Font("Lucida Grande", 1, 12)); // NOI18N
@@ -1316,7 +1318,7 @@ public class Iniciativas extends javax.swing.JFrame{
         lblCronogramaDataTermino.setToolTipText("");
         lblCronogramaDataTermino.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblCronogramaDataTermino.setOpaque(true);
-        jPanel3.add(lblCronogramaDataTermino, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 200, 40));
+        jPanel3.add(lblCronogramaDataTermino, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 150, 40));
 
         lblCronogramaDataAtualizacao.setBackground(new java.awt.Color(54, 96, 146));
         lblCronogramaDataAtualizacao.setFont(new java.awt.Font("Lucida Grande", 1, 12)); // NOI18N
@@ -1375,7 +1377,7 @@ public class Iniciativas extends javax.swing.JFrame{
         lblNSemanasRestantes.setToolTipText("");
         lblNSemanasRestantes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblNSemanasRestantes.setOpaque(true);
-        jPanel3.add(lblNSemanasRestantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 200, 40));
+        jPanel3.add(lblNSemanasRestantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 150, 40));
 
         lblCronogramaDataAtualizacao1.setBackground(new java.awt.Color(153, 204, 255));
         lblCronogramaDataAtualizacao1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
@@ -1393,7 +1395,7 @@ public class Iniciativas extends javax.swing.JFrame{
         lblCronogramaDataTermino1.setToolTipText("");
         lblCronogramaDataTermino1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblCronogramaDataTermino1.setOpaque(true);
-        jPanel3.add(lblCronogramaDataTermino1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 200, 40));
+        jPanel3.add(lblCronogramaDataTermino1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 150, 40));
 
         lblNSemanasDecorridas1.setBackground(new java.awt.Color(153, 204, 255));
         lblNSemanasDecorridas1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
@@ -1411,7 +1413,7 @@ public class Iniciativas extends javax.swing.JFrame{
         lblNSemanasRestantes1.setToolTipText("");
         lblNSemanasRestantes1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblNSemanasRestantes1.setOpaque(true);
-        jPanel3.add(lblNSemanasRestantes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, 200, 40));
+        jPanel3.add(lblNSemanasRestantes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, 150, 40));
 
         txtInicioReal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM))));
         txtInicioReal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -1431,7 +1433,7 @@ public class Iniciativas extends javax.swing.JFrame{
         lblTempoDecorrido.setToolTipText("");
         lblTempoDecorrido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblTempoDecorrido.setOpaque(true);
-        jPanel3.add(lblTempoDecorrido, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 60, 150, 40));
+        jPanel3.add(lblTempoDecorrido, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, 150, 40));
 
         lblProgressoFisico.setBackground(new java.awt.Color(54, 96, 146));
         lblProgressoFisico.setFont(new java.awt.Font("Lucida Grande", 1, 12)); // NOI18N
@@ -1441,7 +1443,7 @@ public class Iniciativas extends javax.swing.JFrame{
         lblProgressoFisico.setToolTipText("");
         lblProgressoFisico.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblProgressoFisico.setOpaque(true);
-        jPanel3.add(lblProgressoFisico, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 100, 150, 40));
+        jPanel3.add(lblProgressoFisico, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, 150, 40));
 
         lblTempoDecorrido1.setBackground(new java.awt.Color(153, 204, 255));
         lblTempoDecorrido1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
@@ -1450,7 +1452,7 @@ public class Iniciativas extends javax.swing.JFrame{
         lblTempoDecorrido1.setToolTipText("");
         lblTempoDecorrido1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblTempoDecorrido1.setOpaque(true);
-        jPanel3.add(lblTempoDecorrido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 60, 70, 40));
+        jPanel3.add(lblTempoDecorrido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, 70, 40));
 
         lblProgressoFisico1.setBackground(new java.awt.Color(153, 204, 255));
         lblProgressoFisico1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
@@ -1459,7 +1461,7 @@ public class Iniciativas extends javax.swing.JFrame{
         lblProgressoFisico1.setToolTipText("");
         lblProgressoFisico1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblProgressoFisico1.setOpaque(true);
-        jPanel3.add(lblProgressoFisico1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 100, 70, 40));
+        jPanel3.add(lblProgressoFisico1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 100, 70, 40));
 
         lblStatusCronograma1.setBackground(new java.awt.Color(153, 204, 255));
         lblStatusCronograma1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
@@ -1467,7 +1469,7 @@ public class Iniciativas extends javax.swing.JFrame{
         lblStatusCronograma1.setToolTipText("");
         lblStatusCronograma1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblStatusCronograma1.setOpaque(true);
-        jPanel3.add(lblStatusCronograma1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 140, 70, 50));
+        jPanel3.add(lblStatusCronograma1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 140, 70, 50));
 
         btnAdicionarAtividade.setText("Adicionar Atividade");
         btnAdicionarAtividade.addActionListener(new java.awt.event.ActionListener() {
@@ -1768,7 +1770,7 @@ public class Iniciativas extends javax.swing.JFrame{
         insert = "UPDATE " + tabela + " SET " + campo + " = '" + cbxDataInicioSemana.getSelectedItem() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
         Info.objConexao.setBD(insert);
         
-        atuIniSem = String.valueOf(cbxDataInicioSemana.getSelectedItem());
+        atuIniDia = String.valueOf(cbxDataInicioSemana.getSelectedItem());
     }//GEN-LAST:event_cbxDataInicioSemanaActionPerformed
 
     private void cbxDataInicioMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxDataInicioMesActionPerformed
@@ -1834,7 +1836,7 @@ public class Iniciativas extends javax.swing.JFrame{
         insert = "UPDATE " + tabela + " SET " + campo + " = '" + cbxDataTerminoSemana.getSelectedItem() + "' WHERE " + strCodIni + " = " + iniCod + " AND " + strCodUsu + " = " + codUsu;
         Info.objConexao.setBD(insert);
         
-        atuFimSem = String.valueOf(cbxDataTerminoSemana.getSelectedItem());
+        atuFimDia = String.valueOf(cbxDataTerminoSemana.getSelectedItem());
     }//GEN-LAST:event_cbxDataTerminoSemanaActionPerformed
 
     private void cbxDataTerminoMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxDataTerminoMesActionPerformed
@@ -3708,73 +3710,73 @@ public class Iniciativas extends javax.swing.JFrame{
         strCodUsu = "DEF_CODUSU";
         strNom = "DEF_NOMUSU";
         
-        select = "SELECT " + strCodIni + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa;
-        iniCod = Info.objConexao.getSelect(select, strCodIni, iniCod);
-        
         codUsu = codIniciativa;
         
+        select = "SELECT " + strCodIni + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu;
+        iniCod = Info.objConexao.getSelect(select, strCodIni, iniCod);
+
         campo = "DEF_INI";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
         txtIniciativa.setText(Info.objConexao.getBD(select, campo));
         
         campo = "DEF_DESOBJ";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
         txtDescricao.setText(Info.objConexao.getBD(select, campo));
         
         campo = "DEF_PATINI";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
         txtPatrocinador.setText(Info.objConexao.getBD(select, campo));
         
         campo = "DEF_LIDINI";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
         txtLider.setText(Info.objConexao.getBD(select, campo));
         
         campo = "DEF_EQPINI";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
         txtEquipe.setText(Info.objConexao.getBD(select, campo));
         
         campo = "DEF_ESC";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
         txtEscopo.setText(Info.objConexao.getBD(select, campo));
         
         campo = "DEF_PROGER";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
         txtProdutos.setText(Info.objConexao.getBD(select, campo));
         
         campo = "DEF_INDMET";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
         txtIndicadores.setText(Info.objConexao.getBD(select, campo));
         
         campo = "DEF_INISEM";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
         cbxDataInicioSemana.setSelectedItem(Info.objConexao.getBD(select, campo));
         
         campo = "DEF_INIMES";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
         cbxDataInicioMes.setSelectedItem(Info.objConexao.getBD(select, campo));
         
         campo = "DEF_INIANO";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
         cbxDataInicioAno.setSelectedItem(Info.objConexao.getBD(select, campo));
         
         campo = "DEF_FIMSEM";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
         cbxDataTerminoSemana.setSelectedItem(Info.objConexao.getBD(select, campo));
         
         campo = "DEF_FIMMES";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
         cbxDataTerminoMes.setSelectedItem(Info.objConexao.getBD(select, campo));
         
         campo = "DEF_FIMANO";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
         cbxDataTerminoAno.setSelectedItem(Info.objConexao.getBD(select, campo));
         
         campo = "DEF_PAI";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
         cbxPainel.setSelectedItem(Info.objConexao.getBD(select, campo));
         
         campo = "DEF_OBJ";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
         cbxObjetivos.setSelectedItem(Info.objConexao.getBD(select, campo));
         
         
@@ -3785,15 +3787,15 @@ public class Iniciativas extends javax.swing.JFrame{
         strNom = "GER_NOMUSU";
         
         campo = "GER_DATATU";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
         txtDataAtualizacao.setText(Info.objConexao.getBD(select, campo));
         
         campo = "GER_SITCRO";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
         String sitCro = Info.objConexao.getBD(select, campo);
 
         campo = "GER_SITREC";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
         String sitRec = Info.objConexao.getBD(select, campo);
         
         if(sitRec == null || sitRec.equals("Verde")){
@@ -3815,271 +3817,271 @@ public class Iniciativas extends javax.swing.JFrame{
         cod = 1;
         
         campo = "ACO_PONATE";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPontoAtencao.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_ACOCOR";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtAcoes.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_RES";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtResponsavel.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_PRA";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPrazo.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_OK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkOk.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         campo = "ACO_REC";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtRecursos.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_ESP";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtEspecificacao.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_SITPEN";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkPlanejamentoPendente.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         campo = "ACO_SITOK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkPlanejamentoOk.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         campo = "ACO_DE";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtDe.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_PARA";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPara.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_APRPEN";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkControlePendente.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         campo = "ACO_APROK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkControleOk.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         cod = 2;
         
         campo = "ACO_PONATE";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPontoAtencao1.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_ACOCOR";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtAcoes1.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_RES";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtResponsavel1.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_PRA";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPrazo1.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_OK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkOk1.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         campo = "ACO_REC";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtRecursos1.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_ESP";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtEspecificacao1.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_SITPEN";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkPlanejamentoPendente1.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         campo = "ACO_SITOK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkPlanejamentoOk1.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         campo = "ACO_DE";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtDe1.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_PARA";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPara1.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_APRPEN";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkControlePendente1.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         campo = "ACO_APROK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkControleOk1.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         cod = 3;
         
         campo = "ACO_PONATE";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPontoAtencao2.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_ACOCOR";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtAcoes2.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_RES";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtResponsavel2.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_PRA";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPrazo2.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_OK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkOk2.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         campo = "ACO_REC";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtRecursos2.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_ESP";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtEspecificacao2.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_SITPEN";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkPlanejamentoPendente2.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         campo = "ACO_SITOK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkPlanejamentoOk2.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         campo = "ACO_DE";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtDe2.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_PARA";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPara2.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_APRPEN";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkControlePendente2.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         campo = "ACO_APROK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkControleOk2.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         cod = 4;
         
         campo = "ACO_PONATE";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPontoAtencao3.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_ACOCOR";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtAcoes3.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_RES";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtResponsavel3.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_PRA";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPrazo3.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_OK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkOk3.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         campo = "ACO_REC";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtRecursos3.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_ESP";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtEspecificacao3.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_SITPEN";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkPlanejamentoPendente3.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         campo = "ACO_SITOK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkPlanejamentoOk3.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         campo = "ACO_DE";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtDe3.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_PARA";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPara3.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_APRPEN";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkControlePendente3.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         campo = "ACO_APROK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkControleOk3.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         cod = 5;
         
         campo = "ACO_PONATE";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPontoAtencao4.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_ACOCOR";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtAcoes4.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_RES";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtResponsavel4.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_PRA";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPrazo4.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_OK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkOk4.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         campo = "ACO_REC";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtRecursos4.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_ESP";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtEspecificacao4.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_SITPEN";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkPlanejamentoPendente4.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         campo = "ACO_SITOK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkPlanejamentoOk4.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         campo = "ACO_DE";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtDe4.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_PARA";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         txtPara4.setText(Info.objConexao.getBD(select, campo));
         
         campo = "ACO_APRPEN";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkControlePendente4.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         campo = "ACO_APROK";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codIniciativa + " AND " + strCod + " = " + cod;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND " + strCodUsu + " = " + codUsu + " AND " + strCod + " = " + cod;
         chkControleOk4.setSelected(Boolean.parseBoolean(Info.objConexao.getBD(select, campo)));
         
         //////////////////////////////////////////CRONOGRAMA da INICIATICA
@@ -4089,7 +4091,7 @@ public class Iniciativas extends javax.swing.JFrame{
         strNom = "CRO_NOMUSU";
         
         campo = "CRO_INIREA";
-        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + codIniciativa;
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strNom + " = '" + Info.nomeUsuario + "' AND "  + strCodUsu + " = " + codUsu;
         txtInicioReal.setText(Info.objConexao.getBD(select, campo));
         
         //////////////////////////////////////////CRONOGRAMA da INICIATICA / ATIVIDADES
@@ -4674,73 +4676,39 @@ public class Iniciativas extends javax.swing.JFrame{
             String strMesAtual = txtDataAtualizacao.getText().substring(3, 5);
             String strAnoAtual = txtDataAtualizacao.getText().substring(6, 10);
 
-            int semAtual = Integer.parseInt(strDiaAtual);
+            int diaAtual = Integer.parseInt(strDiaAtual);
             int mesAtual = Integer.parseInt(strMesAtual);
             int anoAtual = Integer.parseInt(strAnoAtual);
 
-            int semReal = 0, mesReal = 0, anoReal = 0;
+            int diaReal = 0, mesReal = 0, anoReal = 0;
             
             if(!txtInicioReal.getText().equals("")){
                 String strDiaReal = txtInicioReal.getText().substring(0, 2);
                 String strMesReal = txtInicioReal.getText().substring(3, 5);
                 String strAnoReal = txtInicioReal.getText().substring(6, 10);
                 
-                semReal = Integer.parseInt(strDiaReal);
+                diaReal = Integer.parseInt(strDiaReal);
                 mesReal = Integer.parseInt(strMesReal);
                 anoReal = Integer.parseInt(strAnoReal);
             }
 
-            int fimAno = 0, fimMes = 0, fimSem = 0;
-
-            if(atuFimSem.equals("1º semana")){
-                fimSem = 1 * 7;
-            }else if(atuFimSem.equals("2º semana")){
-                fimSem = 2 * 7;
-            }else if(atuFimSem.equals("23º semana")){
-                fimSem = 3 * 7;
-            }else if(atuFimSem.equals("4º semana")){
-                fimSem = 4 * 7;
-            }
-
-            if(atuFimMes.equals("Janeiro")){
-                fimMes = 1;
-            }else if(atuFimMes.equals("Fevereiro")){
-                fimMes = 2;
-            }else if(atuFimMes.equals("Março")){
-                fimMes = 3;
-            }else if(atuFimMes.equals("Abril")){
-                fimMes = 4;
-            }else if(atuFimMes.equals("Maio")){
-                fimMes = 5;
-            }else if(atuFimMes.equals("Junho")){
-                fimMes = 6;
-            }else if(atuFimMes.equals("Julho")){
-                fimMes = 7;
-            }else if(atuFimMes.equals("Agosto")){
-                fimMes = 8;
-            }else if(atuFimMes.equals("Setembro")){
-                fimMes = 9;
-            }else if(atuFimMes.equals("Outubro")){
-                fimMes = 10;
-            }else if(atuFimMes.equals("Novembro")){
-                fimMes = 11;
-            }else if(atuFimMes.equals("Dezembro")){
-                fimMes = 12;
-            }
-
+            int fimAno = 0, fimMes = 0, fimDia = 0;
+            
+            fimDia = Integer.parseInt(atuFimDia);
+            fimMes = Integer.parseInt(atuFimMes);
             fimAno = Integer.parseInt(atuFimAno);
 
-            int diasDeco = semAtual - semReal;
+            int diaDeco = diaAtual - diaReal;
             int mesDeco = (mesAtual - mesReal) * 30;
             int anoDeco = (anoAtual - anoReal) * 365;
             
-            int diasTotal = fimSem - semReal;
+            int diaTotal = fimDia - diaReal;
             int mesTotal = (fimMes - mesReal) * 30;
             int anoTotal = (fimAno - anoReal) * 365;
 
-            numSemanas = (diasTotal + mesTotal + anoTotal) / 7;
+            numSemanas = (diaTotal + mesTotal + anoTotal) / 7;
 
-            semanasDecorridas = (diasDeco + mesDeco + anoDeco) / 7;
+            semanasDecorridas = (diaDeco + mesDeco + anoDeco) / 7;
             
             semanasRestantes = numSemanas - semanasDecorridas;
             
@@ -4750,7 +4718,7 @@ public class Iniciativas extends javax.swing.JFrame{
 
             lblCronogramaDataAtualizacao1.setText(txtDataAtualizacao.getText());
 
-            lblCronogramaDataTermino1.setText(atuFimSem + "/" + atuFimMes + "/" + atuFimAno);
+            lblCronogramaDataTermino1.setText(atuFimDia + "/" + atuFimMes + "/" + atuFimAno);
 
             lblNTotalSemanas1.setText(String.valueOf(numSemanas).replace(".0", ""));
 
@@ -4758,7 +4726,7 @@ public class Iniciativas extends javax.swing.JFrame{
 
             lblNSemanasRestantes1.setText(String.valueOf(semanasRestantes).replace(".0", ""));
             
-            float totalDecorrido, progressoIniciativa = 0;
+            float totalDecorrido, progressoIniciativa[] = null, totalProgresso = 0;
             
             Info.percentual.setMaximumFractionDigits(2);
 
@@ -4769,23 +4737,62 @@ public class Iniciativas extends javax.swing.JFrame{
             tabela = "IN_CRONO_ATIVIDADES";
             strCodIni = "ATI_INICOD";
             strCod = "ATI_COD";
-            float ver;
+
             select = "SELECT * FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod;
-            ver = Info.objConexao.getIndCod(select, strCodIni, aux);
+            aux = Info.objConexao.getIndCod(select, strCodIni, aux);
             
-            campo = "ATI_REA";
-            for(int i = 1; i < ver; i++){
+            
+            int diaIniAti[], mesIniAti[], anoIniAti[], diaFimAti[], mesFimAti[], anoFimAti[], semanas[], totalSemanas = 0;
+            diaIniAti = new int[aux];
+            mesIniAti = new int[aux];
+            anoIniAti = new int[aux];       
+            diaFimAti = new int[aux];
+            mesFimAti = new int[aux];        
+            anoFimAti = new int[aux];
+            semanas = new int[aux];
+            progressoIniciativa = new float[aux];
+            
+            campo = "ATI_INISEM";
+            String campo2 = "ATI_INIMES";
+            String campo3 = "ATI_INIANO";
+            String campo4 = "ATI_FIMSEM";
+            String campo5 = "ATI_FIMMES";
+            String campo6 = "ATI_FIMANO";
+            
+            for(int i = 1; i < aux; i++){
                 select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + i;
-                progressoIniciativa += Float.parseFloat(Info.objConexao.getBD(select, campo));
+                diaIniAti[i] = Integer.parseInt(Info.objConexao.getBD(select, campo));
+                select = "SELECT " + campo2 + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + i;
+                mesIniAti[i] = Integer.parseInt(Info.objConexao.getBD(select, campo2));
+                select = "SELECT " + campo3 + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + i;
+                anoIniAti[i] = Integer.parseInt(Info.objConexao.getBD(select, campo3));
+                select = "SELECT " + campo4 + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + i;
+                diaFimAti[i] = Integer.parseInt(Info.objConexao.getBD(select, campo4));
+                select = "SELECT " + campo5 + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + i;
+                mesFimAti[i] = Integer.parseInt(Info.objConexao.getBD(select, campo5));
+                select = "SELECT " + campo6 + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + i;
+                anoFimAti[i] = Integer.parseInt(Info.objConexao.getBD(select, campo6));
+                
+                semanas[i] = ((diaFimAti[i] - diaIniAti[i]) + ((mesFimAti[i] - mesIniAti[i]) * 30) + ((anoFimAti[i] - anoIniAti[i]) * 365)) / 7; 
+                
+                totalSemanas += semanas[i];
             }
             
-            ver--;
-            progressoIniciativa = (progressoIniciativa / ver) / 100;
-            String strProgressoIniciativa = String.valueOf(progressoIniciativa);
+            
+                    
+            campo = "ATI_REA";
+            for(int i = 1; i < aux; i++){
+                select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + i;
+                progressoIniciativa[i] = Float.parseFloat(Info.objConexao.getBD(select, campo));
+
+                totalProgresso += ((progressoIniciativa[i] * semanas[i]) / totalSemanas) / 100; 
+            }
+
+            String strProgressoIniciativa = String.valueOf(totalProgresso);
             
             lblProgressoFisico1.setText(Info.percentual.format(Float.parseFloat(strProgressoIniciativa)));
             
-            if(progressoIniciativa < totalDecorrido){
+            if(totalProgresso < totalDecorrido){
                 setLblStatusCronograma("Vermelho");
             }else{
                 setLblStatusCronograma("Verde");
@@ -4796,8 +4803,10 @@ public class Iniciativas extends javax.swing.JFrame{
     public void setLblStatusCronograma(String cor){
         if(cor.equals("Verde")){
             lblStatusCronograma1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola1G.png")));
+            lblSituacao1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola1G.png")));
         }else if(cor.equals("Vermelho")){
             lblStatusCronograma1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola5G.png")));
+            lblSituacao1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola5G.png")));
         }
     }
     /*

@@ -91,7 +91,7 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
         jLabel6.setToolTipText("");
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jLabel6.setOpaque(true);
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 40, 30));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 40, 30));
 
         txtProdutos.setColumns(20);
         txtProdutos.setLineWrap(true);
@@ -143,23 +143,25 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
         jLabel10.setToolTipText("");
         jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jLabel10.setOpaque(true);
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 40, 30));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 40, 30));
 
-        cbxFimSem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1º Semana", "2º Semana", "3º Semana", "4º Semana" }));
-        getContentPane().add(cbxFimSem, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, 30));
+        cbxFimSem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cbxFimSem.setToolTipText("Escoha uma Sexta-Feira");
+        getContentPane().add(cbxFimSem, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, -1, 30));
 
-        cbxFimMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" }));
+        cbxFimMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         getContentPane().add(cbxFimMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, -1, 30));
 
-        cbxIniSem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1º Semana", "2º Semana", "3º Semana", "4º Semana" }));
-        getContentPane().add(cbxIniSem, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, 30));
+        cbxIniSem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cbxIniSem.setToolTipText("Escoha uma Segunda-Feira");
+        getContentPane().add(cbxIniSem, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, -1, 30));
 
-        getContentPane().add(cbxFimAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, 100, 30));
+        getContentPane().add(cbxFimAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 310, 100, 30));
 
-        cbxIniMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" }));
+        cbxIniMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         getContentPane().add(cbxIniMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, -1, 30));
 
-        getContentPane().add(cbxIniAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, 100, 30));
+        getContentPane().add(cbxIniAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 100, 30));
 
         jLabel11.setBackground(new java.awt.Color(22, 54, 92));
         jLabel11.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
@@ -477,6 +479,7 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
     @SuppressWarnings("unchecked")
     public void setComboBoxs(){
         Info.data = Info.cal.get(Calendar.YEAR);
+        
         int data = Info.data + 10;
         String strData;
         
@@ -651,17 +654,17 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
         Info.iniciativas.repaint();
     }
     
-    /*
-    public static void main(String args[]){
-
-        java.awt.EventQueue.invokeLater(new Runnable(){
-            public void run(){
-                new CronogramaIniciativa().setVisible(true);
-            }
-
-        });
-    }
-    */
+    
+//    public static void main(String args[]){
+//
+//        java.awt.EventQueue.invokeLater(new Runnable(){
+//            public void run(){
+//                new CronogramaIniciativa().setVisible(true);
+//            }
+//
+//        });
+//    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddAtividade;
     private javax.swing.JButton btnFechar;

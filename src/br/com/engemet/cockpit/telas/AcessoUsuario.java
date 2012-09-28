@@ -7,11 +7,6 @@ public class AcessoUsuario extends javax.swing.JFrame{
     
     public static final Conexao conexao = new Conexao();
     
-    //Administrador = 1
-    //Acesso + Edição de Indicadores + Edição de Iniciativas = 2
-    //Acesso + Edição de Iniciativas = 3
-    //Acesso = 4
-    private String strAcesso[] = {"Administrador", "Acesso + Edição de Indicadores + Edição de Iniciativas", "Acesso + Edição de Iniciativas", "Acesso"};
     private String select, tabela, usuario, acessoUsuario, senhaUsuario;
     
     public AcessoUsuario(){

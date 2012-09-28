@@ -144,16 +144,6 @@ public class CriarUsuario extends javax.swing.JFrame{
 
     }//GEN-LAST:event_btnOkActionPerformed
 
-    public static void main(String args[]){
-        java.awt.EventQueue.invokeLater(new Runnable(){
-            @Override
-            public void run(){
-                new CriarUsuario().setVisible(true);
-            }
-
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnOk;

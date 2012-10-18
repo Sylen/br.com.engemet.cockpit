@@ -1,6 +1,7 @@
 package br.com.engemet.cockpit.telas;
 
 import java.util.Calendar;
+import javax.swing.JOptionPane;
 
 public class FatoCausaAcao extends javax.swing.JFrame{
     private String tabela, indCod, codTab, campo, select, insert;
@@ -212,6 +213,8 @@ public class FatoCausaAcao extends javax.swing.JFrame{
         campo = "FAT_DAT";
         insert = "UPDATE " + tabela + " SET " + campo + " = '" + (dia + "/" + mes + "/" + ano) + "' WHERE " + indCod + " = " + Info.cod  +  " AND " + codTab + " = " + cont;
         Info.objConexao.setBD(insert);
+        
+        JOptionPane.showMessageDialog(null, "Dados adicionados!");
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void cbxDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxDataActionPerformed

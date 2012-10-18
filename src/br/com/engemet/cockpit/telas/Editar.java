@@ -1,6 +1,14 @@
 package br.com.engemet.cockpit.telas;
 
+import br.com.engemet.cockpit.oracle.Conexao;
+import java.io.InputStream;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
 
 public class Editar extends javax.swing.JFrame{
     private int cod;
@@ -99,6 +107,24 @@ public class Editar extends javax.swing.JFrame{
             cronogramaIniciativa.setVisible(true);
             
             this.dispose();
+        }else if(nomeEditar.equals("Imprimir / Exportar Indicadores")){
+            cod = cbxIndicadores.getSelectedIndex();
+            
+            InputStream inputStream = getClass().getResourceAsStream("/InfGerais.jasper");
+        
+            Map<String, Object> parametros = new HashMap<String,Object>();
+
+            parametros.put("PAR_INDCOD", cod);
+
+            try{        
+                Info.openReport("Iformações Gerais", inputStream, parametros, Conexao.getBDCockpit());
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }catch(JRException ex){
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            dispose();
         }
         
         

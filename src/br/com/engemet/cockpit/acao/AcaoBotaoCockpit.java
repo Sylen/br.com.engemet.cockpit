@@ -73,6 +73,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
+                grafico.setBDGrafico();
             }else if(btns.getActionCommand().equals(CockpitStrings.indicadoresPn2Financas[i])){
                 perspectiva = "Finanças";
                 painel = 2;
@@ -81,6 +82,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
+                grafico.setBDGrafico();
             }else if(btns.getActionCommand().equals(CockpitStrings.indicadoresPn3Financas[i])){
                 perspectiva = "Finanças";
                 painel = 3;
@@ -89,6 +91,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
+                grafico.setBDGrafico();
             }else if(btns.getActionCommand().equals(CockpitStrings.indicadoresPn4Financas[i])){
                 perspectiva = "Finanças";
                 painel = 4;
@@ -97,6 +100,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
+                grafico.setBDGrafico();
             }else if(btns.getActionCommand().equals(CockpitStrings.indicadoresPn5Financas[i])){
                 perspectiva = "Finanças";
                 painel = 5;
@@ -105,6 +109,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
+                grafico.setBDGrafico();
             }else if(btns.getActionCommand().equals(CockpitStrings.indicadoresPn6Financas[i])){
                 perspectiva = "Finanças";
                 painel = 6;
@@ -113,6 +118,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
+                grafico.setBDGrafico();
             }else if(btns.getActionCommand().equals(CockpitStrings.indicadoresPn1Clientes[i])){
                 perspectiva = "Clientes";
                 painel = 1;
@@ -121,6 +127,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
+                grafico.setBDGrafico();
             }else if(btns.getActionCommand().equals(CockpitStrings.indicadoresPn2Clientes[i])){
                 perspectiva = "Clientes";
                 painel = 2;
@@ -129,6 +136,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
+                grafico.setBDGrafico();
             }else if(btns.getActionCommand().equals(CockpitStrings.indicadoresPn3Clientes[i])){
                 perspectiva = "Clientes";
                 painel = 3;
@@ -137,6 +145,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
+                grafico.setBDGrafico();
             }else if(btns.getActionCommand().equals(CockpitStrings.indicadoresPn4Clientes[i])){
                 perspectiva = "Clientes";
                 painel = 4;
@@ -145,6 +154,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
+                grafico.setBDGrafico();
             }else if(btns.getActionCommand().equals(CockpitStrings.indicadoresPn5Clientes[i])){
                 perspectiva = "Clientes";
                 painel = 5;
@@ -153,6 +163,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
+                grafico.setBDGrafico();
             }else if(btns.getActionCommand().equals(CockpitStrings.indicadoresPn6Clientes[i])){
                 perspectiva = "Clientes";
                 painel = 6;
@@ -161,6 +172,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
+                grafico.setBDGrafico();
             }else if(btns.getActionCommand().equals(CockpitStrings.indicadoresPn1Processos[i])){
                 perspectiva = "Processos";
                 painel = 1;
@@ -169,6 +181,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
+                grafico.setBDGrafico();
             }else if(btns.getActionCommand().equals(CockpitStrings.indicadoresPn2Processos[i])){
                 perspectiva = "Processos";
                 painel = 2;
@@ -177,6 +190,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
+                grafico.setBDGrafico();
             }else if(btns.getActionCommand().equals(CockpitStrings.indicadoresPn3Processos[i])){
                 perspectiva = "Processos";
                 painel = 3;
@@ -185,6 +199,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
+                grafico.setBDGrafico();
             }else if(btns.getActionCommand().equals(CockpitStrings.indicadoresPn4Processos[i])){
                 perspectiva = "Processos";
                 painel = 4;
@@ -193,6 +208,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
+                grafico.setBDGrafico();
             }else if(btns.getActionCommand().equals(CockpitStrings.indicadoresPn5Processos[i])){
                 perspectiva = "Processos";
                 painel = 5;
@@ -201,6 +217,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
+                grafico.setBDGrafico();
             }else if(btns.getActionCommand().equals(CockpitStrings.indicadoresPn6Processos[i])){
                 perspectiva = "Processos";
                 painel = 6;
@@ -209,6 +226,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
+                grafico.setBDGrafico();
             }else if(btns.getActionCommand().equals(CockpitStrings.indicadoresPn1PGT[i])){
                 perspectiva = "PGT";
                 painel = 1;
@@ -217,6 +235,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
+                grafico.setBDGrafico();
             }else if(btns.getActionCommand().equals(CockpitStrings.indicadoresPn2PGT[i])){
                 perspectiva = "PGT";
                 painel = 2;
@@ -225,6 +244,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
+                grafico.setBDGrafico();
             }else if(btns.getActionCommand().equals(CockpitStrings.indicadoresPn3PGT[i])){
                 perspectiva = "PGT";
                 painel = 3;
@@ -233,6 +253,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
+                grafico.setBDGrafico();
             }else if(btns.getActionCommand().equals(CockpitStrings.indicadoresPn4PGT[i])){
                 perspectiva = "PGT";
                 painel = 4;
@@ -241,6 +262,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
+                grafico.setBDGrafico();
             }else if(btns.getActionCommand().equals(CockpitStrings.indicadoresPn5PGT[i])){
                 perspectiva = "PGT";
                 painel = 5;
@@ -249,6 +271,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
+                grafico.setBDGrafico();
             }else if(btns.getActionCommand().equals(CockpitStrings.indicadoresPn6PGT[i])){
                 perspectiva = "PGT";
                 painel = 6;
@@ -257,6 +280,7 @@ public class AcaoBotaoCockpit implements ActionListener{
                 Info.telaPrincipal.setStatusGrafico(perspectiva, painel, posicao, cod);
                 Info.cod = cod;
                 setGrafico(cod);
+                grafico.setBDGrafico();
             }            
         }
     }

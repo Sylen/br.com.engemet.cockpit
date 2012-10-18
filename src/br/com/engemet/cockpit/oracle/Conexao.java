@@ -17,6 +17,9 @@ public class Conexao{
     private final static String bdOracle = "jdbc:oracle:thin:@192.168.0.250:1521:ORCL";
     private final static String login = "desenv";
     private final static String senha = "desenv";
+    //private final static String bdOracle = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
+    //private final static String login = "COCKPIT";
+    //private final static String senha = "cockpit";
     private Connection con;
     private Statement stmt;
     private ResultSet rs;
@@ -50,6 +53,14 @@ public class Conexao{
             System.out.println("\nNao foi possivel fechar conexao " + e + "\n");
             System.exit(1);
         }
+    }
+    
+    public static Connection getConexao(String url, String usuario, String senha) throws SQLException{
+        return DriverManager.getConnection(url, usuario, senha);
+    }
+    
+    public static Connection getBDCockpit() throws SQLException{
+        return getConexao(bdOracle, login, senha);
     }
 
     public String mostra(String query){

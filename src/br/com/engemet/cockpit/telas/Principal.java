@@ -1,14 +1,24 @@
 package br.com.engemet.cockpit.telas;
 
-import br.com.engemet.cockpit.acao.AcaoBotaoCockpit;
-import br.com.engemet.cockpit.acao.AcaoCockpit;
-import br.com.engemet.cockpit.acao.CalculoStatus;
-import br.com.engemet.cockpit.acao.CockpitStrings;
+import br.com.engemet.cockpit.acao.*;
 import br.com.engemet.cockpit.oracle.Conexao;
+import java.awt.BorderLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JRViewer;
 
 public class Principal extends javax.swing.JFrame{
     
@@ -21,17 +31,14 @@ public class Principal extends javax.swing.JFrame{
     private AcaoBotaoCockpit acaoBotaoCockpit = new AcaoBotaoCockpit();
     private CalculoStatus status = new CalculoStatus();
     private CriarUsuario usuario;
-    private String descricao;
-    private String campo;
-    private String tabela;
-    private String select;
-    private String indCod;
-    private String strCod;
-
+    private String descricao, campo, tabela, select, indCod, strCod;
+    
     public Principal(){
         Info.telaPrincipal = this;
 
         initComponents();
+        
+        jMenuItemImprimir.setVisible(false);
         
         setDefaultCloseOperation(Frame.DO_NOTHING_ON_CLOSE); 
         
@@ -53,6 +60,7 @@ public class Principal extends javax.swing.JFrame{
         jMenuUsuario = new javax.swing.JMenu();
         jMenuItemCriarUsuario = new javax.swing.JMenuItem();
         jMenuItemRedefinirSenha = new javax.swing.JMenuItem();
+        jMenuItemImprimir = new javax.swing.JMenuItem();
         jMenuItemSair = new javax.swing.JMenuItem();
         jMenuMapaEstrategico = new javax.swing.JMenu();
         jMenuItemMapaEstrategico = new javax.swing.JMenuItem();
@@ -67,6 +75,7 @@ public class Principal extends javax.swing.JFrame{
         jMenuIndicadores = new javax.swing.JMenu();
         jMenuItemNovoIndicador = new javax.swing.JMenuItem();
         jMenuItemEditarIndicador = new javax.swing.JMenuItem();
+        jMenuItemImprimirIndicador = new javax.swing.JMenuItem();
         jMenuScorecard = new javax.swing.JMenu();
         jMenuIniciativa = new javax.swing.JMenu();
         jMenuItemNovaIniciativa = new javax.swing.JMenuItem();
@@ -99,6 +108,14 @@ public class Principal extends javax.swing.JFrame{
         jMenuUsuario.add(jMenuItemRedefinirSenha);
 
         jMenuArquivo.add(jMenuUsuario);
+
+        jMenuItemImprimir.setText("Imprimir");
+        jMenuItemImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemImprimirActionPerformed(evt);
+            }
+        });
+        jMenuArquivo.add(jMenuItemImprimir);
 
         jMenuItemSair.setText("Sair");
         jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
@@ -197,6 +214,16 @@ public class Principal extends javax.swing.JFrame{
         });
         jMenuIndicadores.add(jMenuItemEditarIndicador);
 
+        jMenuItemImprimirIndicador.setText("Imprimir / Exportar Indicador");
+        jMenuItemImprimirIndicador.setToolTipText("");
+        jMenuItemImprimirIndicador.setEnabled(false);
+        jMenuItemImprimirIndicador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemImprimirIndicadorActionPerformed(evt);
+            }
+        });
+        jMenuIndicadores.add(jMenuItemImprimirIndicador);
+
         jMenuPrincipal.add(jMenuIndicadores);
 
         jMenuScorecard.setText("Scorecard");
@@ -274,8 +301,7 @@ public class Principal extends javax.swing.JFrame{
             indicador.setBounds(120, 20, 1000, 730);
             Info.indicadores.setNewCod();
             indicador.setVisible(true);
-        }
-        
+        }  
     }//GEN-LAST:event_jMenuItemNovoIndicadorActionPerformed
 
     private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
@@ -312,6 +338,10 @@ public class Principal extends javax.swing.JFrame{
 
     private void jMenuItemSgiActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_jMenuItemSgiActionPerformed
         // TODO add your handling code here:
+        jMenuItemFinancas.addActionListener(acaoCockpit);
+        Info.cockpit.setStatusNull();
+        setStatusSgi();
+        acaoCockpit.actionPerformed(evt);
     }//GEN-LAST:event_jMenuItemSgiActionPerformed
 
     @SuppressWarnings("deprecation")
@@ -455,6 +485,59 @@ public class Principal extends javax.swing.JFrame{
         editar.setVisible(true);
     }//GEN-LAST:event_jMenuItemConsultarIniciativaActionPerformed
 
+    private void jMenuItemImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemImprimirActionPerformed
+        // TODO add your handling code here:
+        //Imprimir.printComponent(this);
+        /*
+        JFrame jFrame = new JFrame();
+        JPanel pagina = new JPanel();
+
+        pagina.add(this.getContentPane());
+        jFrame.add(pagina);
+
+        jFrame.setVisible(true);
+
+        validate();
+        repaint();
+        */
+    }//GEN-LAST:event_jMenuItemImprimirActionPerformed
+
+    private void jMenuItemImprimirIndicadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemImprimirIndicadorActionPerformed
+        // TODO add your handling code here:
+        Editar editar = new Editar();
+
+        editar.setTitle("Imprimir / Exportar Indicadores");
+        editar.setTexto("Escolha o Indicador:");
+
+        int cod = 0;
+
+        campo = "INF_INDCOD";
+        tabela = "CP_INF_GERAIS";
+        select = "SELECT " + campo + " FROM " + tabela;
+        cod = Info.objConexao.getIndCod(select, campo, cod);
+
+        String[] combo = new String[cod];
+
+        campo = "INF_INDDES";
+        indCod = "INF_INDCOD";
+        for(int i = 1; i < (cod); i++){
+            select = "SELECT " + campo + " FROM " + tabela + " WHERE " + indCod + " = " + i;
+            descricao = Info.objConexao.getBD(select, campo);
+
+            combo[i] = i + " = " + descricao;
+
+            editar.setCbxIndicadores(combo[i] = i + " = " + descricao);
+
+        }
+        
+        editar.setNomeEditar("Imprimir / Exportar Indicadores");
+
+        editar.setBounds(550, 400, 630, 160);
+        editar.setVisible(true);
+    }//GEN-LAST:event_jMenuItemImprimirIndicadorActionPerformed
+    
+    
+    
     public void setStatusMapa(){
         Info.data = Info.cal.get(Calendar.MONTH);
 
@@ -1186,6 +1269,39 @@ public class Principal extends javax.swing.JFrame{
             }
         }
     }
+    
+    public void setStatusSgi(){
+        Info.data = Info.cal.get(Calendar.MONTH);
+
+        int cod;
+        double metaAcu;
+        double realAcu;
+        String calculo;
+        cod = Info.getCod();
+
+        for(int i = (Info.data - 1); i < Info.data; i++){
+            for(int j = 0; j < cod; j++){
+                calculo = Info.getCalculo((j + 1));
+                if(calculo.equals("CHK_MAIMEL")){
+                    metaAcu = status.getMetaAcu((j + 1), i);
+                    realAcu = status.getRealAcu((j + 1), i);
+                    status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
+
+                    if(i == (Info.data - 1)){
+                        status.setBolaSgi((j + 1), i);
+                    }
+                }else if(calculo.equals("CHK_MENMEL")){
+                    metaAcu = status.getMetaAcu((j + 1), i);
+                    realAcu = status.getRealAcu((j + 1), i);
+                    status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
+
+                    if(i == (Info.data - 1)){
+                        status.setBolaSgi((j + 1), i);
+                    }
+                }
+            }
+        }
+    }
 
     
     public static void main(String args[]){
@@ -1215,6 +1331,8 @@ public class Principal extends javax.swing.JFrame{
     private javax.swing.JMenuItem jMenuItemEditarIndicador;
     private javax.swing.JMenuItem jMenuItemEditarIniciativa;
     private javax.swing.JMenuItem jMenuItemFinancas;
+    private javax.swing.JMenuItem jMenuItemImprimir;
+    private javax.swing.JMenuItem jMenuItemImprimirIndicador;
     private javax.swing.JMenuItem jMenuItemMapaEstrategico;
     private javax.swing.JMenuItem jMenuItemNovaIniciativa;
     private javax.swing.JMenuItem jMenuItemNovoIndicador;

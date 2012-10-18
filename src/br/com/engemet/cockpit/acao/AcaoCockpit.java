@@ -1,6 +1,7 @@
 package br.com.engemet.cockpit.acao;
 
 import br.com.engemet.cockpit.telas.Cockpit;
+import br.com.engemet.cockpit.telas.SGI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
@@ -8,6 +9,7 @@ import javax.swing.JMenuItem;
 public class AcaoCockpit implements ActionListener{
 
     private Cockpit cockpit = new Cockpit();
+    private SGI sgi = new SGI();
     private int altura = 680;
     private int largura = 1260;
     @SuppressWarnings("deprecation")
@@ -16,7 +18,7 @@ public class AcaoCockpit implements ActionListener{
         JMenuItem btns = (JMenuItem) e.getSource();
 
         if(btns.getActionCommand().equals(CockpitStrings.Cockpit[0])){
-            cockpit.setBounds(15, 70, largura, altura);
+            cockpit.setBounds(20, 5, largura, altura);
             cockpit.getContentPane().setBackground(CockpitCor.getPerspectivaPreto());
             cockpit.setVisible(true);
             cockpit.setBtnPn1Obj1(CockpitStrings.objetivosFinancas[0]);
@@ -158,7 +160,7 @@ public class AcaoCockpit implements ActionListener{
             cockpit.setVisiblePn6Ind6(true);
             
         } else if(btns.getActionCommand().equals(CockpitStrings.Cockpit[1])){
-            cockpit.setBounds(15, 70, largura, altura);
+            cockpit.setBounds(20, 5, largura, altura);
             cockpit.setVisible(true);
             cockpit.getContentPane().setBackground(CockpitCor.getPerspectivaVerde());
             cockpit.setBtnPn1Obj1(CockpitStrings.objetivosClientes[0]);
@@ -300,7 +302,7 @@ public class AcaoCockpit implements ActionListener{
             cockpit.setVisiblePn6Ind6(false);
             
         }else if(btns.getActionCommand().equals(CockpitStrings.Cockpit[2])){
-            cockpit.setBounds(15, 70, largura, altura);
+            cockpit.setBounds(20, 5, largura, altura);
             cockpit.setVisible(true);
             cockpit.getContentPane().setBackground(CockpitCor.getPerspectivaAzul());
             cockpit.setBtnPn1Obj1(CockpitStrings.objetivosProcessos[0]);
@@ -442,7 +444,7 @@ public class AcaoCockpit implements ActionListener{
             cockpit.setVisiblePn6Ind6(true);
             
         }else if(btns.getActionCommand().equals(CockpitStrings.Cockpit[3])){
-            cockpit.setBounds(15, 70, largura, altura);
+            cockpit.setBounds(20, 5, largura, altura);
             cockpit.setVisible(true);
             cockpit.getContentPane().setBackground(CockpitCor.getPerspectivaBranco());
             cockpit.setBtnPn1Obj1(CockpitStrings.objetivosPGT[0]);
@@ -582,6 +584,87 @@ public class AcaoCockpit implements ActionListener{
             cockpit.setVisiblePn6Ind4(true);
             cockpit.setVisiblePn6Ind5(true);
             cockpit.setVisiblePn6Ind6(true);
+        }else if(btns.getActionCommand().equals(CockpitStrings.Cockpit[4])){
+            sgi.setBounds(80, 0, 1005, 730);
+            sgi.setVisible(true);
+            
+            sgi.setBtnFin1(CockpitStrings.indicadoresPn3Financas[4]);
+            sgi.setBtnFin1ActionCommand(CockpitStrings.indicadoresPn3Financas[4]);
+            sgi.setBtnFin2(CockpitStrings.indicadoresPn4Financas[4]);
+            sgi.setBtnFin2ActionCommand(CockpitStrings.indicadoresPn4Financas[4]);
+            sgi.setBtnFin3(CockpitStrings.indicadoresPn5Financas[1]);
+            sgi.setBtnFin3ActionCommand(CockpitStrings.indicadoresPn5Financas[1]);
+            sgi.setBtnFin4(CockpitStrings.indicadoresPn5Financas[2]);
+            sgi.setBtnFin4ActionCommand(CockpitStrings.indicadoresPn5Financas[2]);
+            sgi.setBtnFin5(CockpitStrings.indicadoresPn5Financas[4]);
+            sgi.setBtnFin5ActionCommand(CockpitStrings.indicadoresPn5Financas[4]);
+            
+            sgi.setBtnCli1(CockpitStrings.indicadoresPn2Clientes[1]);
+            sgi.setBtnCli1ActionCommand(CockpitStrings.indicadoresPn2Clientes[1]);
+            sgi.setBtnCli2(CockpitStrings.indicadoresPn2Clientes[4]);
+            sgi.setBtnCli2ActionCommand(CockpitStrings.indicadoresPn2Clientes[4]);
+            sgi.setBtnCli3(CockpitStrings.indicadoresPn3Clientes[4]);
+            sgi.setBtnCli3ActionCommand(CockpitStrings.indicadoresPn3Clientes[4]);
+            sgi.setBtnCli4(CockpitStrings.indicadoresPn5Clientes[0]);
+            sgi.setBtnCli4ActionCommand(CockpitStrings.indicadoresPn5Clientes[0]);
+            sgi.setBtnCli5(CockpitStrings.indicadoresPn5Clientes[1]);
+            sgi.setBtnCli5ActionCommand(CockpitStrings.indicadoresPn5Clientes[1]);
+            sgi.setBtnCli6(CockpitStrings.indicadoresPn5Clientes[4]);
+            sgi.setBtnCli6ActionCommand(CockpitStrings.indicadoresPn5Clientes[4]);
+            sgi.setBtnCli7(CockpitStrings.indicadoresPn6Clientes[4]);
+            sgi.setBtnCli7ActionCommand(CockpitStrings.indicadoresPn6Clientes[4]);
+            
+            sgi.setBtnPro1(CockpitStrings.indicadoresPn1Processos[1]);
+            sgi.setBtnPro1ActionCommand(CockpitStrings.indicadoresPn1Processos[1]);
+            sgi.setBtnPro2(CockpitStrings.indicadoresPn1Processos[2]);
+            sgi.setBtnPro2ActionCommand(CockpitStrings.indicadoresPn1Processos[2]);
+            sgi.setBtnPro3(CockpitStrings.indicadoresPn1Processos[3]);
+            sgi.setBtnPro3ActionCommand(CockpitStrings.indicadoresPn1Processos[3]);
+            sgi.setBtnPro4(CockpitStrings.indicadoresPn1Processos[4]);
+            sgi.setBtnPro4ActionCommand(CockpitStrings.indicadoresPn1Processos[4]);
+            sgi.setBtnPro5(CockpitStrings.indicadoresPn1Processos[5]);
+            sgi.setBtnPro5ActionCommand(CockpitStrings.indicadoresPn1Processos[5]);
+            sgi.setBtnPro6(CockpitStrings.indicadoresPn4Processos[1]);
+            sgi.setBtnPro6ActionCommand(CockpitStrings.indicadoresPn4Processos[1]);
+            sgi.setBtnPro7(CockpitStrings.indicadoresPn4Processos[3]);
+            sgi.setBtnPro7ActionCommand(CockpitStrings.indicadoresPn4Processos[3]);
+            sgi.setBtnPro8(CockpitStrings.indicadoresPn4Processos[4]);
+            sgi.setBtnPro8ActionCommand(CockpitStrings.indicadoresPn4Processos[4]);
+            sgi.setBtnPro9(CockpitStrings.indicadoresPn6Processos[0]);
+            sgi.setBtnPro9ActionCommand(CockpitStrings.indicadoresPn6Processos[0]);
+            sgi.setBtnPro10(CockpitStrings.indicadoresPn6Processos[1]);
+            sgi.setBtnPro10ActionCommand(CockpitStrings.indicadoresPn6Processos[1]);
+            sgi.setBtnPro11(CockpitStrings.indicadoresPn6Processos[2]);
+            sgi.setBtnPro11ActionCommand(CockpitStrings.indicadoresPn6Processos[2]);
+            sgi.setBtnPro12(CockpitStrings.indicadoresPn6Processos[3]);
+            sgi.setBtnPro12ActionCommand(CockpitStrings.indicadoresPn6Processos[3]);
+            sgi.setBtnPro13(CockpitStrings.indicadoresPn6Processos[4]);
+            sgi.setBtnPro13ActionCommand(CockpitStrings.indicadoresPn6Processos[4]);
+            sgi.setBtnPro14(CockpitStrings.indicadoresPn6Processos[5]);
+            sgi.setBtnPro14ActionCommand(CockpitStrings.indicadoresPn6Processos[5]);
+            
+            sgi.setBtnPgt1(CockpitStrings.indicadoresPn1PGT[4]);
+            sgi.setBtnPgt1ActionCommand(CockpitStrings.indicadoresPn1PGT[4]);
+            sgi.setBtnPgt2(CockpitStrings.indicadoresPn4PGT[0]);
+            sgi.setBtnPgt2ActionCommand(CockpitStrings.indicadoresPn4PGT[0]);
+            sgi.setBtnPgt3(CockpitStrings.indicadoresPn4PGT[1]);
+            sgi.setBtnPgt3ActionCommand(CockpitStrings.indicadoresPn4PGT[1]);
+            sgi.setBtnPgt4(CockpitStrings.indicadoresPn4PGT[2]);
+            sgi.setBtnPgt4ActionCommand(CockpitStrings.indicadoresPn4PGT[2]);
+            sgi.setBtnPgt5(CockpitStrings.indicadoresPn4PGT[3]);
+            sgi.setBtnPgt5ActionCommand(CockpitStrings.indicadoresPn4PGT[3]);
+            sgi.setBtnPgt6(CockpitStrings.indicadoresPn4PGT[5]);
+            sgi.setBtnPgt6ActionCommand(CockpitStrings.indicadoresPn4PGT[5]);
+            sgi.setBtnPgt7(CockpitStrings.indicadoresPn5PGT[0]);
+            sgi.setBtnPgt7ActionCommand(CockpitStrings.indicadoresPn5PGT[0]);
+            sgi.setBtnPgt8(CockpitStrings.indicadoresPn5PGT[1]);
+            sgi.setBtnPgt8ActionCommand(CockpitStrings.indicadoresPn5PGT[1]);
+            sgi.setBtnPgt9(CockpitStrings.indicadoresPn5PGT[3]);
+            sgi.setBtnPgt9ActionCommand(CockpitStrings.indicadoresPn5PGT[3]);
+            sgi.setBtnPgt10(CockpitStrings.indicadoresPn5PGT[4]);
+            sgi.setBtnPgt10ActionCommand(CockpitStrings.indicadoresPn5PGT[4]);
+            sgi.setBtnPgt11(CockpitStrings.indicadoresPn5PGT[5]);
+            sgi.setBtnPgt11ActionCommand(CockpitStrings.indicadoresPn5PGT[5]);
             
         }
     }

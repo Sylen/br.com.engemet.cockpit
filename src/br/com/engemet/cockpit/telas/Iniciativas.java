@@ -4683,62 +4683,63 @@ public class Iniciativas extends javax.swing.JFrame{
     }
 
     public void consultarIniciativa(){
-        txtIniciativa.setEnabled(false);
-        txtDescricao.setEnabled(false);
-        txtPatrocinador.setEnabled(false);
-        txtLider.setEnabled(false);
-        txtEquipe.setEnabled(false);
-        txtEscopo.setEnabled(false);
-        txtProdutos.setEnabled(false);
-        txtIndicadores.setEnabled(false);
-        cbxDataInicioSemana.setEnabled(false);
-        cbxDataInicioMes.setEnabled(false);
-        cbxDataInicioAno.setEnabled(false);
-        cbxDataTerminoSemana.setEnabled(false);
-        cbxDataTerminoMes.setEnabled(false);
-        cbxDataTerminoAno.setEnabled(false);
-        cbxPainel.setEnabled(false);
-        cbxObjetivos.setEnabled(false);
+        
+        txtIniciativa.setEditable(false);
+        txtDescricao.setEditable(false);
+        txtPatrocinador.setEditable(false);
+        txtLider.setEditable(false);
+        txtEquipe.setEditable(false);
+        txtEscopo.setEditable(false);
+        txtProdutos.setEditable(false);
+        txtIndicadores.setEditable(false);
+        cbxDataInicioSemana.setEditable(false);
+        cbxDataInicioMes.setEditable(false);
+        cbxDataInicioAno.setEditable(false);
+        cbxDataTerminoSemana.setEditable(false);
+        cbxDataTerminoMes.setEditable(false);
+        cbxDataTerminoAno.setEditable(false);
+        cbxPainel.setEditable(false);
+        cbxObjetivos.setEditable(false);
 
-        txtDataAtualizacao.setEnabled(false);
+        txtDataAtualizacao.setEditable(false);
         chkVerde.setEnabled(false);
         chkVermelho.setEnabled(false);
 
-        txtPontoAtencao.setEnabled(false);
-        txtPontoAtencao1.setEnabled(false);
-        txtPontoAtencao2.setEnabled(false);
-        txtPontoAtencao3.setEnabled(false);
-        txtPontoAtencao4.setEnabled(false);
-        txtAcoes.setEnabled(false);
-        txtAcoes1.setEnabled(false);
-        txtAcoes2.setEnabled(false);
-        txtAcoes3.setEnabled(false);
-        txtAcoes4.setEnabled(false);
-        txtResponsavel.setEnabled(false);
-        txtResponsavel1.setEnabled(false);
-        txtResponsavel2.setEnabled(false);
-        txtResponsavel3.setEnabled(false);
-        txtResponsavel4.setEnabled(false);
-        txtPrazo.setEnabled(false);
-        txtPrazo1.setEnabled(false);
-        txtPrazo2.setEnabled(false);
-        txtPrazo3.setEnabled(false);
-        txtPrazo4.setEnabled(false);
+        txtPontoAtencao.setEditable(false);
+        txtPontoAtencao1.setEditable(false);
+        txtPontoAtencao2.setEditable(false);
+        txtPontoAtencao3.setEditable(false);
+        txtPontoAtencao4.setEditable(false);
+        txtAcoes.setEditable(false);
+        txtAcoes1.setEditable(false);
+        txtAcoes2.setEditable(false);
+        txtAcoes3.setEditable(false);
+        txtAcoes4.setEditable(false);
+        txtResponsavel.setEditable(false);
+        txtResponsavel1.setEditable(false);
+        txtResponsavel2.setEditable(false);
+        txtResponsavel3.setEditable(false);
+        txtResponsavel4.setEditable(false);
+        txtPrazo.setEditable(false);
+        txtPrazo1.setEditable(false);
+        txtPrazo2.setEditable(false);
+        txtPrazo3.setEditable(false);
+        txtPrazo4.setEditable(false);
         chkOk.setEnabled(false);
         chkOk1.setEnabled(false);
         chkOk2.setEnabled(false);
         chkOk3.setEnabled(false);
         chkOk4.setEnabled(false);
-        txtRecursos.setEnabled(false);
-        txtRecursos1.setEnabled(false);
-        txtRecursos2.setEnabled(false);
-        txtRecursos3.setEnabled(false);
-        txtRecursos4.setEnabled(false);
-        txtEspecificacao.setEnabled(false);
-        txtEspecificacao1.setEnabled(false);
-        txtEspecificacao2.setEnabled(false);
-        txtEspecificacao3.setEnabled(false);
-        txtEspecificacao4.setEnabled(false);
+        txtRecursos.setEditable(false);
+        txtRecursos1.setEditable(false);
+        txtRecursos2.setEditable(false);
+        txtRecursos3.setEditable(false);
+        txtRecursos4.setEditable(false);
+        txtEspecificacao.setEditable(false);
+        txtEspecificacao1.setEditable(false);
+        txtEspecificacao2.setEditable(false);
+        txtEspecificacao3.setEditable(false);
+        txtEspecificacao4.setEditable(false);
         chkPlanejamentoPendente.setEnabled(false);
         chkPlanejamentoPendente1.setEnabled(false);
         chkPlanejamentoPendente2.setEnabled(false);
@@ -4749,16 +4750,16 @@ public class Iniciativas extends javax.swing.JFrame{
         chkPlanejamentoOk2.setEnabled(false);
         chkPlanejamentoOk3.setEnabled(false);
         chkPlanejamentoOk4.setEnabled(false);
-        txtDe.setEnabled(false);
-        txtDe1.setEnabled(false);
-        txtDe2.setEnabled(false);
-        txtDe3.setEnabled(false);
-        txtDe4.setEnabled(false);
-        txtPara.setEnabled(false);
-        txtPara1.setEnabled(false);
-        txtPara2.setEnabled(false);
-        txtPara3.setEnabled(false);
-        txtPara4.setEnabled(false);
+        txtDe.setEditable(false);
+        txtDe1.setEditable(false);
+        txtDe2.setEditable(false);
+        txtDe3.setEditable(false);
+        txtDe4.setEditable(false);
+        txtPara.setEditable(false);
+        txtPara1.setEditable(false);
+        txtPara2.setEditable(false);
+        txtPara3.setEditable(false);
+        txtPara4.setEditable(false);
         chkControlePendente.setEnabled(false);
         chkControlePendente1.setEnabled(false);
         chkControlePendente2.setEnabled(false);
@@ -4770,7 +4771,7 @@ public class Iniciativas extends javax.swing.JFrame{
         chkControleOk3.setEnabled(false);
         chkControleOk4.setEnabled(false);
 
-        txtInicioReal.setEnabled(false);
+        txtInicioReal.setEditable(false);
         btnAdicionarAtividade.setEnabled(false);
         btnEditarAtividade.setEnabled(false);
     }
@@ -4920,17 +4921,7 @@ public class Iniciativas extends javax.swing.JFrame{
             lblSituacaoCronograma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola5G.png")));
         }
     }
-    /*
-     public static void main(String args[]){
-
-     java.awt.EventQueue.invokeLater(new Runnable(){
-     public void run(){
-     new Iniciativas().setVisible(true);
-     }
-
-     });
-     }
-     */
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionarAtividade;
     private javax.swing.JButton btnEditarAtividade;

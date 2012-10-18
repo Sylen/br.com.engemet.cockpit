@@ -3,10 +3,20 @@ package br.com.engemet.cockpit.telas;
 import br.com.engemet.cockpit.acao.AcaoBotaoCockpit;
 import br.com.engemet.cockpit.acao.CalculoStatus;
 import br.com.engemet.cockpit.oracle.Conexao;
+import java.awt.BorderLayout;
+import java.io.InputStream;
+import java.sql.Connection;
 import java.text.NumberFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Map;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JRViewer;
 
 public abstract class Info {
     
@@ -23,6 +33,7 @@ public abstract class Info {
     public static CalculoStatus calculoStatus;
     public static Iniciativas iniciativas;
     public static CronogramaIniciativa cronogramaIniciativa;
+    public static SGI sgi;
 
     public static int codInd = 1;
     public static int codTb = 1;
@@ -36,7 +47,7 @@ public abstract class Info {
     public static NumberFormat decimal = NumberFormat.getInstance(Locale.US);
     
     public static int cod = 0;
-    private static String tabela, campo, select, indCod, codTab, strPainel, strPosicao, strPerspectiva;
+    private static String tabela, insert, campo, select, indCod, codTab, strPainel, strPosicao, strPerspectiva;
     
     public static boolean verificarHis, verificarFor, verificarIde;
     private static String nomeInd;
@@ -184,5 +195,24 @@ public abstract class Info {
         }
 
         return calculo;
+    }
+    @SuppressWarnings("unchecked")
+    public static void openReport(String titulo, InputStream inputstream, Map parametros, Connection conexao) throws JRException{
+        JasperPrint print;
+        print = JasperFillManager.fillReport(inputstream, parametros, conexao);
+        
+        viewReportFrame(titulo, print);
+    }
+    
+    public static void viewReportFrame(String titulo, JasperPrint print){
+        JRViewer viewer = new JRViewer(print);
+        
+        JFrame frameRelatorio = new JFrame(titulo);
+        
+        frameRelatorio.add(viewer, BorderLayout.CENTER);
+        frameRelatorio.setSize(500, 500);
+        //frameRelatorio.setExtendedState(WIDTH);
+        frameRelatorio.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frameRelatorio.setVisible(true);
     }
 }

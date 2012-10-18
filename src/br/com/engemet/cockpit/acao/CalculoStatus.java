@@ -832,6 +832,47 @@ public class CalculoStatus{
         }
     }
     
+    public void setBolaSgi(int cod, int mes){
+        tabela = "CP_CORES";
+        indCod = "COR_INDCOD";
+        codTab = "COR_COD";
+        campo = "COR_NOM";
+
+        String cor;
+        String strPer;
+        int codPai;
+        int codPos;
+
+        select = "SELECT " + campo + " FROM " + tabela + " WHERE " + indCod + " = " + cod + " AND " + codTab + " = " + (mes + 1);
+        cor = Info.objConexao.getBD(select, campo);
+
+        tabela = "CP_INF_GERAIS";
+        strPerspectiva = "INF_PER";
+        strPainel = "INF_PAI";
+        strPosicao = "INF_POS";
+        indCod = "INF_INDCOD";
+        campo = "INF_INDCOD";
+        
+        select = "SELECT " + strPerspectiva + " FROM " + tabela + " WHERE " + indCod + " = " + cod;
+        strPer = Info.objConexao.getBD(select, strPerspectiva);
+        
+        select = "SELECT " + strPainel + " FROM " + tabela + " WHERE " + indCod + " = " + cod;
+        codPai = Integer.parseInt(Info.objConexao.getBD(select, strPainel));
+
+        select = "SELECT " + strPosicao + " FROM " + tabela + " WHERE " + indCod + " = " + cod;
+        codPos = Integer.parseInt(Info.objConexao.getBD(select, strPosicao));
+        
+        for(int i = 1; i < 7; i++){
+            if(i == codPai){
+                for(int j = 1; j < 7; j++){
+                    if(j == codPos){
+                        setIndicadorSgi(cor, strPer, i, j);
+                    }
+                }
+            }
+        }
+    }
+    
     public void setIndicadorGrafico(String cor, int mes){
         if(mes == 1){
             Info.graficos.setLblStatusJan(cor);
@@ -2003,6 +2044,118 @@ public class CalculoStatus{
             }
         }  
     }
-            
+    
+    public void setIndicadorSgi(String cor, String per, int pai, int pos){
+        //JOptionPane.showMessageDialog(null, "Cor = " + cor + " Per = " + per + " Pai = " + pai + " Pos = " + pos);
+        if(per.equals(CockpitStrings.Perspectivas[0])){
+            if(pai == 3){
+                if(pos == 5){
+                    Info.sgi.setLblStatusFin1(cor);
+                }
+            }else if(pai == 4){
+                if(pos == 5){
+                    Info.sgi.setLblStatusFin2(cor);
+                }
+            }else if(pai == 5){
+                if(pos == 2){
+                    Info.sgi.setLblStatusFin3(cor);
+                }else if(pos == 3){
+                    Info.sgi.setLblStatusFin4(cor);
+                }else if(pos == 5){
+                    Info.sgi.setLblStatusFin5(cor);
+                }
+            }
+        }else if(per.equals(CockpitStrings.Perspectivas[1])){
+            if(pai == 2){
+                if(pos == 2){
+                    Info.sgi.setLblStatusCli1(cor);
+                }else if(pos == 5){
+                    Info.sgi.setLblStatusCli2(cor);
+                }
+            }else if(pai == 3){
+                if(pos == 5){
+                    Info.sgi.setLblStatusCli3(cor);
+                }
+            }else if(pai == 5){
+                if(pos == 1){
+                    Info.sgi.setLblStatusCli4(cor);
+                }else if(pos == 2){
+                    Info.sgi.setLblStatusCli5(cor);
+                }else if(pos == 5){
+                    Info.sgi.setLblStatusCli6(cor);
+                }
+            }else if(pai == 6){
+                if(pos == 5){
+                    Info.sgi.setLblStatusCli7(cor);
+                }
+            }
+        }else if(per.equals(CockpitStrings.Perspectivas[2])){
+            if(pai == 1){
+                if(pos == 2){
+                    Info.sgi.setLblStatusPro1(cor);
+                }else if(pos == 3){
+                    Info.sgi.setLblStatusPro2(cor);
+                }else if(pos == 4){
+                    Info.sgi.setLblStatusPro3(cor);
+                }else if(pos == 5){
+                    Info.sgi.setLblStatusPro4(cor);
+                }else if(pos == 6){
+                    Info.sgi.setLblStatusPro5(cor);
+                }
+            }else if(pai == 4){
+                if(pos == 2){
+                    Info.sgi.setLblStatusPro6(cor);
+                }else if(pos == 4){
+                    Info.sgi.setLblStatusPro7(cor);
+                }else if(pos == 5){
+                    Info.sgi.setLblStatusPro8(cor);
+                }
+            }else if(pai == 6){
+                if(pos == 1){
+                    Info.sgi.setLblStatusPro9(cor);
+                }else if(pos == 2){
+                    Info.sgi.setLblStatusPro10(cor);
+                }else if(pos == 3){
+                    Info.sgi.setLblStatusPro11(cor);
+                }else if(pos == 4){
+                    Info.sgi.setLblStatusPro12(cor);
+                }else if(pos == 5){
+                    Info.sgi.setLblStatusPro13(cor);
+                }else if(pos == 6){
+                    Info.sgi.setLblStatusPro14(cor);
+                }
+            }
+        }else if(per.equals(CockpitStrings.Perspectivas[3])){
+            if(pai == 1){
+                if(pos == 5){
+                    Info.sgi.setLblStatusPgt1(cor);
+                }
+            }else if(pai == 4){
+                if(pos == 1){
+                    Info.sgi.setLblStatusPgt2(cor);
+                }else if(pos == 2){
+                    Info.sgi.setLblStatusPgt3(cor);
+                }else if(pos == 3){
+                    Info.sgi.setLblStatusPgt4(cor);
+                }else if(pos == 4){
+                    Info.sgi.setLblStatusPgt5(cor);
+                }else if(pos == 6){
+                    Info.sgi.setLblStatusPgt6(cor);
+                }
+            }else if(pai == 5){
+                if(pos == 1){
+                    Info.sgi.setLblStatusPgt7(cor);
+                }else if(pos == 2){
+                    Info.sgi.setLblStatusPgt8(cor);
+                }else if(pos == 4){
+                    Info.sgi.setLblStatusPgt9(cor);
+                }else if(pos == 5){
+                    Info.sgi.setLblStatusPgt10(cor);
+                }else if(pos == 6){
+                    Info.sgi.setLblStatusPgt11(cor);
+                }
+            }
+        }
+    }    
 
 }

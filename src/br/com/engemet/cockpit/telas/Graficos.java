@@ -4,10 +4,15 @@ import br.com.engemet.cockpit.acao.CockpitCor;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
-import java.util.List;
-import javax.swing.JOptionPane;
+import java.awt.image.BufferedImage;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.labels.ItemLabelAnchor;
@@ -23,7 +28,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.TextAnchor;
 
 public class Graficos extends javax.swing.JPanel{
-    
+
     private ChartPanel chartPanelRealMetaAcu;
     private ChartPanel chartPanelRealMetaMen;
     private ChartPanel chartPanelDesvioPerc;
@@ -31,11 +36,33 @@ public class Graficos extends javax.swing.JPanel{
     private String[] mes = {"Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"};
     private String[] strCor = {"Vermelhao", "Vermelho", "Amarelo", "Verde", "Verdao"};
     private String[] strFlecha = {"cima", "meio", "baixo"};
-
+    private String tabela, insert, campo, select, codTab;
+    private String reaAcu[] = new String[12];
+    private String metAcu[] = new String[12];
+    private String forAcu[] = new String[12];
+    private String desAcu[] = new String[12];
+    private String desPerAcu[] = new String[12];
+    private String hisAcu[] = new String[12];
+    private String benAcu[] = new String[12];
+    private String ideAcu[] = new String[12];
+    private String metAntAcu[] = new String[12];
+    private String reaMen[] = new String[12];
+    private String metMen[] = new String[12];
+    private String forMen[] = new String[12];
+    private String desMen[] = new String[12];
+    private String desPerMen[] = new String[12];
+    private String hisMen[] = new String[12];
+    private String benMen[] = new String[12];
+    private String ideMen[] = new String[12];
+    private String metAntMen[] = new String[12];
+    private BufferedImage imagem = new BufferedImage(610, 400, BufferedImage.TYPE_INT_RGB);
+    
     public Graficos(){
         Info.graficos = this;
-        
+
         initComponents();
+        
+        //jButton1.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -341,8 +368,12 @@ public class Graficos extends javax.swing.JPanel{
         lblTendenciaDez = new javax.swing.JLabel();
         btnGraTrocaDesvio = new javax.swing.JButton();
         btnGraTrocaRealxMeta1 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
+        setMinimumSize(getMaximumSize());
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jScrollGraficos.setMinimumSize(getMaximumSize());
 
         jPanelGraficos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -2238,9 +2269,17 @@ public class Graficos extends javax.swing.JPanel{
         });
         jPanelGraficos.add(btnGraTrocaRealxMeta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 500, 210, 30));
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanelGraficos.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 510, -1, -1));
+
         jScrollGraficos.setViewportView(jPanelGraficos);
 
-        add(jScrollGraficos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 710));
+        add(jScrollGraficos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 670));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGraTrocaDesvioActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_btnGraTrocaDesvioActionPerformed
@@ -2276,13 +2315,42 @@ public class Graficos extends javax.swing.JPanel{
         fato.setVisible(true);
     }//GEN-LAST:event_btnFatoCausaAcaoActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        /*
+        InputStream inputStream = getClass().getResourceAsStream("/Graficos.jasper");
+
+        Map<String, Object> parametros = new HashMap<String,Object>();
+        for(int i = 1; i <= 12; i++){
+            parametros.put("PAR_COD", i);
+        }
+        try{        
+            Info.openReport("Gráficos", inputStream, parametros, Conexao.getBDCockpit());
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }catch(JRException ex){
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        */
+        OutputStream outputStream;
+        
+        //File imgFile;
+        try{
+            outputStream = new FileOutputStream("grafico.jpg");
+            //imgFile = new File("grafico.jpg");
+            ChartUtilities.writeBufferedImageAsJPEG(outputStream, imagem);
+        }catch(IOException ex){
+            Logger.getLogger(Graficos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public void setGraficoEvoAcum(){
         final CategoryDataset realAcu = createDataSetRealAcumulado();
         final CategoryDataset metaAcu = createDataSetMetaAcumulado();
-        
+
 
         final JFreeChart chartRealMetaAcu = ChartFactory.createBarChart(lblIndicador2.getText(), "Evolução Real x Meta - Acumulado", null, realAcu, PlotOrientation.VERTICAL, true, true, true);
-        final CategoryItemRenderer linhaMeta = new LineAndShapeRenderer(true, false);   
+        final CategoryItemRenderer linhaMeta = new LineAndShapeRenderer(true, false);
         final CategoryPlot plot = chartRealMetaAcu.getCategoryPlot();
 
         plot.getRenderer().setSeriesPaint(0, CockpitCor.getGraficoAzul());
@@ -2296,7 +2364,7 @@ public class Graficos extends javax.swing.JPanel{
             plot.setDataset(2, hisAcu);
             plot.setRenderer(2, linhaHis);
         }
-        
+
         if(Info.verificarFor != false){
             final CategoryDataset forAcu = createDataSetForAcumulado();
             final CategoryItemRenderer linhaFor = new LineAndShapeRenderer(true, false);
@@ -2305,7 +2373,7 @@ public class Graficos extends javax.swing.JPanel{
             plot.setDataset(3, forAcu);
             plot.setRenderer(3, linhaFor);
         }
-        
+
         if(Info.verificarIde != false){
             final CategoryDataset ideAcu = createDataSetIdeAcumulado();
             final CategoryItemRenderer linhaIde = new LineAndShapeRenderer(true, false);
@@ -2314,31 +2382,37 @@ public class Graficos extends javax.swing.JPanel{
             plot.setDataset(4, ideAcu);
             plot.setRenderer(4, linhaIde);
         }
-        
+
         linhaMeta.setSeriesStroke(0, new BasicStroke(2.0f));
-        
+
         plot.setDataset(1, metaAcu);
         plot.setRenderer(1, linhaMeta);
 
-        if(jPanelGraficoEvoAcum.getComponents() !=(null) && chartPanelRealMetaAcu != null){
+        if(jPanelGraficoEvoAcum.getComponents() != (null) && chartPanelRealMetaAcu != null){
             jPanelGraficoEvoAcum.remove(chartPanelRealMetaAcu);
         }
-              
+
         chartPanelRealMetaAcu = new ChartPanel(chartRealMetaAcu);
         chartPanelRealMetaAcu.setVisible(true);
         jPanelGraficoEvoAcum.add(chartPanelRealMetaAcu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 400));
         jPanelGraficoEvoAcum.revalidate();
         jPanelGraficoEvoAcum.repaint();
+        
+        //setImageChart(chartRealMetaAcu);
+        
+        BufferedImage image = chartRealMetaAcu.createBufferedImage(610, 400);
+        
+        this.imagem = image;
     }
     
     public void setGraficoEvoMen(){
         final CategoryDataset realMen = createDataSetRealMensal();
         final CategoryDataset metaMen = createDataSetMetaMensal();
-        
+
         final JFreeChart chartRealMetaMen = ChartFactory.createBarChart(lblIndicador2.getText(), "Evolução Real x Meta - Mensal", null, realMen, PlotOrientation.VERTICAL, true, true, true);
         final CategoryItemRenderer linhaMeta = new LineAndShapeRenderer(true, false);
         final CategoryPlot plot = chartRealMetaMen.getCategoryPlot();
-        
+
         if(Info.verificarHis != false){
             final CategoryDataset hisMen = createDataSetHisMensal();
             final CategoryItemRenderer linhaHis = new LineAndShapeRenderer(true, false);
@@ -2347,7 +2421,7 @@ public class Graficos extends javax.swing.JPanel{
             plot.setDataset(2, hisMen);
             plot.setRenderer(2, linhaHis);
         }
-        
+
         if(Info.verificarFor != false){
             final CategoryDataset forMen = createDataSetForMensal();
             final CategoryItemRenderer linhaFor = new LineAndShapeRenderer(true, false);
@@ -2356,7 +2430,7 @@ public class Graficos extends javax.swing.JPanel{
             plot.setDataset(3, forMen);
             plot.setRenderer(3, linhaFor);
         }
-        
+
         if(Info.verificarIde != false){
             final CategoryDataset ideMen = createDataSetForMensal();
             final CategoryItemRenderer linhaIde = new LineAndShapeRenderer(true, false);
@@ -2365,7 +2439,7 @@ public class Graficos extends javax.swing.JPanel{
             plot.setDataset(4, ideMen);
             plot.setRenderer(4, linhaIde);
         }
-        
+
         plot.getRenderer().setSeriesPaint(0, CockpitCor.getGraficoAzul());
         linhaMeta.setSeriesPaint(0, Color.BLACK);
 
@@ -2388,21 +2462,21 @@ public class Graficos extends javax.swing.JPanel{
 
     public void setGraficoDesvPerc(){
         final CategoryDataset desvioPercentual = createDataSetDesvPer();
-        
+
         final JFreeChart chartDevioPerc = ChartFactory.createBarChart(lblIndicador2.getText(), "Desvio Real x Meta - Mensal (%)", null, desvioPercentual, PlotOrientation.VERTICAL, true, true, true);
         final CategoryPlot plot = chartDevioPerc.getCategoryPlot();
-        
+
         String select, tabela, campo;
         boolean chkMeta;
         String maiorMenor, menorMaior;
         String aux;
-        
+
         maiorMenor = "[Maior, Menor]";
         menorMaior = "[Menor, Maior]";
-        
+
         tabela = "CP_META_CHK";
         campo = "CHK_MAIMEL";
-        
+
         select = "SELECT " + campo + " FROM " + tabela + " WHERE CHK_INDCOD = " + Info.cod;
         chkMeta = Boolean.parseBoolean(Info.objConexao.getBD(select, campo));
 
@@ -2429,21 +2503,21 @@ public class Graficos extends javax.swing.JPanel{
 
         renderer.setItemMargin(-0.4);
         renderer.setBaseItemLabelFont(new Font("Arial", Font.PLAIN, 10));
-        
+
         if(jPanelGraficoDesvPerc.getComponents() != (null) && chartPanelDesvioPerc != null){
             jPanelGraficoDesvPerc.remove(chartPanelDesvioPerc);
         }
-        
+
         StandardCategoryItemLabelGenerator label = new StandardCategoryItemLabelGenerator();
 
         renderer.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator(label.getLabelFormat(), Info.percentual));
 
-        renderer.setBaseItemLabelsVisible(true);  
-        ItemLabelPosition p = new ItemLabelPosition(ItemLabelAnchor.CENTER,  
-        TextAnchor.CENTER, TextAnchor.CENTER, 0.0);  
-        
+        renderer.setBaseItemLabelsVisible(true);
+        ItemLabelPosition p = new ItemLabelPosition(ItemLabelAnchor.CENTER,
+                TextAnchor.CENTER, TextAnchor.CENTER, 0.0);
+
         NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
-        rangeAxis.setTickLabelFont(new Font("Arial", Font.BOLD,12));
+        rangeAxis.setTickLabelFont(new Font("Arial", Font.BOLD, 12));
         //rangeAxis.setTickUnit(new NumberTickUnit(.1, new DecimalFormat("##0%")));
 
         chartPanelDesvioPerc = new ChartPanel(chartDevioPerc);
@@ -2453,13 +2527,13 @@ public class Graficos extends javax.swing.JPanel{
         jPanelGraficoDesvPerc.revalidate();
         jPanelGraficoDesvPerc.repaint();
     }
-    
+
     public void setGraficoDesvAbs(){
         final CategoryDataset desvioAbsoluto = createDataSetDesvAbs();
-        
+
         final JFreeChart chartDevioAbs = ChartFactory.createBarChart(lblIndicador2.getText(), "Desvio Real x Meta - Mensal (Absoluto)", null, desvioAbsoluto, PlotOrientation.VERTICAL, true, true, true);
         final CategoryPlot plot = chartDevioAbs.getCategoryPlot();
-        
+
         String select, tabela, campo;
         boolean chkMeta;
         String maiorMenor, menorMaior;
@@ -2467,10 +2541,10 @@ public class Graficos extends javax.swing.JPanel{
 
         maiorMenor = "[Maior, Menor]";
         menorMaior = "[Menor, Maior]";
-                
+
         tabela = "CP_META_CHK";
         campo = "CHK_MAIMEL";
-        
+
         select = "SELECT " + campo + " FROM " + tabela + " WHERE CHK_INDCOD = " + Info.cod;
         chkMeta = Boolean.parseBoolean(Info.objConexao.getBD(select, campo));
 
@@ -2497,11 +2571,11 @@ public class Graficos extends javax.swing.JPanel{
 
         renderer.setItemMargin(-0.4);
         renderer.setBaseItemLabelFont(new Font("Arial", Font.PLAIN, 10));
-        
+
         if(jPanelGraficoDesvPerc.getComponents() != (null) && chartPanelDesvioAbs != null){
             jPanelGraficoDesvPerc.remove(chartPanelDesvioAbs);
         }
-        
+
         StandardCategoryItemLabelGenerator label = new StandardCategoryItemLabelGenerator();
         tabela = "CP_TIP_GRAFICO";
         campo = "GRA_NUMPER";
@@ -2513,14 +2587,14 @@ public class Graficos extends javax.swing.JPanel{
         }else{
             renderer.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator(label.getLabelFormat(), Info.percentual));
         }
-            
-        renderer.setBaseItemLabelsVisible(true);  
-        ItemLabelPosition p = new ItemLabelPosition(ItemLabelAnchor.CENTER,  
-        TextAnchor.CENTER, TextAnchor.CENTER, 0.0);  
+
+        renderer.setBaseItemLabelsVisible(true);
+        ItemLabelPosition p = new ItemLabelPosition(ItemLabelAnchor.CENTER,
+                TextAnchor.CENTER, TextAnchor.CENTER, 0.0);
         //renderer.setBasePositiveItemLabelPosition(p);
-        
+
         NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
-        rangeAxis.setTickLabelFont(new Font("Arial", Font.BOLD,12));
+        rangeAxis.setTickLabelFont(new Font("Arial", Font.BOLD, 12));
         //rangeAxis.setTickUnit(new NumberTickUnit(500, new DecimalFormat("##,##,##0")));
 
         chartPanelDesvioAbs = new ChartPanel(chartDevioAbs);
@@ -2537,8 +2611,8 @@ public class Graficos extends javax.swing.JPanel{
         final String realAcu = "Real";
 
         double mesReal[] = new double[12];
-        
-        for(int i = 0; i < 12 ; i++){
+
+        for(int i = 0; i < 12; i++){
             mesReal[i] = Double.parseDouble(Info.acaoBotaoCockpit.getRealAcu(i));
             dataset.addValue(mesReal[i], realAcu, mes[i]);
         }
@@ -2552,23 +2626,23 @@ public class Graficos extends javax.swing.JPanel{
         final String metaAcu = "Meta";
 
         double[] mesMeta = new double[12];
-        
-        for(int i = 0; i < 12 ; i++){
+
+        for(int i = 0; i < 12; i++){
             mesMeta[i] = Double.parseDouble(Info.acaoBotaoCockpit.getMetaAcu(i));
             dataset.addValue(mesMeta[i], metaAcu, mes[i]);
         }
 
         return dataset;
     }
-    
+
     private CategoryDataset createDataSetRealMensal(){
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
         final String realAcu = "Real";
 
         double mesReal[] = new double[12];
-        
-        for(int i = 0; i < 12 ; i++){
+
+        for(int i = 0; i < 12; i++){
             mesReal[i] = Double.parseDouble(Info.acaoBotaoCockpit.getRealMen(i));
             dataset.addValue(mesReal[i], realAcu, mes[i]);
         }
@@ -2582,35 +2656,35 @@ public class Graficos extends javax.swing.JPanel{
         final String metaAcu = "Meta";
 
         double[] mesMeta = new double[12];
-        
-        for(int i = 0; i < 12 ; i++){
+
+        for(int i = 0; i < 12; i++){
             mesMeta[i] = Double.parseDouble(Info.acaoBotaoCockpit.getMetaMen(i));
             dataset.addValue(mesMeta[i], metaAcu, mes[i]);
         }
 
         return dataset;
     }
-    
+
     private CategoryDataset createDataSetDesvPer(){
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        
+
         final String maior = "Maior";
         final String menor = "Menor";
         String select, tabela, campo;
         boolean chkMeta;
-        
+
         tabela = "CP_META_CHK";
         campo = "CHK_MAIMEL";
-        
+
         select = "SELECT " + campo + " FROM " + tabela + " WHERE CHK_INDCOD = " + Info.cod;
         chkMeta = Boolean.parseBoolean(Info.objConexao.getBD(select, campo));
-        
+
         double[] desAbs = new double[12];
-        
+
         if(chkMeta != false){
-            for(int i = 0; i < 12 ; i++){
+            for(int i = 0; i < 12; i++){
                 desAbs[i] = Double.parseDouble(Info.acaoBotaoCockpit.getDesvPer(i));
-                
+
                 if(desAbs[i] < 0){
                     dataset.addValue(desAbs[i], menor, mes[i]);
                 }else{
@@ -2618,7 +2692,7 @@ public class Graficos extends javax.swing.JPanel{
                 }
             }
         }else{
-            for(int i = 0; i < 12 ; i++){
+            for(int i = 0; i < 12; i++){
                 desAbs[i] = Double.parseDouble(Info.acaoBotaoCockpit.getDesvPer(i));
                 if(desAbs[i] < 0){
                     dataset.addValue(desAbs[i], menor, mes[i]);
@@ -2627,28 +2701,28 @@ public class Graficos extends javax.swing.JPanel{
                 }
             }
         }
-        
+
         return dataset;
     }
-    
+
     private CategoryDataset createDataSetDesvAbs(){
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        
+
         final String maior = "Maior";
         final String menor = "Menor";
         String select, tabela, campo;
         boolean chkMeta;
-        
+
         tabela = "CP_META_CHK";
         campo = "CHK_MAIMEL";
-        
+
         select = "SELECT " + campo + " FROM " + tabela + " WHERE CHK_INDCOD = " + Info.cod;
         chkMeta = Boolean.parseBoolean(Info.objConexao.getBD(select, campo));
-        
+
         double[] desPerc = new double[12];
-        
+
         if(chkMeta != false){
-            for(int i = 0; i < 12 ; i++){
+            for(int i = 0; i < 12; i++){
                 desPerc[i] = Double.parseDouble(Info.acaoBotaoCockpit.getDesvAbs(i));
                 if(desPerc[i] < 0){
                     dataset.addValue(desPerc[i], menor, mes[i]);
@@ -2657,7 +2731,7 @@ public class Graficos extends javax.swing.JPanel{
                 }
             }
         }else{
-            for(int i = 0; i < 12 ; i++){
+            for(int i = 0; i < 12; i++){
                 desPerc[i] = Double.parseDouble(Info.acaoBotaoCockpit.getDesvAbs(i));
                 if(desPerc[i] < 0){
                     dataset.addValue(desPerc[i], menor, mes[i]);
@@ -2669,99 +2743,501 @@ public class Graficos extends javax.swing.JPanel{
 
         return dataset;
     }
-    
+
     private CategoryDataset createDataSetHisMensal(){
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        
+
         final String historico = "Histórico";
 
         double[] hisMen = new double[12];
-        
-        for(int i = 0; i < 12 ; i++){
+
+        for(int i = 0; i < 12; i++){
             hisMen[i] = Double.parseDouble(Info.acaoBotaoCockpit.getHistoricoMen(i));
             dataset.addValue(hisMen[i], historico, mes[i]);
         }
 
         return dataset;
     }
-    
+
     private CategoryDataset createDataSetHisAcumulado(){
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        
+
         final String historico = "Histórico";
 
         double[] hisAcu = new double[12];
-        
-        for(int i = 0; i < 12 ; i++){
+
+        for(int i = 0; i < 12; i++){
             hisAcu[i] = Double.parseDouble(Info.acaoBotaoCockpit.getHistoricoAcu(i));
             dataset.addValue(hisAcu[i], historico, mes[i]);
         }
 
         return dataset;
     }
-    
+
     private CategoryDataset createDataSetForMensal(){
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        
+
         final String forecast = "Forecast";
 
         double[] forMen = new double[12];
-        
-        for(int i = 0; i < 12 ; i++){
+
+        for(int i = 0; i < 12; i++){
             forMen[i] = Double.parseDouble(Info.acaoBotaoCockpit.getForecastMen(i));
             dataset.addValue(forMen[i], forecast, mes[i]);
         }
 
         return dataset;
     }
-    
+
     private CategoryDataset createDataSetForAcumulado(){
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        
+
         final String forecast = "Forecast";
 
         double[] forAcu = new double[12];
-        
-        for(int i = 0; i < 12 ; i++){
+
+        for(int i = 0; i < 12; i++){
             forAcu[i] = Double.parseDouble(Info.acaoBotaoCockpit.getForecastAcu(i));
             dataset.addValue(forAcu[i], forecast, mes[i]);
         }
 
         return dataset;
     }
-    
+
     private CategoryDataset createDataSetIdeMensal(){
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        
+
         final String valIdeal = "Valor Ideal";
 
         double[] ideMen = new double[12];
-        
-        for(int i = 0; i < 12 ; i++){
+
+        for(int i = 0; i < 12; i++){
             ideMen[i] = Double.parseDouble(Info.acaoBotaoCockpit.getValorIdealMen(i));
             dataset.addValue(ideMen[i], valIdeal, mes[i]);
         }
 
         return dataset;
     }
-    
+
     private CategoryDataset createDataSetIdeAcumulado(){
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        
+
         final String valIdeal = "Valor Ideal";
 
         double[] ideAcu = new double[12];
-        
-        for(int i = 0; i < 12 ; i++){
+
+        for(int i = 0; i < 12; i++){
             ideAcu[i] = Double.parseDouble(Info.acaoBotaoCockpit.getValorIdealAcu(i));
             dataset.addValue(ideAcu[i], valIdeal, mes[i]);
         }
 
         return dataset;
     }
-    
-    
 
+    private void setValores(){
+        reaAcu[0] = txtAcumRealJan.getText();
+        reaAcu[1] = txtAcumRealFev.getText();
+        reaAcu[2] = txtAcumRealMar.getText();
+        reaAcu[3] = txtAcumRealAbr.getText();
+        reaAcu[4] = txtAcumRealMai.getText();
+        reaAcu[5] = txtAcumRealJun.getText();
+        reaAcu[6] = txtAcumRealJul.getText();
+        reaAcu[7] = txtAcumRealAgo.getText();
+        reaAcu[8] = txtAcumRealSet.getText();
+        reaAcu[9] = txtAcumRealOut.getText();
+        reaAcu[10] = txtAcumRealNov.getText();
+        reaAcu[11] = txtAcumRealDez.getText();
+
+        metAcu[0] = txtAcumMetaJan.getText();
+        metAcu[1] = txtAcumMetaFev.getText();
+        metAcu[2] = txtAcumMetaMar.getText();
+        metAcu[3] = txtAcumMetaAbr.getText();
+        metAcu[4] = txtAcumMetaMai.getText();
+        metAcu[5] = txtAcumMetaJun.getText();
+        metAcu[6] = txtAcumMetaJul.getText();
+        metAcu[7] = txtAcumMetaAgo.getText();
+        metAcu[8] = txtAcumMetaSet.getText();
+        metAcu[9] = txtAcumMetaOut.getText();
+        metAcu[10] = txtAcumMetaNov.getText();
+        metAcu[11] = txtAcumMetaDez.getText();
+
+        forAcu[0] = txtAcumForcJan.getText();
+        forAcu[1] = txtAcumForcFev.getText();
+        forAcu[2] = txtAcumForcMar.getText();
+        forAcu[3] = txtAcumForcAbr.getText();
+        forAcu[4] = txtAcumForcMai.getText();
+        forAcu[5] = txtAcumForcJun.getText();
+        forAcu[6] = txtAcumForcJul.getText();
+        forAcu[7] = txtAcumForcAgo.getText();
+        forAcu[8] = txtAcumForcSet.getText();
+        forAcu[9] = txtAcumForcOut.getText();
+        forAcu[10] = txtAcumForcNov.getText();
+        forAcu[11] = txtAcumForcDez.getText();
+
+        desAcu[0] = txtAcumDesvJan.getText();
+        desAcu[1] = txtAcumDesvFev.getText();
+        desAcu[2] = txtAcumDesvMar.getText();
+        desAcu[3] = txtAcumDesvAbr.getText();
+        desAcu[4] = txtAcumDesvMai.getText();
+        desAcu[5] = txtAcumDesvJun.getText();
+        desAcu[6] = txtAcumDesvJul.getText();
+        desAcu[7] = txtAcumDesvAgo.getText();
+        desAcu[8] = txtAcumDesvSet.getText();
+        desAcu[9] = txtAcumDesvOut.getText();
+        desAcu[10] = txtAcumDesvNov.getText();
+        desAcu[11] = txtAcumDesvDez.getText();
+
+        desPerAcu[0] = txtAcumDesvPerJan.getText();
+        desPerAcu[1] = txtAcumDesvPerFev.getText();
+        desPerAcu[2] = txtAcumDesvPerMar.getText();
+        desPerAcu[3] = txtAcumDesvPerAbr.getText();
+        desPerAcu[4] = txtAcumDesvPerMai.getText();
+        desPerAcu[5] = txtAcumDesvPerJun.getText();
+        desPerAcu[6] = txtAcumDesvPerJul.getText();
+        desPerAcu[7] = txtAcumDesvPerAgo.getText();
+        desPerAcu[8] = txtAcumDesvPerSet.getText();
+        desPerAcu[9] = txtAcumDesvPerOut.getText();
+        desPerAcu[10] = txtAcumDesvPerNov.getText();
+        desPerAcu[11] = txtAcumDesvPerDez.getText();
+
+        hisAcu[0] = txtAcumRealHisJan.getText();
+        hisAcu[1] = txtAcumRealHisFev.getText();
+        hisAcu[2] = txtAcumRealHisMar.getText();
+        hisAcu[3] = txtAcumRealHisAbr.getText();
+        hisAcu[4] = txtAcumRealHisMai.getText();
+        hisAcu[5] = txtAcumRealHisJun.getText();
+        hisAcu[6] = txtAcumRealHisJul.getText();
+        hisAcu[7] = txtAcumRealHisAgo.getText();
+        hisAcu[8] = txtAcumRealHisSet.getText();
+        hisAcu[9] = txtAcumRealHisOut.getText();
+        hisAcu[10] = txtAcumRealHisNov.getText();
+        hisAcu[11] = txtAcumRealHisDez.getText();
+
+        benAcu[0] = txtAcumBenchJan.getText();
+        benAcu[1] = txtAcumBenchFev.getText();
+        benAcu[2] = txtAcumBenchMar.getText();
+        benAcu[3] = txtAcumBenchAbr.getText();
+        benAcu[4] = txtAcumBenchMai.getText();
+        benAcu[5] = txtAcumBenchJun.getText();
+        benAcu[6] = txtAcumBenchJul.getText();
+        benAcu[7] = txtAcumBenchAgo.getText();
+        benAcu[8] = txtAcumBenchSet.getText();
+        benAcu[9] = txtAcumBenchOut.getText();
+        benAcu[10] = txtAcumBenchNov.getText();
+        benAcu[11] = txtAcumBenchDez.getText();
+
+        ideAcu[0] = txtAcumIdealJan.getText();
+        ideAcu[1] = txtAcumIdealFev.getText();
+        ideAcu[2] = txtAcumIdealMar.getText();
+        ideAcu[3] = txtAcumIdealAbr.getText();
+        ideAcu[4] = txtAcumIdealMai.getText();
+        ideAcu[5] = txtAcumIdealJun.getText();
+        ideAcu[6] = txtAcumIdealJul.getText();
+        ideAcu[7] = txtAcumIdealAgo.getText();
+        ideAcu[8] = txtAcumIdealSet.getText();
+        ideAcu[9] = txtAcumIdealOut.getText();
+        ideAcu[10] = txtAcumIdealNov.getText();
+        ideAcu[11] = txtAcumIdealDez.getText();
+
+        metAntAcu[0] = txtAcumMetaAntJan.getText();
+        metAntAcu[1] = txtAcumMetaAntFev.getText();
+        metAntAcu[2] = txtAcumMetaAntMar.getText();
+        metAntAcu[3] = txtAcumMetaAntAbr.getText();
+        metAntAcu[4] = txtAcumMetaAntMai.getText();
+        metAntAcu[5] = txtAcumMetaAntJun.getText();
+        metAntAcu[6] = txtAcumMetaAntJul.getText();
+        metAntAcu[7] = txtAcumMetaAntAgo.getText();
+        metAntAcu[8] = txtAcumMetaAntSet.getText();
+        metAntAcu[9] = txtAcumMetaAntOut.getText();
+        metAntAcu[10] = txtAcumMetaAntNov.getText();
+        metAntAcu[11] = txtAcumMetaAntDez.getText();
+
+
+        reaMen[0] = txtMenRealJan.getText();
+        reaMen[1] = txtMenRealFev.getText();
+        reaMen[2] = txtMenRealMar.getText();
+        reaMen[3] = txtMenRealAbr.getText();
+        reaMen[4] = txtMenRealMai.getText();
+        reaMen[5] = txtMenRealJun.getText();
+        reaMen[6] = txtMenRealJul.getText();
+        reaMen[7] = txtMenRealAgo.getText();
+        reaMen[8] = txtMenRealSet.getText();
+        reaMen[9] = txtMenRealOut.getText();
+        reaMen[10] = txtMenRealNov.getText();
+        reaMen[11] = txtMenRealDez.getText();
+
+        metMen[0] = txtMenMetaJan.getText();
+        metMen[1] = txtMenMetaFev.getText();
+        metMen[2] = txtMenMetaMar.getText();
+        metMen[3] = txtMenMetaAbr.getText();
+        metMen[4] = txtMenMetaMai.getText();
+        metMen[5] = txtMenMetaJun.getText();
+        metMen[6] = txtMenMetaJul.getText();
+        metMen[7] = txtMenMetaAgo.getText();
+        metMen[8] = txtMenMetaSet.getText();
+        metMen[9] = txtMenMetaOut.getText();
+        metMen[10] = txtMenMetaNov.getText();
+        metMen[11] = txtMenMetaDez.getText();
+
+        forMen[0] = txtMenForcJan.getText();
+        forMen[1] = txtMenForcFev.getText();
+        forMen[2] = txtMenForcMar.getText();
+        forMen[3] = txtMenForcAbr.getText();
+        forMen[4] = txtMenForcMai.getText();
+        forMen[5] = txtMenForcJun.getText();
+        forMen[6] = txtMenForcJul.getText();
+        forMen[7] = txtMenForcAgo.getText();
+        forMen[8] = txtMenForcSet.getText();
+        forMen[9] = txtMenForcOut.getText();
+        forMen[10] = txtMenForcNov.getText();
+        forMen[11] = txtMenForcDez.getText();
+
+        desMen[0] = txtMenDesvJan.getText();
+        desMen[1] = txtMenDesvFev.getText();
+        desMen[2] = txtMenDesvMar.getText();
+        desMen[3] = txtMenDesvAbr.getText();
+        desMen[4] = txtMenDesvMai.getText();
+        desMen[5] = txtMenDesvJun.getText();
+        desMen[6] = txtMenDesvJul.getText();
+        desMen[7] = txtMenDesvAgo.getText();
+        desMen[8] = txtMenDesvSet.getText();
+        desMen[9] = txtMenDesvOut.getText();
+        desMen[10] = txtMenDesvNov.getText();
+        desMen[11] = txtMenDesvDez.getText();
+
+        desPerMen[0] = txtMenDesvPerJan.getText();
+        desPerMen[1] = txtMenDesvPerFev.getText();
+        desPerMen[2] = txtMenDesvPerMar.getText();
+        desPerMen[3] = txtMenDesvPerAbr.getText();
+        desPerMen[4] = txtMenDesvPerMai.getText();
+        desPerMen[5] = txtMenDesvPerJun.getText();
+        desPerMen[6] = txtMenDesvPerJul.getText();
+        desPerMen[7] = txtMenDesvPerAgo.getText();
+        desPerMen[8] = txtMenDesvPerSet.getText();
+        desPerMen[9] = txtMenDesvPerOut.getText();
+        desPerMen[10] = txtMenDesvPerNov.getText();
+        desPerMen[11] = txtMenDesvPerDez.getText();
+
+        hisMen[0] = txtMenRealHisJan.getText();
+        hisMen[1] = txtMenRealHisFev.getText();
+        hisMen[2] = txtMenRealHisMar.getText();
+        hisMen[3] = txtMenRealHisAbr.getText();
+        hisMen[4] = txtMenRealHisMai.getText();
+        hisMen[5] = txtMenRealHisJun.getText();
+        hisMen[6] = txtMenRealHisJul.getText();
+        hisMen[7] = txtMenRealHisAgo.getText();
+        hisMen[8] = txtMenRealHisSet.getText();
+        hisMen[9] = txtMenRealHisOut.getText();
+        hisMen[10] = txtMenRealHisNov.getText();
+        hisMen[11] = txtMenRealHisDez.getText();
+
+        benMen[0] = txtMenBenchJan.getText();
+        benMen[1] = txtMenBenchFev.getText();
+        benMen[2] = txtMenBenchMar.getText();
+        benMen[3] = txtMenBenchAbr.getText();
+        benMen[4] = txtMenBenchMai.getText();
+        benMen[5] = txtMenBenchJun.getText();
+        benMen[6] = txtMenBenchJul.getText();
+        benMen[7] = txtMenBenchAgo.getText();
+        benMen[8] = txtMenBenchSet.getText();
+        benMen[9] = txtMenBenchOut.getText();
+        benMen[10] = txtMenBenchNov.getText();
+        benMen[11] = txtMenBenchDez.getText();
+
+        ideMen[0] = txtMenIdealJan.getText();
+        ideMen[1] = txtMenIdealFev.getText();
+        ideMen[2] = txtMenIdealMar.getText();
+        ideMen[3] = txtMenIdealAbr.getText();
+        ideMen[4] = txtMenIdealMai.getText();
+        ideMen[5] = txtMenIdealJun.getText();
+        ideMen[6] = txtMenIdealJul.getText();
+        ideMen[7] = txtMenIdealAgo.getText();
+        ideMen[8] = txtMenIdealSet.getText();
+        ideMen[9] = txtMenIdealOut.getText();
+        ideMen[10] = txtMenIdealNov.getText();
+        ideMen[11] = txtMenIdealDez.getText();
+
+        metAntMen[0] = txtMenMetaAntJan.getText();
+        metAntMen[1] = txtMenMetaAntFev.getText();
+        metAntMen[2] = txtMenMetaAntMar.getText();
+        metAntMen[3] = txtMenMetaAntAbr.getText();
+        metAntMen[4] = txtMenMetaAntMai.getText();
+        metAntMen[5] = txtMenMetaAntJun.getText();
+        metAntMen[6] = txtMenMetaAntJul.getText();
+        metAntMen[7] = txtMenMetaAntAgo.getText();
+        metAntMen[8] = txtMenMetaAntSet.getText();
+        metAntMen[9] = txtMenMetaAntOut.getText();
+        metAntMen[10] = txtMenMetaAntNov.getText();
+        metAntMen[11] = txtMenMetaAntDez.getText();
+
+        for(int i = 0; i < 12; i++){
+            if(reaAcu[i].equals("")){
+                reaAcu[i] = " ";
+            }
+
+            if(metAcu[i].equals("")){
+                metAcu[i] = " ";
+            }
+
+            if(forAcu[i].equals("")){
+                forAcu[i] = " ";
+            }
+
+            if(desAcu[i].equals("")){
+                desAcu[i] = " ";
+            }
+
+            if(desPerAcu[i].equals("")){
+                desPerAcu[i] = " ";
+            }
+
+            if(hisAcu[i].equals("")){
+                hisAcu[i] = " ";
+            }
+
+            if(benAcu[i].equals("")){
+                benAcu[i] = " ";
+            }
+
+            if(ideAcu[i].equals("")){
+                ideAcu[i] = " ";
+            }
+
+            if(metAntAcu[i].equals("")){
+                metAntAcu[i] = " ";
+            }
+
+            if(reaMen[i].equals("")){
+                reaMen[i] = " ";
+            }
+
+            if(metMen[i].equals("")){
+                metMen[i] = " ";
+            }
+
+            if(forMen[i].equals("")){
+                forMen[i] = " ";
+            }
+
+            if(desMen[i].equals("")){
+                desMen[i] = " ";
+            }
+
+            if(desPerMen[i].equals("")){
+                desPerMen[i] = " ";
+            }
+
+            if(hisMen[i].equals("")){
+                hisMen[i] = " ";
+            }
+
+            if(benMen[i].equals("")){
+                benMen[i] = " ";
+            }
+
+            if(ideMen[i].equals("")){
+                ideMen[i] = " ";
+            }
+
+            if(metAntMen[i].equals("")){
+                metAntMen[i] = " ";
+            }
+        }
+
+    }
+
+    public void setBDGrafico(){
+        tabela = "CP_GRAFICO_TEMP";
+        codTab = "GRA_COD";
+
+        setValores();
+        
+        String[] mes = {"Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"};
+
+        insert = "DELETE " + tabela;
+        Info.objConexao.setBD(insert);
+
+        for(int i = 0; i < 12; i++){
+            insert = "INSERT INTO " + tabela + " (" + codTab + ") values (" + (i + 1) + ")";
+            Info.objConexao.setBD(insert);
+            
+            campo = "GRA_MES";
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + mes[i] + "' WHERE " + codTab + " = " + (i + 1);
+            Info.objConexao.setBD(insert);
+            
+            campo = "GRA_REAACU";
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + reaAcu[i] + "' WHERE " + codTab + " = " + (i + 1);
+            Info.objConexao.setBD(insert);
+
+            campo = "GRA_METACU";
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + metAcu[i] + "' WHERE " + codTab + " = " + (i + 1);
+            Info.objConexao.setBD(insert);
+
+            campo = "GRA_FORACU";
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + forAcu[i] + "' WHERE " + codTab + " = " + (i + 1);
+            Info.objConexao.setBD(insert);
+
+            campo = "GRA_DESACU";
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + desAcu[i] + "' WHERE " + codTab + " = " + (i + 1);
+            Info.objConexao.setBD(insert);
+
+            campo = "GRA_DESPERACU";
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + desPerAcu[i] + "' WHERE " + codTab + " = " + (i + 1);
+            Info.objConexao.setBD(insert);
+
+            campo = "GRA_HISACU";
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + hisAcu[i] + "' WHERE " + codTab + " = " + (i + 1);
+            Info.objConexao.setBD(insert);
+
+            campo = "GRA_BENACU";
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + benAcu[i] + "' WHERE " + codTab + " = " + (i + 1);
+            Info.objConexao.setBD(insert);
+
+            campo = "GRA_IDEACU";
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + ideAcu[i] + "' WHERE " + codTab + " = " + (i + 1);
+            Info.objConexao.setBD(insert);
+
+            campo = "GRA_METANTACU";
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + metAntAcu[i] + "' WHERE " + codTab + " = " + (i + 1);
+            Info.objConexao.setBD(insert);
+
+            campo = "GRA_REAMEN";
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + reaMen[i] + "' WHERE " + codTab + " = " + (i + 1);
+            Info.objConexao.setBD(insert);
+
+            campo = "GRA_METMEN";
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + metMen[i] + "' WHERE " + codTab + " = " + (i + 1);
+            Info.objConexao.setBD(insert);
+
+            campo = "GRA_FORMEN";
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + forMen[i] + "' WHERE " + codTab + " = " + (i + 1);
+            Info.objConexao.setBD(insert);
+
+            campo = "GRA_DESMEN";
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + desMen[i] + "' WHERE " + codTab + " = " + (i + 1);
+            Info.objConexao.setBD(insert);
+
+            campo = "GRA_DESPERMEN";
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + desPerMen[i] + "' WHERE " + codTab + " = " + (i + 1);
+            Info.objConexao.setBD(insert);
+
+            campo = "GRA_HISMEN";
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + hisMen[i] + "' WHERE " + codTab + " = " + (i + 1);
+            Info.objConexao.setBD(insert);
+
+            campo = "GRA_BENMEN";
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + benMen[i] + "' WHERE " + codTab + " = " + (i + 1);
+            Info.objConexao.setBD(insert);
+
+            campo = "GRA_IDEMEN";
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + ideMen[i] + "' WHERE " + codTab + " = " + (i + 1);
+            Info.objConexao.setBD(insert);
+
+            campo = "GRA_METANTMEN";
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + metAntMen[i] + "' WHERE " + codTab + " = " + (i + 1);
+            Info.objConexao.setBD(insert);
+        }
+    }
     private double dblJan;
     private double dblFev;
     private double dblMar;
@@ -2791,6 +3267,7 @@ public class Graficos extends javax.swing.JPanel{
     private javax.swing.JButton btnFatoCausaAcao;
     private javax.swing.JButton btnGraTrocaDesvio;
     private javax.swing.JButton btnGraTrocaRealxMeta1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanelGraficoDesvPerc;
     private javax.swing.JPanel jPanelGraficoEvoAcum;
     private javax.swing.JPanel jPanelGraficos;
@@ -3414,7 +3891,6 @@ public class Graficos extends javax.swing.JPanel{
             lblTendenciaMai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/flechaDown.PNG")));
         }
     }
-    
 
     public javax.swing.JLabel getLblTendenciaJun(){
         return lblTendenciaJun;
@@ -5691,5 +6167,4 @@ public class Graficos extends javax.swing.JPanel{
         dblDez = dez;
         txtMenMetaAntDez.setText(String.valueOf(dez));
     }
-
 }

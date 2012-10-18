@@ -4,12 +4,19 @@ import br.com.engemet.cockpit.acao.CockpitCor;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.imageio.stream.FileImageOutputStream;
+import javax.swing.JOptionPane;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtilities;
@@ -55,7 +62,7 @@ public class Graficos extends javax.swing.JPanel{
     private String benMen[] = new String[12];
     private String ideMen[] = new String[12];
     private String metAntMen[] = new String[12];
-    private BufferedImage imagem = new BufferedImage(610, 400, BufferedImage.TYPE_INT_RGB);
+    private BufferedImage imagem = new BufferedImage(610, 400, BufferedImage.TYPE_INT_ARGB);
     
     public Graficos(){
         Info.graficos = this;
@@ -2332,13 +2339,18 @@ public class Graficos extends javax.swing.JPanel{
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
         */
-        OutputStream outputStream;
-        
+        //OutputStream outputStream;
+        FileOutputStream outputStream;
         //File imgFile;
         try{
             outputStream = new FileOutputStream("grafico.jpg");
+            
+            //ImageIO.write(imagem , "JPG", outputStream);
             //imgFile = new File("grafico.jpg");
+            ImageIO.write(imagem, "JPG", new FileOutputStream("grafico2.jpg"));
             ChartUtilities.writeBufferedImageAsJPEG(outputStream, imagem);
+            
+            outputStream.close();
         }catch(IOException ex){
             Logger.getLogger(Graficos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -2391,18 +2403,23 @@ public class Graficos extends javax.swing.JPanel{
         if(jPanelGraficoEvoAcum.getComponents() != (null) && chartPanelRealMetaAcu != null){
             jPanelGraficoEvoAcum.remove(chartPanelRealMetaAcu);
         }
-
+        
         chartPanelRealMetaAcu = new ChartPanel(chartRealMetaAcu);
         chartPanelRealMetaAcu.setVisible(true);
         jPanelGraficoEvoAcum.add(chartPanelRealMetaAcu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 400));
         jPanelGraficoEvoAcum.revalidate();
         jPanelGraficoEvoAcum.repaint();
         
-        //setImageChart(chartRealMetaAcu);
-        
-        BufferedImage image = chartRealMetaAcu.createBufferedImage(610, 400);
-        
-        this.imagem = image;
+        OutputStream out;
+        File arquivo = new File("\\\\192.168.0.254\\Grupos\\COCKPIT\\Software Cockpit\\Relatorios\\realXmetaAcum.jpg");
+        //File arquivo = new File("/Users/danielnegreiros/documentos/realXmetaAcum.jpg");
+        try{
+            out = new FileOutputStream(arquivo);
+            JOptionPane.showMessageDialog(null, out);
+            ChartUtilities.writeChartAsJPEG(out, chartRealMetaAcu, 300, 300);
+        }catch(IOException ex){
+            Logger.getLogger(Graficos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void setGraficoEvoMen(){

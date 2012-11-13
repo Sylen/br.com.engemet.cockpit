@@ -19,10 +19,14 @@ public class Imprimir implements Printable {
   public Imprimir(Component componentToBePrinted) {
     this.componentToBePrinted = componentToBePrinted;
   }
-  
+
   public void print() {
     PrinterJob printJob = PrinterJob.getPrinterJob();
-    printJob.setPrintable(this);
+
+    PageFormat landscape = printJob.defaultPage();
+    landscape.setOrientation(PageFormat.LANDSCAPE);
+       
+    printJob.setPrintable(this, landscape);
     if (printJob.printDialog())
       try {
         printJob.print();

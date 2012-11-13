@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 
 public class AcaoBotaoCockpit implements ActionListener{
 

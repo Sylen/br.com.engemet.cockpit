@@ -1,13 +1,17 @@
 package br.com.engemet.cockpit.telas;
 
 import java.awt.Color;
+import java.awt.KeyboardFocusManager;
 import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
+import javax.swing.KeyStroke;
 
 public class CronogramaIniciativa extends javax.swing.JFrame{
-    
+
     private JLabel lblItem;
     private JLabel lblAtividade;
     private JLabel lblRealizado;
@@ -16,21 +20,40 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
     private JProgressBar progresso;
     private String select, insert, tabela, campo, strCodIni, strCod;
     private int aux;
-    private int verificar = 0;
+    public int verificar;
     public int cod;
     private int itensGeral = 0;
-    
     private String strItem;
     private String strAtividade;
     private String strRealizado = "0";
     private String strIniPeriodo;
     private String strFimPeriodo;
     //private int numeroAtividade = 1;
-    
+
     public CronogramaIniciativa(){
         Info.cronogramaIniciativa = this;
-        
+
         initComponents();
+        
+        
+        
+        Set tab = new HashSet (1);   
+    
+      //Modificando o KeyStroke para avançar  
+      tab.add(KeyStroke.getKeyStroke("TAB"));   
+
+      //Criando o set para o método setFocusTraversalKeys() - shifttab  
+      Set shifttab = new HashSet (1);  
+
+      //Modificando o KeyStroke para retroceder  
+      shifttab.add(KeyStroke.getKeyStroke("shift TAB"));  
+
+      //Modificando as propriedades de foco do componente textArea  
+      txtAtividades.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,tab);  
+      txtAtividades.setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS,shifttab); 
+      
+      txtProdutos.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,tab);  
+      txtProdutos.setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS,shifttab); 
     }
 
     @SuppressWarnings("unchecked")
@@ -218,51 +241,40 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
         if(verificar == 0){
             if(JOptionPane.showConfirmDialog(null, "Você nao salvou sua atividade, deseja Salva-la?", "Adicionar Atividade", JOptionPane.YES_NO_OPTION) == 0){
                 setSalvarAtividade();
-                
+
                 JOptionPane.showMessageDialog(null, "Atividade Salva! Preencha sua nova atividade.");
             }else{
                 dispose();
             }
         }
-        
+
         dispose();
     }//GEN-LAST:event_btnFecharActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
         setSalvarAtividade();
-        
+
         if(verificar == 0){
             verificar = 1;
         }else if(verificar == 2){
             select = "SELECT * FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod;
             itensGeral = Info.objConexao.getIndCod(select, campo, itensGeral);
-        
+
             itensGeral--;
-            
+
             setCamposEditar();
-                
-            for(int i = 1 ; i <= itensGeral; i++){
+
+            for(int i = 1; i <= itensGeral; i++){
                 setPegarAtividade(i);
                 setCamposAtvidade(i, strItem, strAtividade, strRealizado, strIniPeriodo, strFimPeriodo);
             }
-            
-            txtAtividades.setText("");
-            txtProdutos.setText("");
-            txtResponsavel.setText("");
-            txtRealizado.setText("");
-            cbxIniSem.setSelectedIndex(0);
-            cbxIniMes.setSelectedIndex(0);
-            cbxIniAno.setSelectedIndex(0);
-            cbxFimSem.setSelectedIndex(0);
-            cbxFimMes.setSelectedIndex(0);
-            cbxFimAno.setSelectedIndex(0);
 
             verificar = 0;
         }else{
             verificar = 3;
         }
-        
+
         Info.iniciativas.setDataAtualizacao();
         JOptionPane.showMessageDialog(null, "Atividade Salva!");
     }//GEN-LAST:event_btnSalvarActionPerformed
@@ -273,35 +285,32 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
         tabela = "IN_CRONO_ATIVIDADES";
         strCodIni = "ATI_INICOD";
         campo = "ATI_COD";
-        
+
         select = "SELECT * FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod;
         itensGeral = Info.objConexao.getIndCod(select, campo, itensGeral);
-        
+
         itensGeral--;
-        
+
         if(verificar == 0 || verificar == 1){
             select = "SELECT * FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod;
             Info.cronogramaIniciativa.cod = Info.objConexao.getIndCod(select, campo, Info.cronogramaIniciativa.cod);
             itensGeral++;
         }
-
-        JOptionPane.showMessageDialog(null, "Itens Geral = " + itensGeral);
-        
         //numeroAtividade = cod;
 
-        JOptionPane.showMessageDialog(null, "Valor do cod = " + Info.cronogramaIniciativa.cod);
-        
         if(verificar == 0 || verificar == 2){
             if(JOptionPane.showConfirmDialog(null, "Você nao salvou sua atividade, deseja Salva-la?", "Adicionar Atividade", JOptionPane.YES_NO_OPTION) == 0){
                 setSalvarAtividade();
-                
+
                 JOptionPane.showMessageDialog(null, "Atividade Salva! Preencha sua nova atividade.");
-                
+
                 setCamposEditar();
-                
-                for(int i = 1 ; i <= itensGeral; i++){
-                    setPegarAtividade(i);
-                    setCamposAtvidade(i, strItem, strAtividade, strRealizado, strIniPeriodo, strFimPeriodo);
+
+                if(verificar == 0){
+                    for(int i = 1; i <= itensGeral; i++){
+                        setPegarAtividade(i);
+                        setCamposAtvidade(i, strItem, strAtividade, strRealizado, strIniPeriodo, strFimPeriodo);
+                    }
                 }
 
                 if(verificar == 0){
@@ -318,23 +327,23 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
                 cbxFimSem.setSelectedIndex(0);
                 cbxFimMes.setSelectedIndex(0);
                 cbxFimAno.setSelectedIndex(0);
-                
+
                 //numeroAtividade++;
-                
+
                 verificar = 0;
             }
         }else if(verificar == 1 || verificar == 3){
             JOptionPane.showMessageDialog(null, "Preencha sua nova atividade.");
-            
+
             setCamposEditar();
 
-            for(int i = 1 ; i <= itensGeral; i++){
+            for(int i = 1; i <= itensGeral - 1; i++){
                 setPegarAtividade(i);
                 setCamposAtvidade(i, strItem, strAtividade, strRealizado, strIniPeriodo, strFimPeriodo);
             }
-            
+
             if(verificar == 1){
-                    cbxAtividades.addItem(txtAtividades.getText());
+                cbxAtividades.addItem(txtAtividades.getText());
             }
             txtAtividades.setText("");
             txtProdutos.setText("");
@@ -346,9 +355,9 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
             cbxFimSem.setSelectedIndex(0);
             cbxFimMes.setSelectedIndex(0);
             cbxFimAno.setSelectedIndex(0);
-            
+
             //numeroAtividade++;
-            
+
             verificar = 0;
         }
 
@@ -357,11 +366,11 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
     private void cbxAtividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxAtividadesActionPerformed
         // TODO add your handling code here:
         setEditarAtividates(cbxAtividades.getSelectedIndex());
-        
+
         this.cod = cbxAtividades.getSelectedIndex();
 
         verificar = 2;
-        
+
     }//GEN-LAST:event_cbxAtividadesActionPerformed
 
     private void btnNovaAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaAtividadeActionPerformed
@@ -384,39 +393,39 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
             JOptionPane.showMessageDialog(null, "Preencha sua nova atividade.");
         }
     }//GEN-LAST:event_btnNovaAtividadeActionPerformed
-    
+
     private void setSalvarAtividade(){
         tabela = "IN_CRONO_ATIVIDADES";
         strCodIni = "ATI_INICOD";
         strCod = "ATI_COD";
-                
+
         select = "SELECT * FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + cod;
         aux = Info.objConexao.getIndCod(select, strCodIni, aux);
         strItem = String.valueOf(cod);
-        
+
         if(aux == 1){
             insert = "INSERT INTO " + tabela + " (" + strCodIni + ", " + strCod + ") values (" + Info.iniciativas.iniCod + ", " + cod + ")";
             Info.objConexao.setBD(insert);
         }
-        
+
         campo = "ATI_NOM";
         insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtAtividades.getText() + "' WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + cod;
         Info.objConexao.setBD(insert);
         strAtividade = txtAtividades.getText();
-        
+
         campo = "ATI_PROFIN";
         insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtProdutos.getText() + "' WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + cod;
         Info.objConexao.setBD(insert);
-        
+
         campo = "ATI_RES";
         insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtResponsavel.getText() + "' WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + cod;
         Info.objConexao.setBD(insert);
-        
+
         campo = "ATI_REA";
         insert = "UPDATE " + tabela + " SET " + campo + " = '" + txtRealizado.getText() + "' WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + cod;
         Info.objConexao.setBD(insert);
         strRealizado = txtRealizado.getText();
-        
+
         campo = "ATI_INISEM";
         insert = "UPDATE " + tabela + " SET " + campo + " = '" + cbxIniSem.getSelectedItem() + "' WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + cod;
         Info.objConexao.setBD(insert);
@@ -427,7 +436,7 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
         insert = "UPDATE " + tabela + " SET " + campo + " = '" + cbxIniAno.getSelectedItem() + "' WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + cod;
         Info.objConexao.setBD(insert);
         strIniPeriodo = ("de: " + cbxIniSem.getSelectedItem() + "/" + cbxIniMes.getSelectedItem() + "/" + cbxIniAno.getSelectedItem());
-        
+
         campo = "ATI_FIMSEM";
         insert = "UPDATE " + tabela + " SET " + campo + " = '" + cbxFimSem.getSelectedItem() + "' WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + cod;
         Info.objConexao.setBD(insert);
@@ -439,22 +448,22 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
         Info.objConexao.setBD(insert);
         strFimPeriodo = ("a: " + cbxFimSem.getSelectedItem() + "/" + cbxFimMes.getSelectedItem() + "/" + cbxFimAno.getSelectedItem());
     }
-    
+
     private void setPegarAtividade(int cod){
         tabela = "IN_CRONO_ATIVIDADES";
         strCodIni = "ATI_INICOD";
         strCod = "ATI_COD";
-                
+
         strItem = String.valueOf(cod);
- 
+
         campo = "ATI_NOM";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + cod;
         strAtividade = Info.objConexao.getBD(select, campo);
-       
+
         campo = "ATI_REA";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + cod;
         strRealizado = Info.objConexao.getBD(select, campo);
-        
+
         campo = "ATI_INISEM";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + cod;
         String iniSem = Info.objConexao.getBD(select, campo);
@@ -465,7 +474,7 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + cod;
         String iniAno = Info.objConexao.getBD(select, campo);
         strIniPeriodo = ("de: " + iniSem + "/" + iniMes + "/" + iniAno);
-        
+
         campo = "ATI_FIMSEM";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + cod;
         String fimSem = Info.objConexao.getBD(select, campo);
@@ -477,42 +486,42 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
         String fimAno = Info.objConexao.getBD(select, campo);
         strFimPeriodo = ("a: " + fimSem + "/" + fimMes + "/" + fimAno);
     }
-    
+
     @SuppressWarnings("unchecked")
     public void setComboBoxs(){
         Info.data = Info.cal.get(Calendar.YEAR);
-        
+
         int data = Info.data + 10;
         String strData;
-        
+
         cbxIniAno.addItem("");
         cbxFimAno.addItem("");
-        
+
         for(int i = Info.data; i <= data; i++){
             strData = String.valueOf(i);
             cbxIniAno.addItem(strData);
             cbxFimAno.addItem(strData);
         }
     }
-    
+
     public void setCbxAtividades(int cod){
         cbxAtividades.setSelectedIndex(cod);
-        
-        setEditarAtividates(cod); 
+
+        setEditarAtividates(cod);
     }
-    
+
     @SuppressWarnings("unchecked")
     public void setCbxEditarAtividades(){
         String descricao;
-        
+
         tabela = "IN_CRONO_ATIVIDADES";
         strCodIni = "ATI_INICOD";
         strCod = "ATI_COD";
         select = "SELECT * FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod;
         cod = Info.objConexao.getIndCod(select, strCodIni, cod);
-        
+
         String[] combo = new String[cod];
-        
+
         campo = "ATI_NOM";
         for(int i = 1; i < (cod); i++){
             select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + i;
@@ -523,118 +532,124 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
             cbxAtividades.addItem(combo[i] = i + " = " + descricao);
         }
     }
-    
+
     public void setEditarAtividates(int cod){
         tabela = "IN_CRONO_ATIVIDADES";
         strCodIni = "ATI_INICOD";
         strCod = "ATI_COD";
-        
+
         campo = "ATI_NOM";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + cod;
         txtAtividades.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ATI_PROFIN";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + cod;
         txtProdutos.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ATI_RES";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + cod;
         txtResponsavel.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ATI_REA";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + cod;
         txtRealizado.setText(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ATI_INISEM";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + cod;
         cbxIniSem.setSelectedItem(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ATI_INIMES";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + cod;
         cbxIniMes.setSelectedItem(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ATI_INIANO";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + cod;
         cbxIniAno.setSelectedItem(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ATI_FIMSEM";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + cod;
         cbxFimSem.setSelectedItem(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ATI_FIMMES";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + cod;
         cbxFimMes.setSelectedItem(Info.objConexao.getBD(select, campo));
-        
+
         campo = "ATI_FIMANO";
         select = "SELECT " + campo + " FROM " + tabela + " WHERE " + strCodIni + " = " + Info.iniciativas.iniCod + " AND " + strCod + " = " + cod;
         cbxFimAno.setSelectedItem(Info.objConexao.getBD(select, campo));
     }
-    
+
     public void setCamposAtvidade(int numeroAtividade, String strItem, String strAtividade, String strRealizado, String strIniPeriodo, String strFimPeriodo){
         lblItem = new JLabel();
         lblAtividade = new JLabel();
         lblRealizado = new JLabel();
         lblIniPeriodo = new JLabel();
         lblFimPeriodo = new JLabel();
-        progresso = new JProgressBar(0 , 100);
+        progresso = new JProgressBar(0, 100);
         int intProgresso;
-        
+
         int x, y, width, height;
-        
+
         lblItem.setText(strItem);
         lblAtividade.setText(strAtividade);
         lblRealizado.setText(strRealizado);
         lblIniPeriodo.setText(strIniPeriodo);
         lblFimPeriodo.setText(strFimPeriodo);
-        
+
         if(strRealizado == null || strRealizado.equals("")){
-           intProgresso = 0;
+            intProgresso = 0;
         }else{
-           intProgresso = Integer.parseInt(strRealizado); 
+            intProgresso = Integer.parseInt(strRealizado);
         }
-        
+
         y = 0;
-        
+
         if(numeroAtividade > 1){
-            numeroAtividade --;
-            y = (numeroAtividade * 60) + 0;  
+            numeroAtividade--;
+            y = (numeroAtividade * 60) + 0;
             numeroAtividade++;
         }
-        
-        width = 40;  height = 60;
+
+        width = 40;
+        height = 60;
         x = 0;
         lblItem.setBackground(new Color(255, 255, 255));
         lblItem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblItem.setOpaque(true);
         lblItem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Info.iniciativas.setJPanel4(lblItem, x, y, width, height);
-        
-        width = 300;  height = 60;
+
+        width = 300;
+        height = 60;
         x = 40;
         lblAtividade.setBackground(new Color(255, 255, 255));
         lblAtividade.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblAtividade.setOpaque(true);
         lblAtividade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Info.iniciativas.setJPanel4(lblAtividade, x, y, width, height);
-        
-        width = 90;  height = 60;
+
+        width = 90;
+        height = 60;
         x = 340;
         lblRealizado.setBackground(new Color(255, 255, 255));
         lblRealizado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblRealizado.setOpaque(true);
         lblRealizado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Info.iniciativas.setJPanel4(lblRealizado, x, y, width, height);
-        
-        width = 330;  height = 30;
+
+        width = 330;
+        height = 30;
         x = 430;
         lblIniPeriodo.setBackground(new Color(255, 255, 255));
         lblIniPeriodo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblIniPeriodo.setOpaque(true);
         lblIniPeriodo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Info.iniciativas.setJPanel4(lblIniPeriodo, x, y, width, height);
-        
-        width = 330;  height = 30;
-        x = 430;      y += 30;
+
+        width = 330;
+        height = 30;
+        x = 430;
+        y += 30;
         lblFimPeriodo.setBackground(new Color(255, 255, 255));
         lblFimPeriodo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblFimPeriodo.setOpaque(true);
@@ -642,22 +657,21 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
         Info.iniciativas.setJPanel4(lblFimPeriodo, x, y, width, height);
         y -= 30;
 
-        width = 200;  height = 60;
+        width = 200;
+        height = 60;
         x = 760;
         progresso.setValue(intProgresso);
         Info.iniciativas.setJPanel4(progresso, x, y, width, height);
-        
+
         Info.iniciativas.validate();
         Info.iniciativas.repaint();
     }
-    
+
     public void setCamposEditar(){
         Info.iniciativas.removeJPanel4();
         Info.iniciativas.validate();
         Info.iniciativas.repaint();
     }
-    
-    
 //    public static void main(String args[]){
 //
 //        java.awt.EventQueue.invokeLater(new Runnable(){
@@ -667,7 +681,6 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
 //
 //        });
 //    }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddAtividade;
     private javax.swing.JButton btnFechar;

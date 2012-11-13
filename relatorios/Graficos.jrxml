@@ -28,75 +28,375 @@
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
-*
+     CP_GRAFICO_TEMP."GRA_IND" AS CP_GRAFICO_TEMP_GRA_IND,
+     CP_GRAFICO_TEMP."GRA_RES" AS CP_GRAFICO_TEMP_GRA_RES,
+     CP_GRAFICO_TEMP."GRA_STA" AS CP_GRAFICO_TEMP_GRA_STA,
+     CP_GRAFICO_TEMP."GRA_COD" AS CP_GRAFICO_TEMP_GRA_COD
 FROM
      "DESENV"."CP_GRAFICO_TEMP" CP_GRAFICO_TEMP
-ORDER BY GRA_COD]]>
+WHERE
+     GRA_COD = 1
+ORDER BY
+     GRA_COD ASC]]>
 	</queryString>
-	<field name="GRA_REAACU" class="java.lang.String"/>
-	<field name="GRA_METACU" class="java.lang.String"/>
-	<field name="GRA_FORACU" class="java.lang.String"/>
-	<field name="GRA_DESACU" class="java.lang.String"/>
-	<field name="GRA_DESPERACU" class="java.lang.String"/>
-	<field name="GRA_HISACU" class="java.lang.String"/>
-	<field name="GRA_BENACU" class="java.lang.String"/>
-	<field name="GRA_IDEACU" class="java.lang.String"/>
-	<field name="GRA_METANTACU" class="java.lang.String"/>
-	<field name="GRA_REAMEN" class="java.lang.String"/>
-	<field name="GRA_METMEN" class="java.lang.String"/>
-	<field name="GRA_FORMEN" class="java.lang.String"/>
-	<field name="GRA_DESMEN" class="java.lang.String"/>
-	<field name="GRA_DESPERMEN" class="java.lang.String"/>
-	<field name="GRA_HISMEN" class="java.lang.String"/>
-	<field name="GRA_BENMEN" class="java.lang.String"/>
-	<field name="GRA_IDEMEN" class="java.lang.String"/>
-	<field name="GRA_METANTMEN" class="java.lang.String"/>
-	<field name="GRA_COD" class="java.math.BigDecimal"/>
+	<field name="CP_GRAFICO_TEMP_GRA_IND" class="java.lang.String"/>
+	<field name="CP_GRAFICO_TEMP_GRA_RES" class="java.lang.String"/>
+	<field name="CP_GRAFICO_TEMP_GRA_STA" class="java.lang.String"/>
+	<field name="CP_GRAFICO_TEMP_GRA_COD" class="java.math.BigDecimal"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="336" y="0" width="466" height="20" forecolor="#FFFFFF" backcolor="#0F243E"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[INDICADOR:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="100" height="20" forecolor="#FFFFFF" backcolor="#0F243E"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[STATUS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="133" y="0" width="178" height="20" forecolor="#FFFFFF" backcolor="#0F243E"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[RESPONSÁVEL:]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="133" y="20" width="178" height="20" forecolor="#FFFFFF" backcolor="#366092"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CP_GRAFICO_TEMP_GRA_RES}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="336" y="20" width="466" height="20" forecolor="#FFFFFF" backcolor="#366092"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CP_GRAFICO_TEMP_GRA_IND}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="0" y="20" width="100" height="20" forecolor="#FFFFFF" backcolor="#366092"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CP_GRAFICO_TEMP_GRA_STA}]]></textFieldExpression>
+			</textField>
+		</band>
 	</title>
-	<pageHeader>
-		<band height="18" splitType="Stretch"/>
-	</pageHeader>
-	<columnHeader>
-		<band height="100" splitType="Stretch">
-			<barChart>
-				<chart>
-					<reportElement x="420" y="0" width="336" height="100"/>
-					<chartTitle/>
-					<chartSubtitle/>
-					<chartLegend/>
-				</chart>
-				<categoryDataset>
-					<categorySeries>
-						<seriesExpression><![CDATA["Dummy Series"]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{GRA_METACU}]]></categoryExpression>
-						<valueExpression><![CDATA[$F{GRA_REAACU}]]></valueExpression>
-					</categorySeries>
-				</categoryDataset>
-				<barPlot>
-					<plot/>
-					<itemLabel/>
-				</barPlot>
-			</barChart>
+	<detail>
+		<band height="207">
 			<image>
-				<reportElement x="23" y="0" width="100" height="50"/>
+				<reportElement x="100" y="0" width="300" height="200"/>
+				<imageExpression><![CDATA["realXmetaAcum.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="460" y="0" width="300" height="200"/>
+				<imageExpression><![CDATA["desvrealXmetaPer.jpg"]]></imageExpression>
 			</image>
 		</band>
-	</columnHeader>
-	<detail>
-		<band height="437">
+		<band height="210">
 			<subreport>
-				<reportElement x="0" y="0" width="802" height="437"/>
+				<reportElement x="100" y="0" width="660" height="210"/>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Graficos_subreport.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[getClass().getResourceAsStream($P{SUBREPORT_DIR} + "Graficos_subreport.jasper")]]></subreportExpression>
 			</subreport>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="15" width="100" height="10" backcolor="#F5DFAA"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Real - Acum]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="25" width="100" height="10" backcolor="#F5DFAA"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Meta - Acum]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="35" width="100" height="10" backcolor="#F5DFAA"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Forecast - Acum]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="45" width="100" height="10" backcolor="#F5DFAA"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Desvio - Acum]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="55" width="100" height="10" backcolor="#F5DFAA"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Desvio % - Acum]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="65" width="100" height="10" backcolor="#F5DFAA"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Real (Ano Anterior) - Acum]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="75" width="100" height="10" backcolor="#F5DFAA"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Benchmark - Acum]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="85" width="100" height="10" backcolor="#F5DFAA"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Ideal - Acum]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="95" width="100" height="10" backcolor="#F5DFAA"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Meta Ano Anterior - Acum]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="120" width="100" height="10" backcolor="#C5F1CB"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Real - Mensal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="130" width="100" height="10" backcolor="#C5F1CB"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Meta - Mensal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="140" width="100" height="10" backcolor="#C5F1CB"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Forecast - Mensal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="180" width="100" height="10" backcolor="#C5F1CB"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Benchmark - Mensal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="190" width="100" height="10" backcolor="#C5F1CB"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Ideal - Mensal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="150" width="100" height="10" backcolor="#C5F1CB"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Desvio - Mensal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="200" width="100" height="10" backcolor="#C5F1CB"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Meta Ano Anterior - Mensal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="160" width="100" height="10" backcolor="#C5F1CB"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Desvio % - Mensal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="170" width="100" height="10" backcolor="#C5F1CB"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Real (Ano Anterior) - Mensal]]></text>
+			</staticText>
 		</band>
 	</detail>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>

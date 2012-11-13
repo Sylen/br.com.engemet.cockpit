@@ -1,22 +1,21 @@
 package br.com.engemet.cockpit.telas;
 
 import br.com.engemet.cockpit.acao.CockpitCor;
+import br.com.engemet.cockpit.oracle.Conexao;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.imageio.stream.FileImageOutputStream;
-import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtilities;
@@ -62,14 +61,15 @@ public class Graficos extends javax.swing.JPanel{
     private String benMen[] = new String[12];
     private String ideMen[] = new String[12];
     private String metAntMen[] = new String[12];
-    private BufferedImage imagem = new BufferedImage(610, 400, BufferedImage.TYPE_INT_ARGB);
+    private String strAux;
     
+    private TempGrafico tempGrafico;
+    private JFreeChart chart;
+
     public Graficos(){
         Info.graficos = this;
 
         initComponents();
-        
-        //jButton1.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -81,7 +81,6 @@ public class Graficos extends javax.swing.JPanel{
         lblStatus1 = new javax.swing.JLabel();
         lblResponsavel1 = new javax.swing.JLabel();
         lblIndicador1 = new javax.swing.JLabel();
-        lblStatus2 = new javax.swing.JLabel();
         lblResponsavel2 = new javax.swing.JLabel();
         lblIndicador2 = new javax.swing.JLabel();
         btnFatoCausaAcao = new javax.swing.JButton();
@@ -375,7 +374,11 @@ public class Graficos extends javax.swing.JPanel{
         lblTendenciaDez = new javax.swing.JLabel();
         btnGraTrocaDesvio = new javax.swing.JButton();
         btnGraTrocaRealxMeta1 = new javax.swing.JButton();
+        btnImprimir = new javax.swing.JButton();
+        lblStatus2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        lblVariacao1 = new javax.swing.JLabel();
+        lblVariacao2 = new javax.swing.JLabel();
 
         setMinimumSize(getMaximumSize());
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -400,7 +403,7 @@ public class Graficos extends javax.swing.JPanel{
         lblResponsavel1.setText("Responsável");
         lblResponsavel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         lblResponsavel1.setOpaque(true);
-        jPanelGraficos.add(lblResponsavel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 220, -1));
+        jPanelGraficos.add(lblResponsavel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 220, -1));
 
         lblIndicador1.setBackground(new java.awt.Color(15, 36, 62));
         lblIndicador1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
@@ -409,28 +412,21 @@ public class Graficos extends javax.swing.JPanel{
         lblIndicador1.setText("Indicador");
         lblIndicador1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         lblIndicador1.setOpaque(true);
-        jPanelGraficos.add(lblIndicador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 570, -1));
-
-        lblStatus2.setBackground(new java.awt.Color(54, 96, 146));
-        lblStatus2.setForeground(new java.awt.Color(255, 255, 255));
-        lblStatus2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblStatus2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
-        lblStatus2.setOpaque(true);
-        jPanelGraficos.add(lblStatus2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 100, 50));
+        jPanelGraficos.add(lblIndicador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 570, -1));
 
         lblResponsavel2.setBackground(new java.awt.Color(54, 96, 146));
         lblResponsavel2.setForeground(new java.awt.Color(255, 255, 255));
         lblResponsavel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblResponsavel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
         lblResponsavel2.setOpaque(true);
-        jPanelGraficos.add(lblResponsavel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 220, 50));
+        jPanelGraficos.add(lblResponsavel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 220, 50));
 
         lblIndicador2.setBackground(new java.awt.Color(54, 96, 146));
         lblIndicador2.setForeground(new java.awt.Color(255, 255, 255));
         lblIndicador2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblIndicador2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
         lblIndicador2.setOpaque(true);
-        jPanelGraficos.add(lblIndicador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, 570, 50));
+        jPanelGraficos.add(lblIndicador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, 570, 50));
 
         btnFatoCausaAcao.setBackground(new java.awt.Color(54, 96, 146));
         btnFatoCausaAcao.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
@@ -443,7 +439,7 @@ public class Graficos extends javax.swing.JPanel{
                 btnFatoCausaAcaoActionPerformed(evt);
             }
         });
-        jPanelGraficos.add(btnFatoCausaAcao, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 30, 180, 50));
+        jPanelGraficos.add(btnFatoCausaAcao, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 30, 180, 50));
 
         jPanelGraficoEvoAcum.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanelGraficos.add(jPanelGraficoEvoAcum, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 610, 400));
@@ -2274,15 +2270,46 @@ public class Graficos extends javax.swing.JPanel{
                 btnGraTrocaRealxMeta1ActionPerformed(evt);
             }
         });
-        jPanelGraficos.add(btnGraTrocaRealxMeta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 500, 210, 30));
+        jPanelGraficos.add(btnGraTrocaRealxMeta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 500, 210, 30));
 
-        jButton1.setText("jButton1");
+        btnImprimir.setText("Imprimir Relatório");
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
+            }
+        });
+        jPanelGraficos.add(btnImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 500, 180, 30));
+
+        lblStatus2.setBackground(new java.awt.Color(54, 96, 146));
+        lblStatus2.setForeground(new java.awt.Color(255, 255, 255));
+        lblStatus2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblStatus2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
+        lblStatus2.setOpaque(true);
+        jPanelGraficos.add(lblStatus2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 100, 50));
+
+        jButton1.setText("Imprimir Gráfico");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanelGraficos.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 510, -1, -1));
+        jPanelGraficos.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 500, 180, 30));
+
+        lblVariacao1.setBackground(new java.awt.Color(15, 36, 62));
+        lblVariacao1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        lblVariacao1.setForeground(new java.awt.Color(255, 255, 255));
+        lblVariacao1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblVariacao1.setText("Variação");
+        lblVariacao1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblVariacao1.setOpaque(true);
+        jPanelGraficos.add(lblVariacao1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 100, 20));
+
+        lblVariacao2.setBackground(new java.awt.Color(54, 96, 146));
+        lblVariacao2.setForeground(new java.awt.Color(255, 255, 255));
+        lblVariacao2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblVariacao2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
+        lblVariacao2.setOpaque(true);
+        jPanelGraficos.add(lblVariacao2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 100, 50));
 
         jScrollGraficos.setViewportView(jPanelGraficos);
 
@@ -2322,15 +2349,12 @@ public class Graficos extends javax.swing.JPanel{
         fato.setVisible(true);
     }//GEN-LAST:event_btnFatoCausaAcaoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
         // TODO add your handling code here:
-        /*
         InputStream inputStream = getClass().getResourceAsStream("/Graficos.jasper");
 
         Map<String, Object> parametros = new HashMap<String,Object>();
-        for(int i = 1; i <= 12; i++){
-            parametros.put("PAR_COD", i);
-        }
+
         try{        
             Info.openReport("Gráficos", inputStream, parametros, Conexao.getBDCockpit());
         }catch(SQLException ex){
@@ -2338,28 +2362,20 @@ public class Graficos extends javax.swing.JPanel{
         }catch(JRException ex){
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        */
-        //OutputStream outputStream;
-        FileOutputStream outputStream;
-        //File imgFile;
-        try{
-            outputStream = new FileOutputStream("grafico.jpg");
-            
-            //ImageIO.write(imagem , "JPG", outputStream);
-            //imgFile = new File("grafico.jpg");
-            ImageIO.write(imagem, "JPG", new FileOutputStream("grafico2.jpg"));
-            ChartUtilities.writeBufferedImageAsJPEG(outputStream, imagem);
-            
-            outputStream.close();
-        }catch(IOException ex){
-            Logger.getLogger(Graficos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_btnImprimirActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        tempGrafico = new TempGrafico();
+        tempGrafico.setGrafico(chart);
+        tempGrafico.setDados(lblStatus2.getIcon(), lblVariacao2.getIcon(), lblResponsavel2.getText(), lblIndicador2.getText());
+        tempGrafico.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
     public void setGraficoEvoAcum(){
         final CategoryDataset realAcu = createDataSetRealAcumulado();
         final CategoryDataset metaAcu = createDataSetMetaAcumulado();
-
 
         final JFreeChart chartRealMetaAcu = ChartFactory.createBarChart(lblIndicador2.getText(), "Evolução Real x Meta - Acumulado", null, realAcu, PlotOrientation.VERTICAL, true, true, true);
         final CategoryItemRenderer linhaMeta = new LineAndShapeRenderer(true, false);
@@ -2410,18 +2426,11 @@ public class Graficos extends javax.swing.JPanel{
         jPanelGraficoEvoAcum.revalidate();
         jPanelGraficoEvoAcum.repaint();
         
-        OutputStream out;
-        File arquivo = new File("\\\\192.168.0.254\\Grupos\\COCKPIT\\Software Cockpit\\Relatorios\\realXmetaAcum.jpg");
-        //File arquivo = new File("/Users/danielnegreiros/documentos/realXmetaAcum.jpg");
-        try{
-            out = new FileOutputStream(arquivo);
-            JOptionPane.showMessageDialog(null, out);
-            ChartUtilities.writeChartAsJPEG(out, chartRealMetaAcu, 300, 300);
-        }catch(IOException ex){
-            Logger.getLogger(Graficos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        setImgGrafico(chartRealMetaAcu, "realXmetaAcum.jpg");
+        
+        chart = chartRealMetaAcu;
     }
-    
+
     public void setGraficoEvoMen(){
         final CategoryDataset realMen = createDataSetRealMensal();
         final CategoryDataset metaMen = createDataSetMetaMensal();
@@ -2475,6 +2484,8 @@ public class Graficos extends javax.swing.JPanel{
         jPanelGraficoEvoAcum.add(chartPanelRealMetaMen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 400));
         jPanelGraficoEvoAcum.revalidate();
         jPanelGraficoEvoAcum.repaint();
+        
+        setImgGrafico(chartRealMetaMen, "realXmetaMen.jpg");
     }
 
     public void setGraficoDesvPerc(){
@@ -2543,6 +2554,8 @@ public class Graficos extends javax.swing.JPanel{
         jPanelGraficoDesvPerc.add(chartPanelDesvioPerc, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 400));
         jPanelGraficoDesvPerc.revalidate();
         jPanelGraficoDesvPerc.repaint();
+        
+        setImgGrafico(chartDevioPerc, "desvrealXmetaPer.jpg");
     }
 
     public void setGraficoDesvAbs(){
@@ -2572,17 +2585,21 @@ public class Graficos extends javax.swing.JPanel{
             if(aux.endsWith(maiorMenor)){
                 renderer.setSeriesPaint(0, CockpitCor.getGraficoVerde());
                 renderer.setSeriesPaint(1, CockpitCor.getGraficoVermelho());
+                setLblVariacao("Maior");
             }else if(aux.endsWith(menorMaior)){
                 renderer.setSeriesPaint(1, CockpitCor.getGraficoVerde());
                 renderer.setSeriesPaint(0, CockpitCor.getGraficoVermelho());
+                setLblVariacao("Menor");
             }
         }else{
             if(aux.endsWith(maiorMenor)){
                 renderer.setSeriesPaint(1, CockpitCor.getGraficoVerde());
                 renderer.setSeriesPaint(0, CockpitCor.getGraficoVermelho());
+                setLblVariacao("Maior");
             }else if(aux.endsWith(menorMaior)){
                 renderer.setSeriesPaint(0, CockpitCor.getGraficoVerde());
                 renderer.setSeriesPaint(1, CockpitCor.getGraficoVermelho());
+                setLblVariacao("Menor");
             }
         }
 
@@ -2620,6 +2637,27 @@ public class Graficos extends javax.swing.JPanel{
         jPanelGraficoDesvPerc.add(chartPanelDesvioAbs, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 400));
         jPanelGraficoDesvPerc.revalidate();
         jPanelGraficoDesvPerc.repaint();
+        
+        setImgGrafico(chartDevioAbs, "desvRealXmetaAbs.jpg");
+    }
+    
+    private void setImgGrafico(JFreeChart chart, String caminho){
+        OutputStream out;
+        File arquivo = new File(caminho);
+        
+        //lblStatus2.getIcon();
+        
+        //BufferedImage imgStatus = new BufferedImage(lblStatus2.getIcon().getIconWidth(), lblStatus2.getIcon().getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+        //Graphics2D g2 = imgStatus.createGraphics();
+        //g2.dispose();
+        //imgStatus = (BufferedImage)lblStatus2.getIcon();
+        try{
+            out = new FileOutputStream(arquivo);
+            //ImageIO.write(imgStatus, "JPG", status);
+            ChartUtilities.writeChartAsJPEG(out, chart, 400, 300);
+        }catch(IOException ex){
+            Logger.getLogger(Graficos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private CategoryDataset createDataSetRealAcumulado(){
@@ -3253,6 +3291,18 @@ public class Graficos extends javax.swing.JPanel{
             campo = "GRA_METANTMEN";
             insert = "UPDATE " + tabela + " SET " + campo + " = '" + metAntMen[i] + "' WHERE " + codTab + " = " + (i + 1);
             Info.objConexao.setBD(insert);
+            
+            campo = "GRA_STA";
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + strAux + "' WHERE " + codTab + " = " + (i + 1);
+            Info.objConexao.setBD(insert);
+            
+            campo = "GRA_RES";
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + lblResponsavel2.getText() + "' WHERE " + codTab + " = " + (i + 1);
+            Info.objConexao.setBD(insert);
+            
+            campo = "GRA_IND";
+            insert = "UPDATE " + tabela + " SET " + campo + " = '" + lblIndicador2.getText() + "' WHERE " + codTab + " = " + (i + 1);
+            Info.objConexao.setBD(insert);
         }
     }
     private double dblJan;
@@ -3284,6 +3334,7 @@ public class Graficos extends javax.swing.JPanel{
     private javax.swing.JButton btnFatoCausaAcao;
     private javax.swing.JButton btnGraTrocaDesvio;
     private javax.swing.JButton btnGraTrocaRealxMeta1;
+    private javax.swing.JButton btnImprimir;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanelGraficoDesvPerc;
     private javax.swing.JPanel jPanelGraficoEvoAcum;
@@ -3365,6 +3416,8 @@ public class Graficos extends javax.swing.JPanel{
     private javax.swing.JLabel lblTendenciaNov;
     private javax.swing.JLabel lblTendenciaOut;
     private javax.swing.JLabel lblTendenciaSet;
+    private javax.swing.JLabel lblVariacao1;
+    private javax.swing.JLabel lblVariacao2;
     private javax.swing.JTextField txtAcumBenchAbr;
     private javax.swing.JTextField txtAcumBenchAgo;
     private javax.swing.JTextField txtAcumBenchDez;
@@ -3591,17 +3644,58 @@ public class Graficos extends javax.swing.JPanel{
     public void setLblStatus2(String cor){
         if(cor.equals(strCor[0])){
             lblStatus2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola5G.png")));
+            setBDStatus("Muito Vermelho");
         }else if(cor.equals(strCor[1])){
             lblStatus2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola4G.png")));
+            setBDStatus("Vermelho");
         }else if(cor.equals(strCor[2])){
             lblStatus2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola3G.png")));
+            setBDStatus("Amarelo");
         }else if(cor.equals(strCor[3])){
             lblStatus2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola2G.png")));
+            setBDStatus("Verde");
         }else if(cor.equals(strCor[4])){
             lblStatus2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bola1G.png")));
+            setBDStatus("Muito Verde");
         }
     }
-
+    
+    private void setBDStatus(String status){
+        strAux = status;
+    }
+    /* TESTE
+    private void setIcoStatus(String caminho){
+        ImageIcon io = new ImageIcon(getClass().getResource(caminho));
+        
+        Image img = null;
+        try{
+            img = ImageIO.read(getClass().getResource(caminho));
+        }catch(IOException ex){
+            Logger.getLogger(Graficos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //img = io.getImage();
+        JOptionPane.showMessageDialog(null, io);
+        //BufferedImage imgStatus = new BufferedImage(lblStatus2.getIcon().getIconWidth(), lblStatus2.getIcon().getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+        //Graphics2D g2 = imgStatus.createGraphics();
+        //g2.dispose();
+        //imgStatus = (BufferedImage)lblStatus2.getIcon();
+        
+        //BufferedImage buff = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
+        //Graphics2D g2 = buff.createGraphics();
+        //g2.drawImage(img, 0, 0, null);
+        //g2.dispose();
+        
+        BufferedImage buff;
+        ByteArrayInputStream();
+        try{
+            buff = ImageIO.read(getClass().getResource(caminho));
+            ImageIO.write(buff, "JPG", new FileOutputStream("status.jpg"));
+        }catch(IOException ex){
+            Logger.getLogger(Graficos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    */
+    
     public String getLblResponsavel2(){
         return nome;
     }
@@ -4005,6 +4099,14 @@ public class Graficos extends javax.swing.JPanel{
         }else if(flecha.equals(strFlecha[2])){
             lblTendenciaDez.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/flechaDown.PNG")));
         }
+    }
+    
+    public void setLblVariacao(String flecha){
+       if(flecha.equals("Maior")){
+            lblVariacao2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/flechaMaior.png")));
+        }else if(flecha.equals("Menor")){
+            lblVariacao2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/flechaMenor.png")));
+        } 
     }
 
     /*****************************************Real Acumulado*****************************************/

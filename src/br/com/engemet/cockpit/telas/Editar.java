@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 
 public class Editar extends javax.swing.JFrame{
@@ -79,7 +78,7 @@ public class Editar extends javax.swing.JFrame{
             cod = cbxIndicadores.getSelectedIndex();
 
             iniciativa = new Iniciativas();
-            iniciativa.setBounds(110, 25, 1050, 750);
+            iniciativa.setBounds(110, 0, 1050, 710);
             iniciativa.setEditarIniciativa(cod);
             iniciativa.setDataAtualizacao();
             iniciativa.setVisible(true);
@@ -89,7 +88,7 @@ public class Editar extends javax.swing.JFrame{
             cod = cbxIndicadores.getSelectedIndex();
 
             iniciativa = new Iniciativas();
-            iniciativa.setBounds(110, 25, 1050, 750);
+            iniciativa.setBounds(110, 0, 1050, 710);
             iniciativa.setConsultarIniciativa(cod);
             iniciativa.setDataAtualizacao();
             iniciativa.consultarIniciativa();
@@ -104,6 +103,7 @@ public class Editar extends javax.swing.JFrame{
             cronogramaIniciativa.setCbxEditarAtividades();
             cronogramaIniciativa.setCbxAtividades(cod);
             cronogramaIniciativa.setBounds(440, 200, 450, 450);
+            cronogramaIniciativa.verificar = 0;
             cronogramaIniciativa.setVisible(true);
             
             this.dispose();

@@ -2,7 +2,6 @@ package br.com.engemet.cockpit.acao;
 
 import br.com.engemet.cockpit.telas.Info;
 import java.util.Calendar;
-import javax.swing.JOptionPane;
 
 public class CalculoStatus{
 

@@ -1,24 +1,10 @@
 package br.com.engemet.cockpit.telas;
 
 import br.com.engemet.cockpit.acao.*;
-import br.com.engemet.cockpit.oracle.Conexao;
-import java.awt.BorderLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.view.JRViewer;
 
 public class Principal extends javax.swing.JFrame{
     
@@ -37,9 +23,7 @@ public class Principal extends javax.swing.JFrame{
         Info.telaPrincipal = this;
 
         initComponents();
-        
-        jMenuItemImprimir.setVisible(false);
-        
+
         setDefaultCloseOperation(Frame.DO_NOTHING_ON_CLOSE); 
         
         addWindowListener(new WindowAdapter() {
@@ -60,7 +44,6 @@ public class Principal extends javax.swing.JFrame{
         jMenuUsuario = new javax.swing.JMenu();
         jMenuItemCriarUsuario = new javax.swing.JMenuItem();
         jMenuItemRedefinirSenha = new javax.swing.JMenuItem();
-        jMenuItemImprimir = new javax.swing.JMenuItem();
         jMenuItemSair = new javax.swing.JMenuItem();
         jMenuMapaEstrategico = new javax.swing.JMenu();
         jMenuItemMapaEstrategico = new javax.swing.JMenuItem();
@@ -108,14 +91,6 @@ public class Principal extends javax.swing.JFrame{
         jMenuUsuario.add(jMenuItemRedefinirSenha);
 
         jMenuArquivo.add(jMenuUsuario);
-
-        jMenuItemImprimir.setText("Imprimir");
-        jMenuItemImprimir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemImprimirActionPerformed(evt);
-            }
-        });
-        jMenuArquivo.add(jMenuItemImprimir);
 
         jMenuItemSair.setText("Sair");
         jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
@@ -407,7 +382,7 @@ public class Principal extends javax.swing.JFrame{
         iniciativa = new Iniciativas();
         iniciativa.setIniciativaCod();
         iniciativa.setCodUsuario();
-        iniciativa.setBounds(110, 25, 1050, 750);
+        iniciativa.setBounds(110, 0, 1050, 710);
         iniciativa.setVisible(true);
     }//GEN-LAST:event_jMenuItemNovaIniciativaActionPerformed
 
@@ -450,7 +425,7 @@ public class Principal extends javax.swing.JFrame{
         // TODO add your handling code here:
         Editar editar = new Editar();
 
-        editar.setTitle("Editar Atividades");
+        editar.setTitle("Consultar Atividades");
         editar.setTexto("Escolha a Atividade:");
         
         int cod = 0;
@@ -485,23 +460,6 @@ public class Principal extends javax.swing.JFrame{
         editar.setVisible(true);
     }//GEN-LAST:event_jMenuItemConsultarIniciativaActionPerformed
 
-    private void jMenuItemImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemImprimirActionPerformed
-        // TODO add your handling code here:
-        //Imprimir.printComponent(this);
-        /*
-        JFrame jFrame = new JFrame();
-        JPanel pagina = new JPanel();
-
-        pagina.add(this.getContentPane());
-        jFrame.add(pagina);
-
-        jFrame.setVisible(true);
-
-        validate();
-        repaint();
-        */
-    }//GEN-LAST:event_jMenuItemImprimirActionPerformed
-
     private void jMenuItemImprimirIndicadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemImprimirIndicadorActionPerformed
         // TODO add your handling code here:
         Editar editar = new Editar();
@@ -535,9 +493,7 @@ public class Principal extends javax.swing.JFrame{
         editar.setBounds(550, 400, 630, 160);
         editar.setVisible(true);
     }//GEN-LAST:event_jMenuItemImprimirIndicadorActionPerformed
-    
-    
-    
+
     public void setStatusMapa(){
         Info.data = Info.cal.get(Calendar.MONTH);
 
@@ -1331,7 +1287,6 @@ public class Principal extends javax.swing.JFrame{
     private javax.swing.JMenuItem jMenuItemEditarIndicador;
     private javax.swing.JMenuItem jMenuItemEditarIniciativa;
     private javax.swing.JMenuItem jMenuItemFinancas;
-    private javax.swing.JMenuItem jMenuItemImprimir;
     private javax.swing.JMenuItem jMenuItemImprimirIndicador;
     private javax.swing.JMenuItem jMenuItemMapaEstrategico;
     private javax.swing.JMenuItem jMenuItemNovaIniciativa;

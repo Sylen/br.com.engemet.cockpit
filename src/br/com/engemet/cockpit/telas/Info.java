@@ -11,8 +11,6 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.Map;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -210,7 +208,7 @@ public abstract class Info {
         JFrame frameRelatorio = new JFrame(titulo);
         
         frameRelatorio.add(viewer, BorderLayout.CENTER);
-        frameRelatorio.setSize(500, 500);
+        frameRelatorio.setSize(1240, 700);
         //frameRelatorio.setExtendedState(WIDTH);
         frameRelatorio.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frameRelatorio.setVisible(true);

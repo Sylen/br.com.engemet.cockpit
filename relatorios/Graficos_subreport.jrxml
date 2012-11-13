@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Graficos_subreport" language="groovy" columnCount="12" printOrder="Horizontal" pageWidth="802" pageHeight="400" orientation="Landscape" columnWidth="66" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Graficos_subreport" language="groovy" columnCount="12" printOrder="Horizontal" pageWidth="660" pageHeight="210" orientation="Landscape" columnWidth="55" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -27,9 +27,9 @@
 	<field name="GRA_COD" class="java.math.BigDecimal"/>
 	<field name="GRA_MES" class="java.lang.String"/>
 	<detail>
-		<band height="20">
+		<band height="15">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="66" height="20" backcolor="#F5DFAA"/>
+				<reportElement mode="Opaque" x="0" y="0" width="55" height="15" backcolor="#F5DFAA"/>
 				<box>
 					<pen lineWidth="2.0"/>
 					<topPen lineWidth="2.0"/>
@@ -38,14 +38,14 @@
 					<rightPen lineWidth="2.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{GRA_MES}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20">
+		<band height="10">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="66" height="20" backcolor="#F5DFAA"/>
+				<reportElement mode="Opaque" x="0" y="0" width="55" height="10" backcolor="#F5DFAA"/>
 				<box leftPadding="0">
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -54,14 +54,14 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{GRA_REAACU}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20">
+		<band height="10">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="66" height="20" backcolor="#F5DFAA"/>
+				<reportElement mode="Opaque" x="0" y="0" width="55" height="10" backcolor="#F5DFAA"/>
 				<box leftPadding="0">
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -70,14 +70,14 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{GRA_METACU}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20">
+		<band height="10">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="66" height="20" backcolor="#F5DFAA"/>
+				<reportElement mode="Opaque" x="0" y="0" width="55" height="10" backcolor="#F5DFAA"/>
 				<box leftPadding="0">
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -86,14 +86,14 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{GRA_FORACU}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20">
+		<band height="10">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="66" height="20" backcolor="#F5DFAA"/>
+				<reportElement mode="Opaque" x="0" y="0" width="55" height="10" backcolor="#F5DFAA"/>
 				<box leftPadding="0">
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -102,14 +102,14 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{GRA_DESACU}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20">
+		<band height="10">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="66" height="20" backcolor="#F5DFAA"/>
+				<reportElement mode="Opaque" x="0" y="0" width="55" height="10" backcolor="#F5DFAA"/>
 				<box leftPadding="0">
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -118,14 +118,14 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{GRA_DESPERACU}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20">
+		<band height="10">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="66" height="20" backcolor="#F5DFAA"/>
+				<reportElement mode="Opaque" x="0" y="0" width="55" height="10" backcolor="#F5DFAA"/>
 				<box leftPadding="0">
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -134,14 +134,14 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{GRA_HISACU}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20">
+		<band height="10">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="66" height="20" backcolor="#F5DFAA"/>
+				<reportElement mode="Opaque" x="0" y="0" width="55" height="10" backcolor="#F5DFAA"/>
 				<box leftPadding="0">
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -150,14 +150,14 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{GRA_BENACU}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20">
+		<band height="10">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="66" height="20" backcolor="#F5DFAA"/>
+				<reportElement mode="Opaque" x="0" y="0" width="55" height="10" backcolor="#F5DFAA"/>
 				<box leftPadding="0">
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -166,14 +166,14 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{GRA_IDEACU}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20">
+		<band height="10">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="66" height="20" backcolor="#F5DFAA"/>
+				<reportElement mode="Opaque" x="0" y="0" width="55" height="10" backcolor="#F5DFAA"/>
 				<box leftPadding="0">
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -182,14 +182,14 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{GRA_METANTACU}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20">
+		<band height="15">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="66" height="20" backcolor="#C5F1CB"/>
+				<reportElement mode="Opaque" x="0" y="0" width="55" height="15" backcolor="#C5F1CB"/>
 				<box>
 					<pen lineWidth="2.0"/>
 					<topPen lineWidth="2.0"/>
@@ -198,14 +198,14 @@
 					<rightPen lineWidth="2.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{GRA_MES}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20">
+		<band height="10">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="66" height="20" backcolor="#C5F1CB"/>
+				<reportElement mode="Opaque" x="0" y="0" width="55" height="10" backcolor="#C5F1CB"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -214,14 +214,14 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{GRA_REAMEN}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20">
+		<band height="10">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="66" height="20" backcolor="#C5F1CB"/>
+				<reportElement mode="Opaque" x="0" y="0" width="55" height="10" backcolor="#C5F1CB"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -230,14 +230,14 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{GRA_METMEN}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20">
+		<band height="10">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="66" height="20" backcolor="#C5F1CB"/>
+				<reportElement mode="Opaque" x="0" y="0" width="55" height="10" backcolor="#C5F1CB"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -246,14 +246,14 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{GRA_FORMEN}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20">
+		<band height="10">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="66" height="20" backcolor="#C5F1CB"/>
+				<reportElement mode="Opaque" x="0" y="0" width="55" height="10" backcolor="#C5F1CB"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -262,14 +262,14 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{GRA_DESMEN}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20">
+		<band height="10">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="66" height="20" backcolor="#C5F1CB"/>
+				<reportElement mode="Opaque" x="0" y="0" width="55" height="10" backcolor="#C5F1CB"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -278,14 +278,14 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{GRA_DESPERMEN}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20">
+		<band height="10">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="66" height="20" backcolor="#C5F1CB"/>
+				<reportElement mode="Opaque" x="0" y="0" width="55" height="10" backcolor="#C5F1CB"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -294,14 +294,14 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{GRA_HISMEN}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20">
+		<band height="10">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="66" height="20" backcolor="#C5F1CB"/>
+				<reportElement mode="Opaque" x="0" y="0" width="55" height="10" backcolor="#C5F1CB"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -310,14 +310,14 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{GRA_BENMEN}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20">
+		<band height="10">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="66" height="20" backcolor="#C5F1CB"/>
+				<reportElement mode="Opaque" x="0" y="0" width="55" height="10" backcolor="#C5F1CB"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -326,14 +326,14 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{GRA_IDEMEN}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20">
+		<band height="10">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="66" height="20" backcolor="#C5F1CB"/>
+				<reportElement mode="Opaque" x="0" y="0" width="55" height="10" backcolor="#C5F1CB"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -342,7 +342,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
+					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{GRA_METANTMEN}]]></textFieldExpression>
 			</textField>

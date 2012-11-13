@@ -12,7 +12,9 @@ public class AcessoUsuario extends javax.swing.JFrame{
     public AcessoUsuario(){
         conexao.openBD();
         
-        initComponents(); 
+        initComponents();
+        
+       getRootPane().setDefaultButton(btnOk);
     }
 
     @SuppressWarnings("unchecked")

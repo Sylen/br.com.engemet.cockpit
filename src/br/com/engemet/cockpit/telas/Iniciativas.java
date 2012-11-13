@@ -1582,6 +1582,7 @@ public class Iniciativas extends javax.swing.JFrame{
 
         cronogramaIniciativa.setComboBoxs();
         cronogramaIniciativa.setBounds(440, 200, 450, 450);
+        cronogramaIniciativa.verificar = 0;
         cronogramaIniciativa.setVisible(true);
         //setAtividades(numeroAtividade);
         //numeroAtividade ++;
@@ -4642,10 +4643,9 @@ public class Iniciativas extends javax.swing.JFrame{
         strCod = "ATI_COD";
         strCodUsu = "ATI_CODUSU";
         strNom = "ATI_NOMUSU";
-
-        select = "" + " WHERE " + strCodIni + " = " + iniCod;
+        
+        select = "SELECT * FROM " + tabela + " WHERE " + strCodIni + " = " + iniCod;
         cod = Info.objConexao.getIndCod(select, strCod, cod);
-
 
         for(int i = 1; i < cod; i++){
             campo = "ATI_NOM";
@@ -4903,8 +4903,10 @@ public class Iniciativas extends javax.swing.JFrame{
             String strProgressoIniciativa = String.valueOf(totalProgresso);
 
             lblProgressoFisico1.setText(Info.percentual.format(Float.parseFloat(strProgressoIniciativa)));
-
-            if(totalProgresso < totalDecorrido){
+            
+            if(totalProgresso > 0.98){
+                setLblStatusCronograma("Verde");
+            }else if(totalProgresso < totalDecorrido){
                 setLblStatusCronograma("Vermelho");
             }else{
                 setLblStatusCronograma("Verde");

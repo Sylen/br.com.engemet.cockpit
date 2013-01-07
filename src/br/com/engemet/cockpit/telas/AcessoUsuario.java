@@ -14,7 +14,7 @@ public class AcessoUsuario extends javax.swing.JFrame{
         
         initComponents();
         
-       getRootPane().setDefaultButton(btnOk);
+        getRootPane().setDefaultButton(btnOk);
     }
 
     @SuppressWarnings("unchecked")

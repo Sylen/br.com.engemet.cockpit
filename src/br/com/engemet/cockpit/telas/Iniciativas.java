@@ -9,6 +9,8 @@ import javax.swing.*;
 public class Iniciativas extends javax.swing.JFrame{
 
     private CronogramaIniciativa cronogramaIniciativa = new CronogramaIniciativa();
+    private TempIniciativas tempIniciativas;
+    private TempCronograma tempCronograma = new TempCronograma();
     public int iniCod = 0;
     private int cod = 0;
     private int codUsu = 0;
@@ -213,6 +215,9 @@ public class Iniciativas extends javax.swing.JFrame{
         btnEditarAtividade = new javax.swing.JButton();
         jScrollPane32 = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
+        tab4 = new javax.swing.JPanel();
+        btnImprimirIniciativa = new javax.swing.JButton();
+        btnImprimirCronograma = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -503,7 +508,7 @@ public class Iniciativas extends javax.swing.JFrame{
         lblRecursos.setFont(new java.awt.Font("Lucida Grande", 1, 12)); // NOI18N
         lblRecursos.setForeground(new java.awt.Color(255, 255, 255));
         lblRecursos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblRecursos.setText("<html><center>Recusrsos / Equipe</center></html>");
+        lblRecursos.setText("<html><center>Recursos / Equipe</center></html>");
         lblRecursos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblRecursos.setOpaque(true);
         jPanel2.add(lblRecursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 150, 50));
@@ -560,7 +565,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 txtPrazoFocusLost(evt);
             }
         });
-        jPanel2.add(txtPrazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 290, 110, 30));
+        jPanel2.add(txtPrazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 290, 110, 50));
 
         lblContagemDias.setBackground(new java.awt.Color(54, 96, 146));
         lblContagemDias.setFont(new java.awt.Font("Lucida Grande", 1, 12)); // NOI18N
@@ -619,14 +624,14 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane2.setViewportView(txtAcoes);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, 290, 30));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, 290, 50));
 
         txtResponsavel.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtResponsavelFocusLost(evt);
             }
         });
-        jPanel2.add(txtResponsavel, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 290, 150, 30));
+        jPanel2.add(txtResponsavel, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 290, 150, 50));
 
         txtDataAtualizacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM))));
         txtDataAtualizacao.setToolTipText("formato da data dd/mm/aaaa");
@@ -643,7 +648,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkOkActionPerformed(evt);
             }
         });
-        jPanel2.add(chkOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 290, 60, 30));
+        jPanel2.add(chkOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 300, 60, 30));
 
         txtPontoAtencao.setColumns(20);
         txtPontoAtencao.setRows(1);
@@ -654,7 +659,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane3.setViewportView(txtPontoAtencao);
 
-        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 350, 30));
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 350, 50));
 
         txtPrazo1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
         txtPrazo1.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -662,7 +667,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 txtPrazo1FocusLost(evt);
             }
         });
-        jPanel2.add(txtPrazo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 320, 110, 30));
+        jPanel2.add(txtPrazo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 340, 110, 50));
 
         txtAcoes1.setColumns(20);
         txtAcoes1.setRows(1);
@@ -673,14 +678,14 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane4.setViewportView(txtAcoes1);
 
-        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 320, 290, 30));
+        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 290, 50));
 
         txtResponsavel1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtResponsavel1FocusLost(evt);
             }
         });
-        jPanel2.add(txtResponsavel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 320, 150, 30));
+        jPanel2.add(txtResponsavel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 340, 150, 50));
 
         chkOk1.setText("OK");
         chkOk1.addActionListener(new java.awt.event.ActionListener() {
@@ -688,7 +693,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkOk1ActionPerformed(evt);
             }
         });
-        jPanel2.add(chkOk1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 320, 60, 30));
+        jPanel2.add(chkOk1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 350, 60, 30));
 
         txtPontoAtencao1.setColumns(20);
         txtPontoAtencao1.setRows(1);
@@ -699,7 +704,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane5.setViewportView(txtPontoAtencao1);
 
-        jPanel2.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 350, 30));
+        jPanel2.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 350, 50));
 
         txtPrazo2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
         txtPrazo2.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -707,7 +712,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 txtPrazo2FocusLost(evt);
             }
         });
-        jPanel2.add(txtPrazo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 350, 110, 30));
+        jPanel2.add(txtPrazo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 390, 110, 50));
 
         txtAcoes2.setColumns(20);
         txtAcoes2.setRows(1);
@@ -718,14 +723,14 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane6.setViewportView(txtAcoes2);
 
-        jPanel2.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 350, 290, 30));
+        jPanel2.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 390, 290, 50));
 
         txtResponsavel2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtResponsavel2FocusLost(evt);
             }
         });
-        jPanel2.add(txtResponsavel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 350, 150, 30));
+        jPanel2.add(txtResponsavel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 390, 150, 50));
 
         chkOk2.setText("OK");
         chkOk2.addActionListener(new java.awt.event.ActionListener() {
@@ -733,7 +738,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkOk2ActionPerformed(evt);
             }
         });
-        jPanel2.add(chkOk2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 350, 60, 30));
+        jPanel2.add(chkOk2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 400, 60, 30));
 
         txtPontoAtencao2.setColumns(20);
         txtPontoAtencao2.setRows(1);
@@ -744,7 +749,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane7.setViewportView(txtPontoAtencao2);
 
-        jPanel2.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 350, 30));
+        jPanel2.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 350, 50));
 
         txtPrazo3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
         txtPrazo3.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -752,7 +757,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 txtPrazo3FocusLost(evt);
             }
         });
-        jPanel2.add(txtPrazo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 380, 110, 30));
+        jPanel2.add(txtPrazo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 440, 110, 50));
 
         txtAcoes3.setColumns(20);
         txtAcoes3.setRows(1);
@@ -763,14 +768,14 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane8.setViewportView(txtAcoes3);
 
-        jPanel2.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 380, 290, 30));
+        jPanel2.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 440, 290, 50));
 
         txtResponsavel3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtResponsavel3FocusLost(evt);
             }
         });
-        jPanel2.add(txtResponsavel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 380, 150, 30));
+        jPanel2.add(txtResponsavel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 440, 150, 50));
 
         chkOk3.setText("OK");
         chkOk3.addActionListener(new java.awt.event.ActionListener() {
@@ -778,7 +783,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkOk3ActionPerformed(evt);
             }
         });
-        jPanel2.add(chkOk3, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 380, 60, 30));
+        jPanel2.add(chkOk3, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 450, 60, 30));
 
         txtPontoAtencao3.setColumns(20);
         txtPontoAtencao3.setRows(1);
@@ -789,7 +794,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane9.setViewportView(txtPontoAtencao3);
 
-        jPanel2.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 350, 30));
+        jPanel2.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 350, 50));
 
         txtPrazo4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
         txtPrazo4.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -797,7 +802,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 txtPrazo4FocusLost(evt);
             }
         });
-        jPanel2.add(txtPrazo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 410, 110, 30));
+        jPanel2.add(txtPrazo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 490, 110, 50));
 
         txtAcoes4.setColumns(20);
         txtAcoes4.setRows(1);
@@ -808,14 +813,14 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane10.setViewportView(txtAcoes4);
 
-        jPanel2.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 410, 290, 30));
+        jPanel2.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 490, 290, 50));
 
         txtResponsavel4.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtResponsavel4FocusLost(evt);
             }
         });
-        jPanel2.add(txtResponsavel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 410, 150, 30));
+        jPanel2.add(txtResponsavel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 490, 150, 50));
 
         chkOk4.setText("OK");
         chkOk4.addActionListener(new java.awt.event.ActionListener() {
@@ -823,7 +828,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkOk4ActionPerformed(evt);
             }
         });
-        jPanel2.add(chkOk4, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 410, 60, 30));
+        jPanel2.add(chkOk4, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 500, 60, 30));
 
         txtPontoAtencao4.setColumns(20);
         txtPontoAtencao4.setRows(1);
@@ -834,7 +839,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane11.setViewportView(txtPontoAtencao4);
 
-        jPanel2.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 350, 30));
+        jPanel2.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 350, 50));
 
         lblPlanejamento.setBackground(new java.awt.Color(22, 54, 92));
         lblPlanejamento.setFont(new java.awt.Font("Lucida Grande", 1, 12)); // NOI18N
@@ -842,7 +847,7 @@ public class Iniciativas extends javax.swing.JFrame{
         lblPlanejamento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPlanejamento.setText("<html><center>Planejamento de Recursos para a Iniciativa</center></html>");
         lblPlanejamento.setOpaque(true);
-        jPanel2.add(lblPlanejamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 965, 40));
+        jPanel2.add(lblPlanejamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 965, 40));
 
         lblRecursos1.setBackground(new java.awt.Color(22, 54, 92));
         lblRecursos1.setFont(new java.awt.Font("Lucida Grande", 1, 12)); // NOI18N
@@ -852,7 +857,7 @@ public class Iniciativas extends javax.swing.JFrame{
         lblRecursos1.setToolTipText("(equipe, recursos materiais,  financeiros, etc.)");
         lblRecursos1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblRecursos1.setOpaque(true);
-        jPanel2.add(lblRecursos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 350, 40));
+        jPanel2.add(lblRecursos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 590, 350, 40));
 
         lblEspecificacao.setBackground(new java.awt.Color(22, 54, 92));
         lblEspecificacao.setFont(new java.awt.Font("Lucida Grande", 1, 12)); // NOI18N
@@ -862,7 +867,7 @@ public class Iniciativas extends javax.swing.JFrame{
         lblEspecificacao.setToolTipText("(Ex: tempo de dedicação ou % de alocação, período, valor em R$, etc.)");
         lblEspecificacao.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblEspecificacao.setOpaque(true);
-        jPanel2.add(lblEspecificacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 490, 350, 40));
+        jPanel2.add(lblEspecificacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 590, 350, 40));
 
         lblSituacao1.setBackground(new java.awt.Color(22, 54, 92));
         lblSituacao1.setFont(new java.awt.Font("Lucida Grande", 1, 12)); // NOI18N
@@ -871,7 +876,7 @@ public class Iniciativas extends javax.swing.JFrame{
         lblSituacao1.setText("Situação");
         lblSituacao1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblSituacao1.setOpaque(true);
-        jPanel2.add(lblSituacao1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 490, 260, 40));
+        jPanel2.add(lblSituacao1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 590, 260, 40));
 
         txtRecursos.setColumns(20);
         txtRecursos.setRows(1);
@@ -882,7 +887,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane12.setViewportView(txtRecursos);
 
-        jPanel2.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, 350, 30));
+        jPanel2.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 630, 350, 50));
 
         txtEspecificacao.setColumns(20);
         txtEspecificacao.setRows(1);
@@ -893,7 +898,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane13.setViewportView(txtEspecificacao);
 
-        jPanel2.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 530, 350, 30));
+        jPanel2.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 630, 350, 50));
 
         txtRecursos1.setColumns(20);
         txtRecursos1.setRows(1);
@@ -904,7 +909,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane14.setViewportView(txtRecursos1);
 
-        jPanel2.add(jScrollPane14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 560, 350, 30));
+        jPanel2.add(jScrollPane14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 680, 350, 50));
 
         txtEspecificacao1.setColumns(20);
         txtEspecificacao1.setRows(1);
@@ -915,7 +920,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane15.setViewportView(txtEspecificacao1);
 
-        jPanel2.add(jScrollPane15, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 560, 350, 30));
+        jPanel2.add(jScrollPane15, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 680, 350, 50));
 
         txtRecursos2.setColumns(20);
         txtRecursos2.setRows(1);
@@ -926,7 +931,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane16.setViewportView(txtRecursos2);
 
-        jPanel2.add(jScrollPane16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 590, 350, 30));
+        jPanel2.add(jScrollPane16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 730, 350, 50));
 
         txtEspecificacao2.setColumns(20);
         txtEspecificacao2.setRows(1);
@@ -937,7 +942,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane17.setViewportView(txtEspecificacao2);
 
-        jPanel2.add(jScrollPane17, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 590, 350, 30));
+        jPanel2.add(jScrollPane17, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 730, 350, 50));
 
         txtRecursos3.setColumns(20);
         txtRecursos3.setRows(1);
@@ -948,7 +953,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane18.setViewportView(txtRecursos3);
 
-        jPanel2.add(jScrollPane18, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 620, 350, 30));
+        jPanel2.add(jScrollPane18, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 780, 350, 50));
 
         txtEspecificacao3.setColumns(20);
         txtEspecificacao3.setRows(1);
@@ -959,7 +964,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane19.setViewportView(txtEspecificacao3);
 
-        jPanel2.add(jScrollPane19, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 620, 350, 30));
+        jPanel2.add(jScrollPane19, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 780, 350, 50));
 
         txtRecursos4.setColumns(20);
         txtRecursos4.setRows(1);
@@ -970,7 +975,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane20.setViewportView(txtRecursos4);
 
-        jPanel2.add(jScrollPane20, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 650, 350, 30));
+        jPanel2.add(jScrollPane20, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 830, 350, 50));
 
         txtEspecificacao4.setColumns(20);
         txtEspecificacao4.setRows(1);
@@ -981,7 +986,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane21.setViewportView(txtEspecificacao4);
 
-        jPanel2.add(jScrollPane21, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 650, 350, 30));
+        jPanel2.add(jScrollPane21, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 830, 350, 50));
 
         chkPlanejamentoPendente.setText("Pendente / com Problemas");
         chkPlanejamentoPendente.addActionListener(new java.awt.event.ActionListener() {
@@ -989,7 +994,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkPlanejamentoPendenteActionPerformed(evt);
             }
         });
-        jPanel2.add(chkPlanejamentoPendente, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 530, -1, 30));
+        jPanel2.add(chkPlanejamentoPendente, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 640, -1, 30));
 
         chkPlanejamentoOk.setText("OK");
         chkPlanejamentoOk.addActionListener(new java.awt.event.ActionListener() {
@@ -997,7 +1002,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkPlanejamentoOkActionPerformed(evt);
             }
         });
-        jPanel2.add(chkPlanejamentoOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 530, -1, 30));
+        jPanel2.add(chkPlanejamentoOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 640, -1, 30));
 
         chkPlanejamentoPendente1.setText("Pendente / com Problemas");
         chkPlanejamentoPendente1.addActionListener(new java.awt.event.ActionListener() {
@@ -1005,7 +1010,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkPlanejamentoPendente1ActionPerformed(evt);
             }
         });
-        jPanel2.add(chkPlanejamentoPendente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 560, -1, 30));
+        jPanel2.add(chkPlanejamentoPendente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 690, -1, 30));
 
         chkPlanejamentoOk1.setText("OK");
         chkPlanejamentoOk1.addActionListener(new java.awt.event.ActionListener() {
@@ -1013,7 +1018,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkPlanejamentoOk1ActionPerformed(evt);
             }
         });
-        jPanel2.add(chkPlanejamentoOk1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 560, -1, 30));
+        jPanel2.add(chkPlanejamentoOk1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 690, -1, 30));
 
         chkPlanejamentoPendente2.setText("Pendente / com Problemas");
         chkPlanejamentoPendente2.addActionListener(new java.awt.event.ActionListener() {
@@ -1021,7 +1026,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkPlanejamentoPendente2ActionPerformed(evt);
             }
         });
-        jPanel2.add(chkPlanejamentoPendente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 590, -1, 30));
+        jPanel2.add(chkPlanejamentoPendente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 740, -1, 30));
 
         chkPlanejamentoOk2.setText("OK");
         chkPlanejamentoOk2.addActionListener(new java.awt.event.ActionListener() {
@@ -1029,7 +1034,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkPlanejamentoOk2ActionPerformed(evt);
             }
         });
-        jPanel2.add(chkPlanejamentoOk2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 590, -1, 30));
+        jPanel2.add(chkPlanejamentoOk2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 740, -1, 30));
 
         chkPlanejamentoPendente3.setText("Pendente / com Problemas");
         chkPlanejamentoPendente3.addActionListener(new java.awt.event.ActionListener() {
@@ -1037,7 +1042,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkPlanejamentoPendente3ActionPerformed(evt);
             }
         });
-        jPanel2.add(chkPlanejamentoPendente3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 620, -1, 30));
+        jPanel2.add(chkPlanejamentoPendente3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 790, -1, 30));
 
         chkPlanejamentoOk3.setText("OK");
         chkPlanejamentoOk3.addActionListener(new java.awt.event.ActionListener() {
@@ -1045,7 +1050,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkPlanejamentoOk3ActionPerformed(evt);
             }
         });
-        jPanel2.add(chkPlanejamentoOk3, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 620, -1, 30));
+        jPanel2.add(chkPlanejamentoOk3, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 790, -1, 30));
 
         chkPlanejamentoPendente4.setText("Pendente / com Problemas");
         chkPlanejamentoPendente4.addActionListener(new java.awt.event.ActionListener() {
@@ -1053,7 +1058,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkPlanejamentoPendente4ActionPerformed(evt);
             }
         });
-        jPanel2.add(chkPlanejamentoPendente4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 650, -1, 30));
+        jPanel2.add(chkPlanejamentoPendente4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 840, -1, 30));
 
         chkPlanejamentoOk4.setText("OK");
         chkPlanejamentoOk4.addActionListener(new java.awt.event.ActionListener() {
@@ -1061,7 +1066,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkPlanejamentoOk4ActionPerformed(evt);
             }
         });
-        jPanel2.add(chkPlanejamentoOk4, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 650, -1, 30));
+        jPanel2.add(chkPlanejamentoOk4, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 840, -1, 30));
 
         lblControle.setBackground(new java.awt.Color(22, 54, 92));
         lblControle.setFont(new java.awt.Font("Lucida Grande", 1, 12)); // NOI18N
@@ -1069,7 +1074,7 @@ public class Iniciativas extends javax.swing.JFrame{
         lblControle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblControle.setText("<html><center>Controle de Alterações da Iniciativa</center></html>");
         lblControle.setOpaque(true);
-        jPanel2.add(lblControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 690, 965, 40));
+        jPanel2.add(lblControle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 890, 965, 40));
 
         lblDe.setBackground(new java.awt.Color(22, 54, 92));
         lblDe.setFont(new java.awt.Font("Lucida Grande", 1, 12)); // NOI18N
@@ -1079,7 +1084,7 @@ public class Iniciativas extends javax.swing.JFrame{
         lblDe.setToolTipText("");
         lblDe.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblDe.setOpaque(true);
-        jPanel2.add(lblDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 730, 350, 40));
+        jPanel2.add(lblDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 930, 350, 40));
 
         lblPara.setBackground(new java.awt.Color(22, 54, 92));
         lblPara.setFont(new java.awt.Font("Lucida Grande", 1, 12)); // NOI18N
@@ -1089,7 +1094,7 @@ public class Iniciativas extends javax.swing.JFrame{
         lblPara.setToolTipText("");
         lblPara.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblPara.setOpaque(true);
-        jPanel2.add(lblPara, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 730, 350, 40));
+        jPanel2.add(lblPara, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 930, 350, 40));
 
         lblAprovacao.setBackground(new java.awt.Color(22, 54, 92));
         lblAprovacao.setFont(new java.awt.Font("Lucida Grande", 1, 12)); // NOI18N
@@ -1098,7 +1103,7 @@ public class Iniciativas extends javax.swing.JFrame{
         lblAprovacao.setText("Aprovação");
         lblAprovacao.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblAprovacao.setOpaque(true);
-        jPanel2.add(lblAprovacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 730, 260, 40));
+        jPanel2.add(lblAprovacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 930, 260, 40));
 
         txtDe.setColumns(20);
         txtDe.setRows(1);
@@ -1109,7 +1114,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane22.setViewportView(txtDe);
 
-        jPanel2.add(jScrollPane22, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 770, 350, 30));
+        jPanel2.add(jScrollPane22, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 970, 350, 50));
 
         txtPara.setColumns(20);
         txtPara.setRows(1);
@@ -1120,7 +1125,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane23.setViewportView(txtPara);
 
-        jPanel2.add(jScrollPane23, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 770, 350, 30));
+        jPanel2.add(jScrollPane23, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 970, 350, 50));
 
         chkControlePendente.setText("Pendente");
         chkControlePendente.addActionListener(new java.awt.event.ActionListener() {
@@ -1128,7 +1133,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkControlePendenteActionPerformed(evt);
             }
         });
-        jPanel2.add(chkControlePendente, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 770, -1, 30));
+        jPanel2.add(chkControlePendente, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 980, -1, 30));
 
         chkControleOk.setText("Aprovado");
         chkControleOk.addActionListener(new java.awt.event.ActionListener() {
@@ -1136,7 +1141,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkControleOkActionPerformed(evt);
             }
         });
-        jPanel2.add(chkControleOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 770, -1, 30));
+        jPanel2.add(chkControleOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 980, -1, 30));
 
         txtDe1.setColumns(20);
         txtDe1.setRows(1);
@@ -1147,7 +1152,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane24.setViewportView(txtDe1);
 
-        jPanel2.add(jScrollPane24, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 800, 350, 30));
+        jPanel2.add(jScrollPane24, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1020, 350, 50));
 
         txtPara1.setColumns(20);
         txtPara1.setRows(1);
@@ -1158,7 +1163,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane25.setViewportView(txtPara1);
 
-        jPanel2.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 800, 350, 30));
+        jPanel2.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 1020, 350, 50));
 
         chkControlePendente1.setText("Pendente");
         chkControlePendente1.addActionListener(new java.awt.event.ActionListener() {
@@ -1166,7 +1171,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkControlePendente1ActionPerformed(evt);
             }
         });
-        jPanel2.add(chkControlePendente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 800, -1, 30));
+        jPanel2.add(chkControlePendente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 1030, -1, 30));
 
         chkControleOk1.setText("Aprovado");
         chkControleOk1.addActionListener(new java.awt.event.ActionListener() {
@@ -1174,7 +1179,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkControleOk1ActionPerformed(evt);
             }
         });
-        jPanel2.add(chkControleOk1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 800, -1, 30));
+        jPanel2.add(chkControleOk1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 1030, -1, 30));
 
         txtDe2.setColumns(20);
         txtDe2.setRows(1);
@@ -1185,7 +1190,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane26.setViewportView(txtDe2);
 
-        jPanel2.add(jScrollPane26, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 830, 350, 30));
+        jPanel2.add(jScrollPane26, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1070, 350, 50));
 
         txtPara2.setColumns(20);
         txtPara2.setRows(1);
@@ -1196,7 +1201,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane27.setViewportView(txtPara2);
 
-        jPanel2.add(jScrollPane27, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 830, 350, 30));
+        jPanel2.add(jScrollPane27, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 1070, 350, 50));
 
         chkControlePendente2.setText("Pendente");
         chkControlePendente2.addActionListener(new java.awt.event.ActionListener() {
@@ -1204,7 +1209,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkControlePendente2ActionPerformed(evt);
             }
         });
-        jPanel2.add(chkControlePendente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 830, -1, 30));
+        jPanel2.add(chkControlePendente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 1080, -1, 30));
 
         chkControleOk2.setText("Aprovado");
         chkControleOk2.addActionListener(new java.awt.event.ActionListener() {
@@ -1212,7 +1217,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkControleOk2ActionPerformed(evt);
             }
         });
-        jPanel2.add(chkControleOk2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 830, -1, 30));
+        jPanel2.add(chkControleOk2, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 1080, -1, 30));
 
         txtDe3.setColumns(20);
         txtDe3.setRows(1);
@@ -1223,7 +1228,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane28.setViewportView(txtDe3);
 
-        jPanel2.add(jScrollPane28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 860, 350, 30));
+        jPanel2.add(jScrollPane28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1120, 350, 50));
 
         txtPara3.setColumns(20);
         txtPara3.setRows(1);
@@ -1234,7 +1239,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane29.setViewportView(txtPara3);
 
-        jPanel2.add(jScrollPane29, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 860, 350, 30));
+        jPanel2.add(jScrollPane29, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 1120, 350, 50));
 
         chkControlePendente3.setText("Pendente");
         chkControlePendente3.addActionListener(new java.awt.event.ActionListener() {
@@ -1242,7 +1247,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkControlePendente3ActionPerformed(evt);
             }
         });
-        jPanel2.add(chkControlePendente3, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 860, -1, 30));
+        jPanel2.add(chkControlePendente3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 1130, -1, 30));
 
         chkControleOk3.setText("Aprovado");
         chkControleOk3.addActionListener(new java.awt.event.ActionListener() {
@@ -1250,7 +1255,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkControleOk3ActionPerformed(evt);
             }
         });
-        jPanel2.add(chkControleOk3, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 860, -1, 30));
+        jPanel2.add(chkControleOk3, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 1130, -1, 30));
 
         txtDe4.setColumns(20);
         txtDe4.setRows(1);
@@ -1261,7 +1266,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane30.setViewportView(txtDe4);
 
-        jPanel2.add(jScrollPane30, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 890, 350, 30));
+        jPanel2.add(jScrollPane30, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1170, 350, 50));
 
         txtPara4.setColumns(20);
         txtPara4.setRows(1);
@@ -1272,7 +1277,7 @@ public class Iniciativas extends javax.swing.JFrame{
         });
         jScrollPane31.setViewportView(txtPara4);
 
-        jPanel2.add(jScrollPane31, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 890, 350, 30));
+        jPanel2.add(jScrollPane31, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 1170, 350, 50));
 
         chkControlePendente4.setText("Pendente");
         chkControlePendente4.addActionListener(new java.awt.event.ActionListener() {
@@ -1280,7 +1285,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkControlePendente4ActionPerformed(evt);
             }
         });
-        jPanel2.add(chkControlePendente4, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 890, -1, 30));
+        jPanel2.add(chkControlePendente4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 1180, -1, 30));
 
         chkControleOk4.setText("Aprovado");
         chkControleOk4.addActionListener(new java.awt.event.ActionListener() {
@@ -1288,7 +1293,7 @@ public class Iniciativas extends javax.swing.JFrame{
                 chkControleOk4ActionPerformed(evt);
             }
         });
-        jPanel2.add(chkControleOk4, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 890, -1, 30));
+        jPanel2.add(chkControleOk4, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 1180, -1, 30));
 
         txtDefinicoesGerais.addTab("Gerenciamento da Iniciativa", jPanel2);
 
@@ -1547,6 +1552,27 @@ public class Iniciativas extends javax.swing.JFrame{
         jPanel3.add(jScrollPane32, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 965, 580));
 
         txtDefinicoesGerais.addTab("Cronograma da Iniciativa", jPanel3);
+
+        tab4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnImprimirIniciativa.setText("Imprimir Iniciativa");
+        btnImprimirIniciativa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirIniciativaActionPerformed(evt);
+            }
+        });
+        tab4.add(btnImprimirIniciativa, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, -1, -1));
+
+        btnImprimirCronograma.setText("Imprimir Cronograma");
+        btnImprimirCronograma.setToolTipText("");
+        btnImprimirCronograma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirCronogramaActionPerformed(evt);
+            }
+        });
+        tab4.add(btnImprimirCronograma, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, -1, -1));
+
+        txtDefinicoesGerais.addTab("Imprimir", null, tab4, "");
 
         jScrollPane1.setViewportView(txtDefinicoesGerais);
         txtDefinicoesGerais.getAccessibleContext().setAccessibleDescription("");
@@ -3737,6 +3763,53 @@ public class Iniciativas extends javax.swing.JFrame{
         Info.objConexao.setBD(insert);
     }//GEN-LAST:event_cbxObjetivosFocusLost
 
+    private void btnImprimirIniciativaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirIniciativaActionPerformed
+        // TODO add your handling code here:
+        tempIniciativas = new TempIniciativas();
+        
+        tempIniciativas.setDadosGerias(txtIniciativa.getText(), txtDescricao.getText(), txtPatrocinador.getText(),
+                txtLider.getText(), txtEquipe.getText(), txtEscopo.getText(), txtProdutos.getText(), txtIndicadores.getText(),
+                String.valueOf(cbxDataInicioSemana.getSelectedItem()), String.valueOf(cbxDataInicioMes.getSelectedItem()),
+                String.valueOf(cbxDataInicioAno.getSelectedItem()), String.valueOf(cbxDataTerminoSemana.getSelectedItem()),
+                String.valueOf(cbxDataTerminoMes.getSelectedItem()), String.valueOf(cbxDataTerminoAno.getSelectedItem()),
+                String.valueOf(cbxPainel.getSelectedItem()), String.valueOf(cbxObjetivos.getSelectedItem()));
+        
+        tempIniciativas.setGerenciamentoIniciativa(txtDataAtualizacao.getText(), lblContagemDias.getText(), txtPontoAtencao.getText(), txtPontoAtencao1.getText(), txtPontoAtencao2.getText(),
+                txtPontoAtencao3.getText(), txtPontoAtencao4.getText(), txtAcoes.getText(), txtAcoes1.getText(), txtAcoes2.getText(),
+                txtAcoes3.getText(), txtAcoes4.getText(), txtResponsavel.getText(), txtResponsavel1.getText(), txtResponsavel2.getText(),
+                txtResponsavel3.getText(), txtResponsavel4.getText(), txtPrazo.getText(), txtPrazo1.getText(), txtPrazo2.getText(),
+                txtPrazo3.getText(), txtPrazo4.getText(), String.valueOf(chkOk.isSelected()), String.valueOf(chkOk1.isSelected()), 
+                String.valueOf(chkOk2.isSelected()),String.valueOf(chkOk3.isSelected()), String.valueOf(chkOk4.isSelected()));
+        
+        tempIniciativas.setPlanejamentoRecursos(txtRecursos.getText(), txtRecursos1.getText(), txtRecursos2.getText(),txtRecursos3.getText(),
+                txtRecursos4.getText(), txtEspecificacao.getText(), txtEspecificacao1.getText(), txtEspecificacao2.getText(), txtEspecificacao3.getText(),
+                txtEspecificacao4.getText(), String.valueOf(chkPlanejamentoPendente.isSelected()),String.valueOf(chkPlanejamentoPendente1.isSelected()),
+                String.valueOf(chkPlanejamentoPendente2.isSelected()), String.valueOf(chkPlanejamentoPendente3.isSelected()), String.valueOf(chkPlanejamentoPendente4.isSelected()),
+                String.valueOf(chkPlanejamentoOk.isSelected()), String.valueOf(chkPlanejamentoOk1.isSelected()), String.valueOf(chkPlanejamentoOk2.isSelected()),
+                String.valueOf(chkPlanejamentoOk3.isSelected()), String.valueOf(chkPlanejamentoOk4.isSelected()));
+        
+        tempIniciativas.setControleAlteracoes(txtDe.getText(), txtDe1.getText(), txtDe2.getText(), txtDe3.getText(), txtDe4.getText(),
+                txtPara.getText(), txtPara1.getText(), txtPara2.getText(), txtPara3.getText(), txtPara4.getText(), String.valueOf(chkControlePendente.isSelected()),
+                String.valueOf(chkControlePendente1.isSelected()), String.valueOf(chkControlePendente2.isSelected()), String.valueOf(chkControlePendente3.isSelected()),
+                String.valueOf(chkControlePendente4.isSelected()), String.valueOf(chkControleOk.isSelected()), String.valueOf(chkControleOk1.isSelected()),
+                String.valueOf(chkControleOk2.isSelected()), String.valueOf(chkControleOk3.isSelected()), String.valueOf(chkControleOk4.isSelected()));
+        
+        tempIniciativas.setCronogramaIniciativa(lblCronogramaDataAtualizacao1.getText(), txtInicioReal.getText(), lblCronogramaDataTermino1.getText(),
+                lblNTotalSemanas1.getText(), lblNSemanasDecorridas1.getText(), lblNSemanasRestantes1.getText(), lblTempoDecorrido1.getText(), lblProgressoFisico1.getText(),
+                lblStatusCronograma1.getIcon());
+        
+        tempIniciativas.setVisible(true);
+    }//GEN-LAST:event_btnImprimirIniciativaActionPerformed
+
+    private void btnImprimirCronogramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirCronogramaActionPerformed
+        // TODO add your handling code here:
+        tempCronograma.setCronogramaIniciativa(lblCronogramaDataAtualizacao1.getText(), txtInicioReal.getText(), lblCronogramaDataTermino1.getText(),
+                lblNTotalSemanas1.getText(), lblNSemanasDecorridas1.getText(), lblNSemanasRestantes1.getText(), lblTempoDecorrido1.getText(), lblProgressoFisico1.getText(),
+                lblStatusCronograma1.getIcon());
+        
+        tempCronograma.setVisible(true);
+    }//GEN-LAST:event_btnImprimirCronogramaActionPerformed
+
     @SuppressWarnings("unchecked")
     private void setComboBoxs(){
         Info.data = Info.cal.get(Calendar.YEAR);
@@ -4242,6 +4315,7 @@ public class Iniciativas extends javax.swing.JFrame{
             String strFimPeriodo = ("a: " + strFimSem + "/" + strFimMes + "/" + strFimAno);
 
             Info.cronogramaIniciativa.setCamposAtvidade(i, String.valueOf(i), strNomAti, strRea, strIniPeriodo, strFimPeriodo);
+            Info.cronogramaIniciativa.setCamposAtvidadeImprimir(i, String.valueOf(i), strNomAti, strRea, strIniPeriodo, strFimPeriodo);
         }
     }
 
@@ -4679,6 +4753,7 @@ public class Iniciativas extends javax.swing.JFrame{
             String strFimPeriodo = ("a: " + strFimSem + "/" + strFimMes + "/" + strFimAno);
 
             Info.cronogramaIniciativa.setCamposAtvidade(i, String.valueOf(i), strNomAti, strRea, strIniPeriodo, strFimPeriodo);
+            Info.cronogramaIniciativa.setCamposAtvidadeImprimir(i, String.valueOf(i), strNomAti, strRea, strIniPeriodo, strFimPeriodo);
         }
     }
 
@@ -4927,6 +5002,8 @@ public class Iniciativas extends javax.swing.JFrame{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionarAtividade;
     private javax.swing.JButton btnEditarAtividade;
+    private javax.swing.JButton btnImprimirCronograma;
+    private javax.swing.JButton btnImprimirIniciativa;
     private javax.swing.JComboBox cbxDataInicioAno;
     private javax.swing.JComboBox cbxDataInicioMes;
     private javax.swing.JComboBox cbxDataInicioSemana;
@@ -5056,6 +5133,7 @@ public class Iniciativas extends javax.swing.JFrame{
     private javax.swing.JLabel lblStatusCronograma1;
     private javax.swing.JLabel lblTempoDecorrido;
     private javax.swing.JLabel lblTempoDecorrido1;
+    private javax.swing.JPanel tab4;
     private javax.swing.JTextArea txtAcoes;
     private javax.swing.JTextArea txtAcoes1;
     private javax.swing.JTextArea txtAcoes2;

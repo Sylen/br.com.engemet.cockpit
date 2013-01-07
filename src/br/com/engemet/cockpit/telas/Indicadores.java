@@ -336,6 +336,11 @@ public class Indicadores extends javax.swing.JFrame{
         txtCod.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         panelInformGerais.add(txtCod, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 70, 50));
 
+        txtIdentDesemp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdentDesempActionPerformed(evt);
+            }
+        });
         txtIdentDesemp.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtIdentDesempFocusLost(evt);
@@ -4470,6 +4475,10 @@ public class Indicadores extends javax.swing.JFrame{
             }
         }
     }//GEN-LAST:event_btnValorIdealActionPerformed
+
+    private void txtIdentDesempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdentDesempActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdentDesempActionPerformed
 
     @SuppressWarnings("unchecked")
     public void setCombo(String meta){

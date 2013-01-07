@@ -80,7 +80,7 @@ public class TempGrafico extends javax.swing.JFrame{
         lblIndicador1.setText("Indicador");
         lblIndicador1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         lblIndicador1.setOpaque(true);
-        jPanel1.add(lblIndicador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, 450, -1));
+        jPanel1.add(lblIndicador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, 440, -1));
 
         lblIndicador2.setBackground(new java.awt.Color(54, 96, 146));
         lblIndicador2.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
@@ -88,9 +88,9 @@ public class TempGrafico extends javax.swing.JFrame{
         lblIndicador2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblIndicador2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
         lblIndicador2.setOpaque(true);
-        jPanel1.add(lblIndicador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 450, 50));
+        jPanel1.add(lblIndicador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 440, 50));
 
-        btnImprimir.setLabel("Imprimir");
+        btnImprimir.setText("Imprimir");
         btnImprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnImprimirActionPerformed(evt);

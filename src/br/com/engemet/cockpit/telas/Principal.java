@@ -34,6 +34,8 @@ public class Principal extends javax.swing.JFrame{
                 }
             }
         });
+        
+        checkAno();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -248,10 +250,58 @@ public class Principal extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void checkAno(){
+        Info.data = Info.cal.get(Calendar.YEAR);
+        
+        //int cod = Info.getCod();
+        //int forCod = Info.getForecastCod();
+        int compara = 0; 
+        //String strCompara = "";
+        
+        tabela = "CP_META";
+        campo = "MET_ANOREF";
+        select = "SELECT " + campo + " FROM " + tabela;
+        String strCompara = Info.objConexao.getBD(select, campo);
+        
+        if(strCompara != null){
+            compara = Integer.parseInt(Info.objConexao.getBD(select, campo));
+        }else{
+            compara = 0;
+        }
+        
+        if(Info.data != compara && compara != 0){
+            tabela = "CP_HISTORICO";
+            String tabela2= "CP_VAL_REAIS";
+            String insert = "INSERT INTO " + tabela + " SELECT * FROM " + tabela2;
+            Info.objConexao.setBD(insert);
+            insert = "DELETE FROM " + tabela2;
+            Info.objConexao.setBD(insert);
+
+            tabela = "CP_HISTORICO_META";
+            tabela2 = "CP_META";
+            insert = "INSERT INTO " + tabela + " SELECT * FROM " + tabela2;
+            Info.objConexao.setBD(insert);
+            insert = "DELETE FROM " + tabela2;
+            Info.objConexao.setBD(insert);
+            
+            tabela = "CP_FORECAST";
+            insert = "DELETE FROM " + tabela;
+            Info.objConexao.setBD(insert);
+            
+            tabela = "CP_CORES";
+            insert = "DELETE FROM " + tabela;
+            Info.objConexao.setBD(insert);
+        }
+        
+        
+    }
+    
     private void jMenuItemFinancasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFinancasActionPerformed
         jMenuItemFinancas.addActionListener(acaoCockpit);
         Info.cockpit.setStatusNull();
-        setStatusCockpitFinancas(CockpitStrings.Perspectivas[0]);
+        if(Info.getMeta() > 1){
+            setStatusCockpitFinancas(CockpitStrings.Perspectivas[0]);
+        }
         acaoCockpit.actionPerformed(evt);
     }//GEN-LAST:event_jMenuItemFinancasActionPerformed
 
@@ -261,8 +311,11 @@ public class Principal extends javax.swing.JFrame{
         }
 
         Info.mapaEstrategico.setStatusNull();
-        setStatusMapa();
-
+        
+        if(Info.getMeta() > 1){
+            setStatusMapa();
+        }
+        
         mapa.setBounds(5, 5, 1270, 715);
         Frame.add(mapa);
         validate();
@@ -291,7 +344,9 @@ public class Principal extends javax.swing.JFrame{
         // TODO add your handling code here:
         jMenuItemClientes.addActionListener(acaoCockpit);
         Info.cockpit.setStatusNull();
-        setStatusCockpitClientes(CockpitStrings.Perspectivas[1]);
+        if(Info.getMeta() > 1){
+            setStatusCockpitFinancas(CockpitStrings.Perspectivas[1]);
+        }
         acaoCockpit.actionPerformed(evt);
     }//GEN-LAST:event_jMenuItemClientesActionPerformed
 
@@ -299,7 +354,9 @@ public class Principal extends javax.swing.JFrame{
         // TODO add your handling code here: 
         jMenuItemProcessos.addActionListener(acaoCockpit);
         Info.cockpit.setStatusNull();
-        setStatusCockpitProcessos(CockpitStrings.Perspectivas[2]);
+        if(Info.getMeta() > 1){
+            setStatusCockpitFinancas(CockpitStrings.Perspectivas[2]);
+        }
         acaoCockpit.actionPerformed(evt);
     }//GEN-LAST:event_jMenuItemProcessosActionPerformed
 
@@ -307,7 +364,9 @@ public class Principal extends javax.swing.JFrame{
         // TODO add your handling code here:
         jMenuItemPgt.addActionListener(acaoCockpit);
         Info.cockpit.setStatusNull();
-        setStatusCockpitPGT(CockpitStrings.Perspectivas[3]);
+        if(Info.getMeta() > 1){
+            setStatusCockpitFinancas(CockpitStrings.Perspectivas[3]);
+        }
         acaoCockpit.actionPerformed(evt);
     }//GEN-LAST:event_jMenuItemPgtActionPerformed
 
@@ -315,7 +374,9 @@ public class Principal extends javax.swing.JFrame{
         // TODO add your handling code here:
         jMenuItemFinancas.addActionListener(acaoCockpit);
         Info.cockpit.setStatusNull();
-        setStatusSgi();
+        if(Info.getMeta() > 1){
+            setStatusSgi();
+        }
         acaoCockpit.actionPerformed(evt);
     }//GEN-LAST:event_jMenuItemSgiActionPerformed
 
@@ -497,13 +558,21 @@ public class Principal extends javax.swing.JFrame{
     public void setStatusMapa(){
         Info.data = Info.cal.get(Calendar.MONTH);
 
+        
         int cod;
         double metaAcu;
         double realAcu;
         String calculo;
         cod = Info.getCod();
-
-        for(int i = (Info.data-1); i < Info.data; i++){
+        
+        int data;
+        if(Info.data < 2){
+            data = Info.data;
+        }else{
+            data = Info.data - 1;
+        }
+        
+        for(int i = data; i < (data + 1); i++){
             for(int j = 0; j < cod; j++){
                 calculo = Info.getCalculo((j + 1));
                 if(calculo.equals("CHK_MAIMEL")){
@@ -511,7 +580,7 @@ public class Principal extends javax.swing.JFrame{
                     realAcu = status.getRealAcu((j + 1), i);
                     status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                    if(i == (Info.data - 1)){
+                    if(i == (data)){
                         status.setBolaMapa((j + 1), i);
                     }
                 }else if(calculo.equals("CHK_MENMEL")){
@@ -519,7 +588,7 @@ public class Principal extends javax.swing.JFrame{
                     realAcu = status.getRealAcu((j + 1), i);
                     status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                    if(i == (Info.data - 1)){
+                    if(i == (data)){
                         status.setBolaMapa((j + 1), i);
                     }
                 }
@@ -538,7 +607,14 @@ public class Principal extends javax.swing.JFrame{
         String calculo;
         cod = Info.getCod();
         
-        for(int i = (Info.data - 1); i < Info.data; i++){
+        int data;
+        if(Info.data < 2){
+            data = Info.data;
+        }else{
+            data = Info.data - 1;
+        }
+        
+        for(int i = data; i < (data + 1); i++){
             for(int j = 0; j < cod; j++){
                 perspectiva = Info.getPers((j + 1));
                 if(perspectiva.equals(per)){
@@ -548,7 +624,7 @@ public class Principal extends javax.swing.JFrame{
                         realAcu = status.getRealAcu((j + 1), i);
                         status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                        if(i == (Info.data - 1)){
+                        if(i == (data)){
                             status.setBolaCockpit((j + 1), i, per);
                             status.setBolaFinancas((j + 1), i);
                         }
@@ -558,7 +634,7 @@ public class Principal extends javax.swing.JFrame{
                         realAcu = status.getRealAcu((j + 1), i);
                         status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                        if(i == (Info.data - 1)){
+                        if(i == (data)){
                             status.setBolaCockpit((j + 1), i, per);
                             status.setBolaFinancas((j + 1), i);
                         }
@@ -579,7 +655,14 @@ public class Principal extends javax.swing.JFrame{
         String calculo;
         cod = Info.getCod();
         
-        for(int i = (Info.data - 1); i < Info.data; i++){
+        int data;
+        if(Info.data < 2){
+            data = Info.data;
+        }else{
+            data = Info.data - 1;
+        }
+        
+        for(int i = data; i < (data + 1); i++){
             for(int j = 0; j < cod; j++){
                 perspectiva = Info.getPers((j + 1));
                 if(perspectiva.equals(per)){
@@ -589,7 +672,7 @@ public class Principal extends javax.swing.JFrame{
                         realAcu = status.getRealAcu((j + 1), i);
                         status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                        if(i == (Info.data - 1)){
+                        if(i == data){
                             status.setBolaFinancas((j + 1), i, pai);
                         }
 
@@ -598,7 +681,7 @@ public class Principal extends javax.swing.JFrame{
                         realAcu = status.getRealAcu((j + 1), i);
                         status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                        if(i == (Info.data - 1)){
+                        if(i == data){
                             status.setBolaFinancas((j + 1), i, pai);
                         }
                     }
@@ -618,7 +701,14 @@ public class Principal extends javax.swing.JFrame{
         String calculo;
         cod = Info.getCod();
         
-        for(int i = (Info.data - 1); i < Info.data; i++){
+        int data;
+        if(Info.data < 2){
+            data = Info.data;
+        }else{
+            data = Info.data - 1;
+        }
+        
+        for(int i = data; i < (data + 1); i++){
             for(int j = 0; j < cod; j++){
                 perspectiva = Info.getPers((j + 1));
                 if(perspectiva.equals(per)){
@@ -628,7 +718,7 @@ public class Principal extends javax.swing.JFrame{
                         realAcu = status.getRealAcu((j + 1), i);
                         status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                        if(i == (Info.data - 1)){
+                        if(i == data){
                             status.setBolaFinancas((j + 1), i, pai1, pai2);
                         }
 
@@ -637,7 +727,7 @@ public class Principal extends javax.swing.JFrame{
                         realAcu = status.getRealAcu((j + 1), i);
                         status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                        if(i == (Info.data - 1)){
+                        if(i == data){
                             status.setBolaFinancas((j + 1), i, pai1, pai2);
                         }
                     }
@@ -657,7 +747,14 @@ public class Principal extends javax.swing.JFrame{
         String calculo;
         cod = Info.getCod();
         
-        for(int i = (Info.data - 1); i < Info.data; i++){
+        int data;
+        if(Info.data < 2){
+            data = Info.data;
+        }else{
+            data = Info.data - 1;
+        }
+        
+        for(int i = data; i < (data + 1); i++){
             for(int j = 0; j < cod; j++){
                 perspectiva = Info.getPers((j + 1));
                 if(perspectiva.equals(per)){
@@ -667,7 +764,7 @@ public class Principal extends javax.swing.JFrame{
                         realAcu = status.getRealAcu((j + 1), i);
                         status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                        if(i == (Info.data - 1)){
+                        if(i == data){
                             status.setBolaCockpit((j + 1), i, per);
                             status.setBolaClientes((j + 1), i);
                         }
@@ -677,7 +774,7 @@ public class Principal extends javax.swing.JFrame{
                         realAcu = status.getRealAcu((j + 1), i);
                         status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                        if(i == (Info.data - 1)){
+                        if(i == data){
                             status.setBolaCockpit((j + 1), i, per);
                             status.setBolaClientes((j + 1), i);
                         }
@@ -698,7 +795,14 @@ public class Principal extends javax.swing.JFrame{
         String calculo;
         cod = Info.getCod();
         
-        for(int i = (Info.data - 1); i < Info.data; i++){
+        int data;
+        if(Info.data < 2){
+            data = Info.data;
+        }else{
+            data = Info.data - 1;
+        }
+        
+        for(int i = data; i < (data + 1); i++){
             for(int j = 0; j < cod; j++){
                 perspectiva = Info.getPers((j + 1));
                 if(perspectiva.equals(per)){
@@ -708,7 +812,7 @@ public class Principal extends javax.swing.JFrame{
                         realAcu = status.getRealAcu((j + 1), i);
                         status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                        if(i == (Info.data - 1)){
+                        if(i == data){
                             status.setBolaClientes((j + 1), i, pai);
                         }
 
@@ -717,7 +821,7 @@ public class Principal extends javax.swing.JFrame{
                         realAcu = status.getRealAcu((j + 1), i);
                         status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                        if(i == (Info.data - 1)){
+                        if(i == data){
                             status.setBolaClientes((j + 1), i, pai);
                         }
                     }
@@ -737,7 +841,14 @@ public class Principal extends javax.swing.JFrame{
         String calculo;
         cod = Info.getCod();
         
-        for(int i = (Info.data - 1); i < Info.data; i++){
+        int data;
+        if(Info.data < 2){
+            data = Info.data;
+        }else{
+            data = Info.data - 1;
+        }
+        
+        for(int i = data; i < (data + 1); i++){
             for(int j = 0; j < cod; j++){
                 perspectiva = Info.getPers((j + 1));
                 if(perspectiva.equals(per)){
@@ -747,7 +858,7 @@ public class Principal extends javax.swing.JFrame{
                         realAcu = status.getRealAcu((j + 1), i);
                         status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                        if(i == (Info.data - 1)){
+                        if(i == data){
                             status.setBolaClientes((j + 1), i, pai1, pai2);
                         }
 
@@ -756,7 +867,7 @@ public class Principal extends javax.swing.JFrame{
                         realAcu = status.getRealAcu((j + 1), i);
                         status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                        if(i == (Info.data - 1)){
+                        if(i == data){
                             status.setBolaClientes((j + 1), i, pai1, pai2);
                         }
                     }
@@ -776,7 +887,14 @@ public class Principal extends javax.swing.JFrame{
         String calculo;
         cod = Info.getCod();
         
-        for(int i = (Info.data - 1); i < Info.data; i++){
+        int data;
+        if(Info.data < 2){
+            data = Info.data;
+        }else{
+            data = Info.data - 1;
+        }
+        
+        for(int i = data; i < (data + 1); i++){
             for(int j = 0; j < cod; j++){
                 perspectiva = Info.getPers((j + 1));
                 if(perspectiva.equals(per)){
@@ -786,7 +904,7 @@ public class Principal extends javax.swing.JFrame{
                         realAcu = status.getRealAcu((j + 1), i);
                         status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                        if(i == (Info.data - 1)){
+                        if(i == data){
                             status.setBolaCockpit((j + 1), i, per);
                             status.setBolaProcessos((j + 1), i);
                         }
@@ -796,7 +914,7 @@ public class Principal extends javax.swing.JFrame{
                         realAcu = status.getRealAcu((j + 1), i);
                         status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                        if(i == (Info.data - 1)){
+                        if(i == data){
                             status.setBolaCockpit((j + 1), i, per);
                             status.setBolaProcessos((j + 1), i);
                         }
@@ -817,7 +935,14 @@ public class Principal extends javax.swing.JFrame{
         String calculo;
         cod = Info.getCod();
         
-        for(int i = (Info.data - 1); i < Info.data; i++){
+        int data;
+        if(Info.data < 2){
+            data = Info.data;
+        }else{
+            data = Info.data - 1;
+        }
+        
+        for(int i = data; i < (data + 1); i++){
             for(int j = 0; j < cod; j++){
                 perspectiva = Info.getPers((j + 1));
                 if(perspectiva.equals(per)){
@@ -827,7 +952,7 @@ public class Principal extends javax.swing.JFrame{
                         realAcu = status.getRealAcu((j + 1), i);
                         status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                        if(i == (Info.data - 1)){
+                        if(i == data){
                             status.setBolaProcessos((j + 1), i, pai);
                         }
 
@@ -836,7 +961,7 @@ public class Principal extends javax.swing.JFrame{
                         realAcu = status.getRealAcu((j + 1), i);
                         status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                        if(i == (Info.data - 1)){
+                        if(i == data){
                             status.setBolaProcessos((j + 1), i, pai);
                         }
                     }
@@ -856,7 +981,14 @@ public class Principal extends javax.swing.JFrame{
         String calculo;
         cod = Info.getCod();
         
-        for(int i = (Info.data - 1); i < Info.data; i++){
+        int data;
+        if(Info.data < 2){
+            data = Info.data;
+        }else{
+            data = Info.data - 1;
+        }
+        
+        for(int i = data; i < (data + 1); i++){
             for(int j = 0; j < cod; j++){
                 perspectiva = Info.getPers((j + 1));
                 if(perspectiva.equals(per)){
@@ -866,7 +998,7 @@ public class Principal extends javax.swing.JFrame{
                         realAcu = status.getRealAcu((j + 1), i);
                         status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                        if(i == (Info.data - 1)){
+                        if(i == data){
                             status.setBolaProcessos((j + 1), i, pai1, pai2);
                         }
 
@@ -875,7 +1007,7 @@ public class Principal extends javax.swing.JFrame{
                         realAcu = status.getRealAcu((j + 1), i);
                         status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                        if(i == (Info.data - 1)){
+                        if(i == data){
                             status.setBolaProcessos((j + 1), i, pai1, pai2);
                         }
                     }
@@ -895,7 +1027,14 @@ public class Principal extends javax.swing.JFrame{
         String calculo;
         cod = Info.getCod();
 
-        for(int i = (Info.data - 1); i < Info.data; i++){
+        int data;
+        if(Info.data < 2){
+            data = Info.data;
+        }else{
+            data = Info.data - 1;
+        }
+        
+        for(int i = data; i < (data + 1); i++){
             for(int j = 0; j < cod; j++){
                 perspectiva = Info.getPers((j + 1));
                 if(perspectiva.equals(per)){
@@ -905,7 +1044,7 @@ public class Principal extends javax.swing.JFrame{
                         realAcu = status.getRealAcu((j + 1), i);
                         status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                        if(i == (Info.data - 1)){
+                        if(i == data){
                             status.setBolaCockpit((j + 1), i, per);
                             status.setBolaPgt((j + 1), i);
                         }
@@ -915,7 +1054,7 @@ public class Principal extends javax.swing.JFrame{
                         realAcu = status.getRealAcu((j + 1), i);
                         status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                        if(i == (Info.data - 1)){
+                        if(i == data){
                             status.setBolaCockpit((j + 1), i, per);
                             status.setBolaPgt((j + 1), i);
                         }
@@ -935,7 +1074,15 @@ public class Principal extends javax.swing.JFrame{
         double realAcu;
         String calculo;
         cod = Info.getCod();
-        for(int i = (Info.data - 1); i < Info.data; i++){
+        
+        int data;
+        if(Info.data < 2){
+            data = Info.data;
+        }else{
+            data = Info.data - 1;
+        }
+        
+        for(int i = data; i < (data + 1); i++){
             for(int j = 0; j < cod; j++){
                 perspectiva = Info.getPers((j + 1));
                 if(perspectiva.equals(per)){
@@ -945,7 +1092,7 @@ public class Principal extends javax.swing.JFrame{
                         realAcu = status.getRealAcu((j + 1), i);
                         status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                        if(i == (Info.data - 1)){
+                        if(i == data){
                             status.setBolaPgt((j + 1), i, pai);
                         }
 
@@ -954,7 +1101,7 @@ public class Principal extends javax.swing.JFrame{
                         realAcu = status.getRealAcu((j + 1), i);
                         status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                        if(i == (Info.data - 1)){
+                        if(i == data){
                             status.setBolaPgt((j + 1), i, pai);
                         }
                     }
@@ -974,7 +1121,14 @@ public class Principal extends javax.swing.JFrame{
         String calculo;
         cod = Info.getCod();
 
-        for(int i = (Info.data - 1); i < Info.data; i++){
+        int data;
+        if(Info.data < 2){
+            data = Info.data;
+        }else{
+            data = Info.data - 1;
+        }
+        
+        for(int i = data; i < (data + 1); i++){
             for(int j = 0; j < cod; j++){
                 perspectiva = Info.getPers((j + 1));
                 if(perspectiva.equals(per)){
@@ -984,7 +1138,7 @@ public class Principal extends javax.swing.JFrame{
                         realAcu = status.getRealAcu((j + 1), i);
                         status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                        if(i == (Info.data - 1)){
+                        if(i == data){
                             status.setBolaPgt((j + 1), i, pai1, pai2);
                         }
 
@@ -993,7 +1147,7 @@ public class Principal extends javax.swing.JFrame{
                         realAcu = status.getRealAcu((j + 1), i);
                         status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                        if(i == (Info.data - 1)){
+                        if(i == data){
                             status.setBolaPgt((j + 1), i, pai1, pai2);
                         }
                     }
@@ -1011,7 +1165,14 @@ public class Principal extends javax.swing.JFrame{
         String calculo;
         cod = Info.getCod();
 
-        for(int i = (Info.data - 1); i < Info.data; i++){
+        int data;
+        if(Info.data < 2){
+            data = Info.data;
+        }else{
+            data = Info.data - 1;
+        }
+        
+        for(int i = data; i < (data + 1); i++){
             for(int j = 0; j < cod; j++){
                 calculo = Info.getCalculo((j + 1));
                 if(calculo.equals("CHK_MAIMEL")){
@@ -1019,7 +1180,7 @@ public class Principal extends javax.swing.JFrame{
                     realAcu = status.getRealAcu((j + 1), i);
                     status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                    if(i == (Info.data - 1)){
+                    if(i == data){
                         if(per.equals(CockpitStrings.Perspectivas[0])){
                             status.setBolaFinancas((j + 1), i, pai);
                         }else if(per.equals(CockpitStrings.Perspectivas[1])){
@@ -1035,7 +1196,7 @@ public class Principal extends javax.swing.JFrame{
                     realAcu = status.getRealAcu((j + 1), i);
                     status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                    if(i == (Info.data - 1)){
+                    if(i == data){
                         if(per.equals(CockpitStrings.Perspectivas[0])){
                             status.setBolaFinancas((j + 1), i, pai);
                         }else if(per.equals(CockpitStrings.Perspectivas[1])){
@@ -1060,7 +1221,14 @@ public class Principal extends javax.swing.JFrame{
         String calculo;
         cod = Info.getCod();
 
-        for(int i = (Info.data - 1); i < Info.data; i++){
+        int data;
+        if(Info.data < 2){
+            data = Info.data;
+        }else{
+            data = Info.data - 1;
+        }
+        
+        for(int i = data; i < (data + 1); i++){
             for(int j = 0; j < cod; j++){
                 calculo = Info.getCalculo((j + 1));
                 if(calculo.equals("CHK_MAIMEL")){
@@ -1068,7 +1236,7 @@ public class Principal extends javax.swing.JFrame{
                     realAcu = status.getRealAcu((j + 1), i);
                     status.setMaiorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                    if(i == (Info.data - 1)){
+                    if(i == data){
                         if(per.equals(CockpitStrings.Perspectivas[0])){
                             status.setBolaFinancas((j + 1), i, pai1, pai2);
                         }else if(per.equals(CockpitStrings.Perspectivas[1])){
@@ -1084,7 +1252,7 @@ public class Principal extends javax.swing.JFrame{
                     realAcu = status.getRealAcu((j + 1), i);
                     status.setMenorMelhor(metaAcu, realAcu, (j + 1), i);
 
-                    if(i == (Info.data - 1)){
+                    if(i == data){
                         if(per.equals(CockpitStrings.Perspectivas[0])){
                             status.setBolaFinancas((j + 1), i, pai1, pai2);
                         }else if(per.equals(CockpitStrings.Perspectivas[1])){
@@ -1106,7 +1274,7 @@ public class Principal extends javax.swing.JFrame{
         double metaAcu;
         double realAcu;
         String calculo;
-
+        
         for(int i = 0; i < Info.data; i++){
             calculo = Info.getCalculo((cod));
             if(calculo.equals("CHK_MAIMEL")){
@@ -1132,6 +1300,7 @@ public class Principal extends javax.swing.JFrame{
         double realAcu;
         String calculo;
         cod = Info.getCod();
+        
         if(perspectiva.equals(CockpitStrings.Perspectivas[1])){
             for(int i = 0; i < Info.data; i++){
                 for(int j = 0; j < cod; j++){

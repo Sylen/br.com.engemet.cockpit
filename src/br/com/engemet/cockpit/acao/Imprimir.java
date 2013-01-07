@@ -4,9 +4,11 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.print.PageFormat;
+import java.awt.print.Paper;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import javax.swing.JOptionPane;
 import javax.swing.RepaintManager;
 
 public class Imprimir implements Printable {
@@ -25,8 +27,9 @@ public class Imprimir implements Printable {
 
     PageFormat landscape = printJob.defaultPage();
     landscape.setOrientation(PageFormat.LANDSCAPE);
-       
-    printJob.setPrintable(this, landscape);
+
+    //printJob.setPrintable(this, landscape);
+    printJob.setPrintable(this);
     if (printJob.printDialog())
       try {
         printJob.print();
@@ -34,13 +37,14 @@ public class Imprimir implements Printable {
         System.out.println("Error printing: " + pe);
       }
   }
-
+  
   public int print(Graphics g, PageFormat pageFormat, int pageIndex) {
     if (pageIndex > 0) {
       return(NO_SUCH_PAGE);
     } else {
       Graphics2D g2d = (Graphics2D)g;
-      g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
+
+      g2d.translate(pageFormat.getImageableX() + 20, pageFormat.getImageableY());
       disableDoubleBuffering(componentToBePrinted);
       componentToBePrinted.paint(g2d);
       enableDoubleBuffering(componentToBePrinted);

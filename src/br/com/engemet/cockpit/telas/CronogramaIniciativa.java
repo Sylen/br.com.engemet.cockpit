@@ -1,6 +1,7 @@
 package br.com.engemet.cockpit.telas;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.KeyboardFocusManager;
 import java.util.Calendar;
 import java.util.HashSet;
@@ -30,6 +31,7 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
     private String strFimPeriodo;
     //private int numeroAtividade = 1;
 
+    @SuppressWarnings("unchecked")
     public CronogramaIniciativa(){
         Info.cronogramaIniciativa = this;
 
@@ -39,21 +41,21 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
         
         Set tab = new HashSet (1);   
     
-      //Modificando o KeyStroke para avançar  
-      tab.add(KeyStroke.getKeyStroke("TAB"));   
+        //Modificando o KeyStroke para avançar  
+        tab.add(KeyStroke.getKeyStroke("TAB"));   
 
-      //Criando o set para o método setFocusTraversalKeys() - shifttab  
-      Set shifttab = new HashSet (1);  
+        //Criando o set para o método setFocusTraversalKeys() - shifttab  
+        Set shifttab = new HashSet (1);  
 
-      //Modificando o KeyStroke para retroceder  
-      shifttab.add(KeyStroke.getKeyStroke("shift TAB"));  
+        //Modificando o KeyStroke para retroceder  
+        shifttab.add(KeyStroke.getKeyStroke("shift TAB"));  
 
-      //Modificando as propriedades de foco do componente textArea  
-      txtAtividades.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,tab);  
-      txtAtividades.setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS,shifttab); 
-      
-      txtProdutos.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,tab);  
-      txtProdutos.setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS,shifttab); 
+        //Modificando as propriedades de foco do componente textArea  
+        txtAtividades.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,tab);  
+        txtAtividades.setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS,shifttab); 
+
+        txtProdutos.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,tab);  
+        txtProdutos.setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS,shifttab); 
     }
 
     @SuppressWarnings("unchecked")
@@ -268,6 +270,7 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
             for(int i = 1; i <= itensGeral; i++){
                 setPegarAtividade(i);
                 setCamposAtvidade(i, strItem, strAtividade, strRealizado, strIniPeriodo, strFimPeriodo);
+                setCamposAtvidadeImprimir(i, strItem, strAtividade, strRealizado, strIniPeriodo, strFimPeriodo);
             }
 
             verificar = 0;
@@ -310,6 +313,7 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
                     for(int i = 1; i <= itensGeral; i++){
                         setPegarAtividade(i);
                         setCamposAtvidade(i, strItem, strAtividade, strRealizado, strIniPeriodo, strFimPeriodo);
+                        setCamposAtvidadeImprimir(i, strItem, strAtividade, strRealizado, strIniPeriodo, strFimPeriodo);
                     }
                 }
 
@@ -340,6 +344,7 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
             for(int i = 1; i <= itensGeral - 1; i++){
                 setPegarAtividade(i);
                 setCamposAtvidade(i, strItem, strAtividade, strRealizado, strIniPeriodo, strFimPeriodo);
+                setCamposAtvidadeImprimir(i, strItem, strAtividade, strRealizado, strIniPeriodo, strFimPeriodo);
             }
 
             if(verificar == 1){
@@ -618,7 +623,7 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
         lblItem.setOpaque(true);
         lblItem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Info.iniciativas.setJPanel4(lblItem, x, y, width, height);
-
+        
         width = 300;
         height = 60;
         x = 40;
@@ -662,9 +667,102 @@ public class CronogramaIniciativa extends javax.swing.JFrame{
         x = 760;
         progresso.setValue(intProgresso);
         Info.iniciativas.setJPanel4(progresso, x, y, width, height);
-
+        
         Info.iniciativas.validate();
         Info.iniciativas.repaint();
+    }
+    
+    public void setCamposAtvidadeImprimir(int numeroAtividade, String strItem, String strAtividade, String strRealizado, String strIniPeriodo, String strFimPeriodo){
+        lblItem = new JLabel();
+        lblAtividade = new JLabel();
+        lblRealizado = new JLabel();
+        lblIniPeriodo = new JLabel();
+        lblFimPeriodo = new JLabel();
+        progresso = new JProgressBar(0, 100);
+        int intProgresso;
+
+        int x, y, width, height;
+
+        lblItem.setText(strItem);
+        lblAtividade.setText(strAtividade);
+        lblRealizado.setText(strRealizado);
+        lblIniPeriodo.setText(strIniPeriodo);
+        lblFimPeriodo.setText(strFimPeriodo);
+
+        if(strRealizado == null || strRealizado.equals("")){
+            intProgresso = 0;
+        }else{
+            intProgresso = Integer.parseInt(strRealizado);
+        }
+
+        y = 0;
+
+        if(numeroAtividade > 1){
+            numeroAtividade--;
+            y = (numeroAtividade * 30) + 0;
+            numeroAtividade++;
+        }
+
+        width = 20;
+        height = 30;
+        x = 0;
+        lblItem.setFont(new Font("Lucida Grande", Font.PLAIN ,5));
+        lblItem.setBackground(new Color(255, 255, 255));
+        lblItem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblItem.setOpaque(true);
+        lblItem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Info.tempCronograma.setJPanelAtividades(lblItem, x, y, width, height);
+        
+        width = 150;
+        height = 30;
+        x = 20;
+        lblAtividade.setFont(new Font("Lucida Grande", Font.PLAIN ,5));
+        lblAtividade.setBackground(new Color(255, 255, 255));
+        lblAtividade.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblAtividade.setOpaque(true);
+        lblAtividade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Info.tempCronograma.setJPanelAtividades(lblAtividade, x, y, width, height);
+
+        width = 60;
+        height = 30;
+        x = 170;
+        lblRealizado.setFont(new Font("Lucida Grande", Font.PLAIN ,5));
+        lblRealizado.setBackground(new Color(255, 255, 255));
+        lblRealizado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblRealizado.setOpaque(true);
+        lblRealizado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Info.tempCronograma.setJPanelAtividades(lblRealizado, x, y, width, height);
+
+        width = 160;
+        height = 15;
+        x = 230;
+        lblIniPeriodo.setFont(new Font("Lucida Grande", Font.PLAIN ,5));
+        lblIniPeriodo.setBackground(new Color(255, 255, 255));
+        lblIniPeriodo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblIniPeriodo.setOpaque(true);
+        lblIniPeriodo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Info.tempCronograma.setJPanelAtividades(lblIniPeriodo, x, y, width, height);
+
+        width = 160;
+        height = 15;
+        x = 230;
+        y += 15;
+        lblFimPeriodo.setFont(new Font("Lucida Grande", Font.PLAIN ,5));
+        lblFimPeriodo.setBackground(new Color(255, 255, 255));
+        lblFimPeriodo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblFimPeriodo.setOpaque(true);
+        lblFimPeriodo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Info.tempCronograma.setJPanelAtividades(lblFimPeriodo, x, y, width, height);
+        y -= 15;
+
+        width = 100;
+        height = 30;
+        x = 390;
+        progresso.setValue(intProgresso);
+        Info.tempCronograma.setJPanelAtividades(progresso, x, y, width, height);
+
+        Info.tempCronograma.validate();
+        Info.tempCronograma.repaint();
     }
 
     public void setCamposEditar(){

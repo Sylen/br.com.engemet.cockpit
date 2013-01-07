@@ -31,6 +31,7 @@ public abstract class Info {
     public static CalculoStatus calculoStatus;
     public static Iniciativas iniciativas;
     public static CronogramaIniciativa cronogramaIniciativa;
+    public static TempCronograma tempCronograma;
     public static SGI sgi;
 
     public static int codInd = 1;
@@ -131,6 +132,32 @@ public abstract class Info {
         cod -=1;
      
         return cod;
+    }
+    
+    public static int getMeta(){
+        tabela = "CP_META";
+        campo = "MET_INDCOD";
+
+        select = "SELECT * FROM " + tabela;
+        int metCod = 0;
+        metCod = objConexao.getIndCod(select, campo, metCod);
+        
+        metCod -=1;
+     
+        return metCod;
+    }
+    
+    public static int getForecastCod(){
+        tabela = "CP_FORECAST";
+        campo = "FOR_INDCOD";
+
+        select = "SELECT * FROM " + tabela;
+        int forCod = 0;
+        forCod = objConexao.getIndCod(select, campo, forCod);
+        
+        forCod -=1;
+     
+        return forCod;
     }
     
     public static String getPers(int cod){
